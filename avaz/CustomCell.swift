@@ -12,10 +12,10 @@ import UIKit
 class CustomCell: UITableViewCell {
     
     
-    @IBOutlet weak var priorityImageView: UIImageView!
-    @IBOutlet weak var headingTextView: UITextView!
 
+    @IBOutlet weak var priorityImageView: UIImageView!
     
+    @IBOutlet weak var headingTextView: UITextView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
