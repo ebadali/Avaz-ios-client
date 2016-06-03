@@ -66,8 +66,8 @@ class UpdateController: UITableViewController {
             
         }
     }
-    
-    
+
+
     
     func LoadFromRemote() {
         dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_UTILITY.rawValue),0))

@@ -18,5 +18,7 @@ class VotesView: UIView {
         addSubview(rootView)
         rootView.frame = self.bounds
     }
+    
+    
 
 }

@@ -18,6 +18,9 @@
 		08BFC4AD1CFC525E007C4651 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BFC4AC1CFC525E007C4651 /* CustomCell.swift */; };
 		08BFC4AF1CFC576F007C4651 /* UpdateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BFC4AE1CFC576F007C4651 /* UpdateController.swift */; };
 		08BFC4B11CFC5872007C4651 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BFC4B01CFC5872007C4651 /* Post.swift */; };
+		08F49DE21D01C4EC005C0702 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F49DE11D01C4EC005C0702 /* MapView.swift */; };
+		08F49DE41D01C7D6005C0702 /* MapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08F49DE31D01C7D6005C0702 /* MapView.xib */; };
+		08F49DE61D01DAC0005C0702 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08F49DE51D01DABF005C0702 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +37,9 @@
 		08BFC4AC1CFC525E007C4651 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		08BFC4AE1CFC576F007C4651 /* UpdateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateController.swift; sourceTree = "<group>"; };
 		08BFC4B01CFC5872007C4651 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Post.swift; path = model/Post.swift; sourceTree = "<group>"; };
+		08F49DE11D01C4EC005C0702 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		08F49DE31D01C7D6005C0702 /* MapView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapView.xib; sourceTree = "<group>"; };
+		08F49DE51D01DABF005C0702 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08F49DE61D01DAC0005C0702 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,6 +57,7 @@
 		08BFC4881CFC4034007C4651 = {
 			isa = PBXGroup;
 			children = (
+				08F49DE51D01DABF005C0702 /* MapKit.framework */,
 				08BFC4931CFC4034007C4651 /* avaz */,
 				08BFC4921CFC4034007C4651 /* Products */,
 			);
@@ -68,6 +76,8 @@
 			children = (
 				087708CD1D00862900EB983B /* VotesView.xib */,
 				087708CF1D00867900EB983B /* VotesView.swift */,
+				08F49DE11D01C4EC005C0702 /* MapView.swift */,
+				08F49DE31D01C7D6005C0702 /* MapView.xib */,
 				08BFC4941CFC4034007C4651 /* AppDelegate.swift */,
 				08BFC4961CFC4034007C4651 /* ViewController.swift */,
 				08BFC4981CFC4034007C4651 /* Main.storyboard */,
@@ -120,7 +130,7 @@
 								enabled = 0;
 							};
 							com.apple.Maps.iOS = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -153,6 +163,7 @@
 				08BFC49C1CFC4034007C4651 /* Assets.xcassets in Resources */,
 				087708CE1D00862900EB983B /* VotesView.xib in Resources */,
 				08BFC49A1CFC4034007C4651 /* Main.storyboard in Resources */,
+				08F49DE41D01C7D6005C0702 /* MapView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,6 +175,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				087708D21D008F7400EB983B /* UpdateDetailViewController.swift in Sources */,
+				08F49DE21D01C4EC005C0702 /* MapView.swift in Sources */,
 				087708D01D00867900EB983B /* VotesView.swift in Sources */,
 				08BFC4AF1CFC576F007C4651 /* UpdateController.swift in Sources */,
 				08BFC4971CFC4034007C4651 /* ViewController.swift in Sources */,
