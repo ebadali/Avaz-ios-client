@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="tnO-xq-d1M">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="tnO-xq-d1M">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -19,7 +19,7 @@
                                 <rect key="frame" x="0.0" y="92" width="320" height="148"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" tableViewCell="RLD-EV-L8K" id="Y7Q-aR-zQ9">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="147"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="147.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.75" contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="Sx1-c3-In1">
@@ -29,15 +29,15 @@
                                                 <constraint firstAttribute="width" constant="40" id="VMe-em-PrZ"/>
                                             </constraints>
                                         </imageView>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f5m-qE-E30">
-                                            <rect key="frame" x="61" y="18" width="481" height="93"/>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f5m-qE-E30">
+                                            <rect key="frame" x="61" y="18" width="198" height="93"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         </textView>
-                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mbb-s9-X78" customClass="VotesView" customModule="avaz" customModuleProvider="target">
-                                            <rect key="frame" x="372" y="111" width="170" height="23"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mbb-s9-X78" customClass="VotesView" customModule="avaz" customModuleProvider="target">
+                                            <rect key="frame" x="89" y="111" width="170" height="23"/>
                                             <color key="backgroundColor" red="1" green="0.37271623599999998" blue="0.33082113969999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="170" id="hco-Ya-zwj"/>
@@ -90,7 +90,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="cell" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="p5M-Fn-yzd">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="lfc-Yu-x1X" id="HXb-PY-Kq3"/>
                                 </connections>
@@ -98,15 +98,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="p5M-Fn-yzd" firstAttribute="width" secondItem="IKh-hR-LZD" secondAttribute="width" id="LFg-ar-MO2"/>
-                            <constraint firstItem="p5M-Fn-yzd" firstAttribute="height" secondItem="IKh-hR-LZD" secondAttribute="height" id="Yz3-hz-aLe"/>
-                            <constraint firstItem="p5M-Fn-yzd" firstAttribute="centerX" secondItem="IKh-hR-LZD" secondAttribute="centerX" id="pJ7-U5-Uvb"/>
-                            <constraint firstItem="p5M-Fn-yzd" firstAttribute="centerY" secondItem="IKh-hR-LZD" secondAttribute="centerY" id="wNP-Hg-dSZ"/>
+                            <constraint firstItem="p5M-Fn-yzd" firstAttribute="top" secondItem="IKh-hR-LZD" secondAttribute="top" id="opM-Ww-LUe"/>
+                            <constraint firstAttribute="trailing" secondItem="p5M-Fn-yzd" secondAttribute="trailing" id="rCv-Gi-rbC"/>
+                            <constraint firstItem="p5M-Fn-yzd" firstAttribute="leading" secondItem="IKh-hR-LZD" secondAttribute="leading" id="wHm-96-Bv7"/>
+                            <constraint firstItem="p5M-Fn-yzd" firstAttribute="bottom" secondItem="yAo-Pv-eQs" secondAttribute="top" id="xja-K8-l2Y"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="zFp-DS-0qn"/>
                     <connections>
-                        <outlet property="tableViewRoot" destination="p5M-Fn-yzd" id="jZX-Nb-ve9"/>
+                        <outlet property="tableViewRoot" destination="p5M-Fn-yzd" id="Oh3-Xc-whn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Qc-n2-d0r" userLabel="First Responder" sceneMemberID="firstResponder"/>

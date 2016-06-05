@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CommentView" customModule="avaz" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="commentviewcell" rowHeight="98" id="KG7-tM-EdL" customClass="CommentView" customModule="avaz" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="362" height="98"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KG7-tM-EdL" id="Vfx-4h-Xrk">
+                <rect key="frame" x="0.0" y="0.0" width="362" height="98"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zyk-Z1-1oR">
+                        <rect key="frame" x="8" y="28" width="54" height="42"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="54" id="SGw-8O-zJv"/>
+                            <constraint firstAttribute="height" constant="42" id="yd9-Pp-11f"/>
+                        </constraints>
+                    </imageView>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="wVz-wy-Tyx">
+                        <rect key="frame" x="70" y="8" width="284" height="82"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="wVz-wy-Tyx" firstAttribute="trailing" secondItem="Vfx-4h-Xrk" secondAttribute="trailingMargin" id="DzG-on-0lc"/>
+                    <constraint firstItem="wVz-wy-Tyx" firstAttribute="leading" secondItem="zyk-Z1-1oR" secondAttribute="trailing" constant="8" symbolic="YES" id="VNy-6C-o1V"/>
+                    <constraint firstItem="zyk-Z1-1oR" firstAttribute="centerY" secondItem="Vfx-4h-Xrk" secondAttribute="centerY" id="XBj-Oy-6hb"/>
+                    <constraint firstItem="wVz-wy-Tyx" firstAttribute="centerY" secondItem="zyk-Z1-1oR" secondAttribute="centerY" id="hMk-Er-Dv7"/>
+                    <constraint firstItem="zyk-Z1-1oR" firstAttribute="leading" secondItem="Vfx-4h-Xrk" secondAttribute="leadingMargin" id="nDm-Wo-ajQ"/>
+                    <constraint firstItem="wVz-wy-Tyx" firstAttribute="top" secondItem="Vfx-4h-Xrk" secondAttribute="topMargin" id="ws2-gX-Jse"/>
+                </constraints>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="241" y="176"/>
+        </tableViewCell>
+    </objects>
+</document>
