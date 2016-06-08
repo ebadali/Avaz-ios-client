@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="tnO-xq-d1M">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="dbN-7y-QOk">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -112,6 +112,56 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Qc-n2-d0r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1628.8" y="-55.853333333333332"/>
+        </scene>
+        <!--Another View Controller-->
+        <scene sceneID="COs-O2-nil">
+            <objects>
+                <viewController id="dbN-7y-QOk" customClass="AnotherViewController" customModule="avaz" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="AFH-3L-b7b"/>
+                        <viewControllerLayoutGuide type="bottom" id="UJj-SR-7gk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lCy-3B-3sS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="H0V-g6-UPP">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="546"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="7Ch-Ff-C8X">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="229"/>
+                                        <subviews>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="On1-AQ-Pmb">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="229"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="JlG-cK-pmb">
+                                        <rect key="frame" x="0.0" y="229" width="320" height="317"/>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="JlG-cK-pmb" firstAttribute="width" secondItem="H0V-g6-UPP" secondAttribute="width" id="BMP-8J-h2I"/>
+                                    <constraint firstItem="JlG-cK-pmb" firstAttribute="top" secondItem="H0V-g6-UPP" secondAttribute="top" constant="229" id="Zx1-gy-0Ah"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="UJj-SR-7gk" firstAttribute="top" secondItem="H0V-g6-UPP" secondAttribute="bottom" constant="22" id="YmH-Ew-wfL"/>
+                            <constraint firstItem="H0V-g6-UPP" firstAttribute="leading" secondItem="lCy-3B-3sS" secondAttribute="leading" id="g7h-Mh-M9N"/>
+                            <constraint firstAttribute="trailing" secondItem="H0V-g6-UPP" secondAttribute="trailing" id="jA5-5T-41H"/>
+                            <constraint firstItem="H0V-g6-UPP" firstAttribute="top" secondItem="lCy-3B-3sS" secondAttribute="top" id="oti-v7-sAf"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rbs-a6-lxe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="817" y="595"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Q4j-Kh-JcG">
