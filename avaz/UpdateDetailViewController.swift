@@ -24,10 +24,14 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource {
 
         tableViewRoot.registerNib(UINib(nibName: "MapView", bundle: nil), forCellReuseIdentifier: "mapviewcell")
         
+        tableViewRoot.registerNib(UINib(nibName: "CommentView", bundle: nil), forCellReuseIdentifier: "commentviewcell")
+        
         // Self-sizing magic!
         tableViewRoot.rowHeight = UITableViewAutomaticDimension
-        tableViewRoot.estimatedRowHeight = 150; //Set this to any value that works for you.
+//                tableViewRoot.rowHeight = 80
+        tableViewRoot.estimatedRowHeight = 50; //Set this to any value that works for you.
 
+        
         LoadData()
     }
     
@@ -83,7 +87,8 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource {
         }
         else{
             // This will be a Comment View
-            cell =  UITableViewCell()
+            
+            cell = tableView.dequeueReusableCellWithIdentifier("commentviewcell", forIndexPath: indexPath) as! CommentView
         }
         return cell
     }
@@ -96,6 +101,17 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource {
         }
     }
     
+//    func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
+//        let cell = tableView.cellForRowAtIndexPath(indexPath)
+//        return cell!.frame.height
+//    }
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
     
     
 }
