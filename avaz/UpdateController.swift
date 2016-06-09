@@ -16,6 +16,10 @@ class UpdateController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 160.0
+        
         LoadData()
     }
     
@@ -26,7 +30,7 @@ class UpdateController: UITableViewController {
     
     func LoadData(){
         for i in 1...10 {
-            someDataSource.append(Post(text1: "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad ", text2: "yolo  \(i) ", up: i*10 , down: i*3 ))
+            someDataSource.append(Post(text1: "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim rem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enimrem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enimad ", text2: "yolo  \(i) ", up: i*10 , down: i*3 ))
         }
         
         print(someDataSource)

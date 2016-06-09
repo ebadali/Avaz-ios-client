@@ -15,7 +15,7 @@ class CustomCell: UITableViewCell {
 
     @IBOutlet weak var priorityImageView: UIImageView!
     
-    @IBOutlet weak var headingTextView: UITextView!
+    @IBOutlet weak var headingTextView: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

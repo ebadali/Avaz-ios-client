@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		081684C61D0949DB009C42EA /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081684C51D0949DB009C42EA /* TestViewController.swift */; };
 		087708CE1D00862900EB983B /* VotesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 087708CD1D00862900EB983B /* VotesView.xib */; };
 		087708D01D00867900EB983B /* VotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087708CF1D00867900EB983B /* VotesView.swift */; };
 		087708D21D008F7400EB983B /* UpdateDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087708D11D008F7400EB983B /* UpdateDetailViewController.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		081684C51D0949DB009C42EA /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		087708CD1D00862900EB983B /* VotesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VotesView.xib; sourceTree = "<group>"; };
 		087708CF1D00867900EB983B /* VotesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VotesView.swift; sourceTree = "<group>"; };
 		087708D11D008F7400EB983B /* UpdateDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateDetailViewController.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 				08BFC4941CFC4034007C4651 /* AppDelegate.swift */,
 				08BFC4961CFC4034007C4651 /* ViewController.swift */,
 				08BFC4981CFC4034007C4651 /* Main.storyboard */,
+				081684C51D0949DB009C42EA /* TestViewController.swift */,
 				087708D11D008F7400EB983B /* UpdateDetailViewController.swift */,
 				08BFC49B1CFC4034007C4651 /* Assets.xcassets */,
 				08BFC49D1CFC4034007C4651 /* LaunchScreen.storyboard */,
@@ -181,6 +184,7 @@
 				08BFC4971CFC4034007C4651 /* ViewController.swift in Sources */,
 				08BFC4951CFC4034007C4651 /* AppDelegate.swift in Sources */,
 				08BFC4AD1CFC525E007C4651 /* CustomCell.swift in Sources */,
+				081684C61D0949DB009C42EA /* TestViewController.swift in Sources */,
 				08BFC4B11CFC5872007C4651 /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
