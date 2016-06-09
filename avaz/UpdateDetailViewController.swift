@@ -7,7 +7,6 @@
 //
 
 import UIKit
-
 class UpdateDetailViewController: UIViewController, UITableViewDataSource {
 
     @IBOutlet weak var tableViewRoot: UITableView!
@@ -27,9 +26,9 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource {
         tableViewRoot.registerNib(UINib(nibName: "CommentView", bundle: nil), forCellReuseIdentifier: "commentviewcell")
         
         // Self-sizing magic!
-        tableViewRoot.rowHeight = UITableViewAutomaticDimension
-//                tableViewRoot.rowHeight = 80
-        tableViewRoot.estimatedRowHeight = 50; //Set this to any value that works for you.
+//        tableViewRoot.rowHeight = UITableViewAutomaticDimension
+                tableViewRoot.rowHeight = 180
+//        tableViewRoot.estimatedRowHeight = 150.0; //Set this to any value that works for you.
 
         
         LoadData()
@@ -110,7 +109,7 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return 160.0
     }
     
     

@@ -8,55 +8,62 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapView" customModule="avaz" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="mapviewcell" rowHeight="244" id="5Un-Qh-SWN" customClass="MapView" customModule="avaz" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="560" height="244"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="mapviewcell" rowHeight="348" id="5Un-Qh-SWN" customClass="MapView" customModule="avaz" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="499" height="348"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5Un-Qh-SWN" id="hWh-yX-xbe">
-                <rect key="frame" x="0.0" y="0.0" width="560" height="243"/>
+                <rect key="frame" x="0.0" y="0.0" width="499" height="347"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleAspectFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="LRh-Aq-458">
-                        <rect key="frame" x="8" y="8" width="544" height="227"/>
+                    <stackView opaque="NO" contentMode="scaleAspectFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="nst-tN-t9n">
+                        <rect key="frame" x="8" y="8" width="483" height="331"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="kW6-yi-Ng9">
-                                <rect key="frame" x="0.0" y="0.0" width="544" height="30"/>
+                            <stackView opaque="NO" contentMode="scaleAspectFill" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Zzj-fx-Oo7">
+                                <rect key="frame" x="0.0" y="0.0" width="483" height="79"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ytF-Rj-gxN">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cZ7-Ar-VqN">
                                         <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
-                                        <color key="backgroundColor" red="0.60435252752203006" green="0.68053620903878098" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.45408337280779654" green="1" blue="0.81564742278483604" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="HHy-05-zmG"/>
-                                            <constraint firstAttribute="width" constant="30" id="zJB-8v-uyj"/>
+                                            <constraint firstAttribute="width" constant="30" id="Gtj-7L-XYh"/>
+                                            <constraint firstAttribute="height" constant="30" id="XjR-cF-V8A"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sakdhaskjdhaskjhdjkashdjashd sakdhaskjdhaskjhdjkashdjashjhdjkashdjashd " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nC7-PK-B9f">
-                                        <rect key="frame" x="40" y="0.0" width="504" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleAspectFill" misplaced="YES" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="gf6-Sf-jmP">
+                                        <rect key="frame" x="40" y="0.0" width="443" height="79"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" misplaced="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HSj-UP-yxD">
+                                                <rect key="frame" x="0.0" y="0.0" width="443" height="54"/>
+                                                <string key="text">asdsda hsadjhasd jashdg sadg asda asdsda hsadjhasd jashdg sadg asda asdsda hsadjhasd jashdg sadg asda asdsda hsadjhasd jashdg sadg asda </string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="at Bahadurabad" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="khB-W9-2Yh">
+                                                <rect key="frame" x="0.0" y="64" width="443" height="15"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="nC7-PK-B9f" secondAttribute="trailing" id="LMG-4p-O4V"/>
-                                    <constraint firstAttribute="bottom" secondItem="nC7-PK-B9f" secondAttribute="bottom" id="MWZ-Ot-bF4"/>
-                                    <constraint firstItem="nC7-PK-B9f" firstAttribute="top" secondItem="kW6-yi-Ng9" secondAttribute="top" id="VOc-fN-5Pk"/>
-                                </constraints>
                             </stackView>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="FyK-i0-F7K">
-                                <rect key="frame" x="0.0" y="40" width="544" height="187"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="xbU-Eb-wWE">
+                                <rect key="frame" x="0.0" y="89" width="483" height="242"/>
                             </mapView>
                         </subviews>
                     </stackView>
                 </subviews>
                 <color key="backgroundColor" red="0.7141943741215957" green="1" blue="0.76092568175607955" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
-                    <constraint firstAttribute="bottomMargin" secondItem="LRh-Aq-458" secondAttribute="bottom" id="3n7-GF-Rme"/>
-                    <constraint firstItem="LRh-Aq-458" firstAttribute="trailing" secondItem="hWh-yX-xbe" secondAttribute="trailingMargin" id="AvV-ga-c7O"/>
-                    <constraint firstItem="LRh-Aq-458" firstAttribute="top" secondItem="hWh-yX-xbe" secondAttribute="topMargin" id="YtW-Yc-11I"/>
-                    <constraint firstItem="LRh-Aq-458" firstAttribute="leading" secondItem="hWh-yX-xbe" secondAttribute="leadingMargin" id="gbf-9D-SgX"/>
+                    <constraint firstItem="nst-tN-t9n" firstAttribute="top" secondItem="hWh-yX-xbe" secondAttribute="topMargin" id="0ld-I0-dCX"/>
+                    <constraint firstItem="nst-tN-t9n" firstAttribute="leading" secondItem="hWh-yX-xbe" secondAttribute="leadingMargin" id="H16-2L-mlR"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="nst-tN-t9n" secondAttribute="bottom" id="SWt-rw-QVg"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="nst-tN-t9n" secondAttribute="trailing" id="So7-Xy-5Wm"/>
                 </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="574" y="362"/>
+            <point key="canvasLocation" x="543.5" y="414"/>
         </tableViewCell>
     </objects>
 </document>
