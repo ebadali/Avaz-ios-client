@@ -26,8 +26,9 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource {
         tableViewRoot.registerNib(UINib(nibName: "CommentView", bundle: nil), forCellReuseIdentifier: "commentviewcell")
         
         // Self-sizing magic!
+//        tableViewRoot.rowHeight = 100
 //        tableViewRoot.rowHeight = UITableViewAutomaticDimension
-                tableViewRoot.rowHeight = 180
+        
 //        tableViewRoot.estimatedRowHeight = 150.0; //Set this to any value that works for you.
 
         
@@ -109,7 +110,7 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 160.0
+        return UITableViewAutomaticDimension
     }
     
     
