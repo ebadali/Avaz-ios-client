@@ -15,6 +15,8 @@
 		087708CE1D00862900EB983B /* VotesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 087708CD1D00862900EB983B /* VotesView.xib */; };
 		087708D01D00867900EB983B /* VotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087708CF1D00867900EB983B /* VotesView.swift */; };
 		087708D21D008F7400EB983B /* UpdateDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087708D11D008F7400EB983B /* UpdateDetailViewController.swift */; };
+		0890BD801D100AF500697E3F /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0890BD7F1D100AF500697E3F /* ApiManager.swift */; };
+		08ABC22A145FC4AD3894B62D /* Pods_avaz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A568DDBA42DE9773A46878D7 /* Pods_avaz.framework */; };
 		08BFC4951CFC4034007C4651 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BFC4941CFC4034007C4651 /* AppDelegate.swift */; };
 		08BFC4971CFC4034007C4651 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BFC4961CFC4034007C4651 /* ViewController.swift */; };
 		08BFC49A1CFC4034007C4651 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08BFC4981CFC4034007C4651 /* Main.storyboard */; };
@@ -29,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		00EFC70B920A6483C60163E5 /* Pods-avaz.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-avaz.debug.xcconfig"; path = "Pods/Target Support Files/Pods-avaz/Pods-avaz.debug.xcconfig"; sourceTree = "<group>"; };
 		080C5B051D09716700D03509 /* Comments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comments.swift; sourceTree = "<group>"; };
 		080C5B061D09716700D03509 /* Comments.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Comments.xib; sourceTree = "<group>"; };
 		080C5B071D09716700D03509 /* CommentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
@@ -37,6 +40,7 @@
 		087708CD1D00862900EB983B /* VotesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VotesView.xib; sourceTree = "<group>"; };
 		087708CF1D00867900EB983B /* VotesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VotesView.swift; sourceTree = "<group>"; };
 		087708D11D008F7400EB983B /* UpdateDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateDetailViewController.swift; sourceTree = "<group>"; };
+		0890BD7F1D100AF500697E3F /* ApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		08BFC4911CFC4034007C4651 /* avaz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = avaz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08BFC4941CFC4034007C4651 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		08BFC4961CFC4034007C4651 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -50,6 +54,8 @@
 		08F49DE11D01C4EC005C0702 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		08F49DE31D01C7D6005C0702 /* MapView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapView.xib; sourceTree = "<group>"; };
 		08F49DE51D01DABF005C0702 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		16F0C07F7B693587672CDA9C /* Pods-avaz.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-avaz.release.xcconfig"; path = "Pods/Target Support Files/Pods-avaz/Pods-avaz.release.xcconfig"; sourceTree = "<group>"; };
+		A568DDBA42DE9773A46878D7 /* Pods_avaz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_avaz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +64,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				08F49DE61D01DAC0005C0702 /* MapKit.framework in Frameworks */,
+				08ABC22A145FC4AD3894B62D /* Pods_avaz.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +77,8 @@
 				08F49DE51D01DABF005C0702 /* MapKit.framework */,
 				08BFC4931CFC4034007C4651 /* avaz */,
 				08BFC4921CFC4034007C4651 /* Products */,
+				92AF3540184B7ACDCD16F006 /* Pods */,
+				D6A392A62FDC6C17522B9EA7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,11 +109,29 @@
 				081684C51D0949DB009C42EA /* TestViewController.swift */,
 				08BFC4AE1CFC576F007C4651 /* UpdateController.swift */,
 				087708D11D008F7400EB983B /* UpdateDetailViewController.swift */,
+				0890BD7F1D100AF500697E3F /* ApiManager.swift */,
 				08BFC4961CFC4034007C4651 /* ViewController.swift */,
 				087708CF1D00867900EB983B /* VotesView.swift */,
 				087708CD1D00862900EB983B /* VotesView.xib */,
 			);
 			path = avaz;
+			sourceTree = "<group>";
+		};
+		92AF3540184B7ACDCD16F006 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				00EFC70B920A6483C60163E5 /* Pods-avaz.debug.xcconfig */,
+				16F0C07F7B693587672CDA9C /* Pods-avaz.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		D6A392A62FDC6C17522B9EA7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A568DDBA42DE9773A46878D7 /* Pods_avaz.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -114,9 +141,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 08BFC4A31CFC4034007C4651 /* Build configuration list for PBXNativeTarget "avaz" */;
 			buildPhases = (
+				68F0742487170257ED257D34 /* Check Pods Manifest.lock */,
 				08BFC48D1CFC4034007C4651 /* Sources */,
 				08BFC48E1CFC4034007C4651 /* Frameworks */,
 				08BFC48F1CFC4034007C4651 /* Resources */,
+				1DA16397597B782F50187F5C /* Embed Pods Frameworks */,
+				DBFDAC9435DA585AF28D426B /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -186,6 +216,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1DA16397597B782F50187F5C /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-avaz/Pods-avaz-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		68F0742487170257ED257D34 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		DBFDAC9435DA585AF28D426B /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-avaz/Pods-avaz-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		08BFC48D1CFC4034007C4651 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -195,6 +273,7 @@
 				080C5B091D09716700D03509 /* Comments.swift in Sources */,
 				08F49DE21D01C4EC005C0702 /* MapView.swift in Sources */,
 				087708D01D00867900EB983B /* VotesView.swift in Sources */,
+				0890BD801D100AF500697E3F /* ApiManager.swift in Sources */,
 				08BFC4AF1CFC576F007C4651 /* UpdateController.swift in Sources */,
 				08BFC4971CFC4034007C4651 /* ViewController.swift in Sources */,
 				08BFC4951CFC4034007C4651 /* AppDelegate.swift in Sources */,
@@ -314,6 +393,7 @@
 		};
 		08BFC4A41CFC4034007C4651 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 00EFC70B920A6483C60163E5 /* Pods-avaz.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -326,6 +406,7 @@
 		};
 		08BFC4A51CFC4034007C4651 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 16F0C07F7B693587672CDA9C /* Pods-avaz.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";

@@ -15,11 +15,11 @@
                 <rect key="frame" x="0.0" y="0.0" width="499" height="347"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleAspectFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="nst-tN-t9n">
+                    <stackView opaque="NO" contentMode="scaleAspectFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="nst-tN-t9n">
                         <rect key="frame" x="8" y="8" width="483" height="331"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleAspectFill" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Zzj-fx-Oo7">
-                                <rect key="frame" x="0.0" y="0.0" width="483" height="79"/>
+                            <stackView opaque="NO" contentMode="scaleAspectFill" misplaced="YES" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Zzj-fx-Oo7">
+                                <rect key="frame" x="0.0" y="0.0" width="483" height="161"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cZ7-Ar-VqN">
                                         <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
@@ -49,8 +49,8 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="xbU-Eb-wWE">
-                                <rect key="frame" x="0.0" y="89" width="483" height="242"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="xbU-Eb-wWE">
+                                <rect key="frame" x="0.0" y="171" width="483" height="160"/>
                             </mapView>
                         </subviews>
                     </stackView>

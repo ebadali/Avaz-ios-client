@@ -8,6 +8,7 @@
 
 
 import UIKit
+import SwiftyJSON
 
 class UpdateController: UITableViewController {
     
@@ -29,10 +30,33 @@ class UpdateController: UITableViewController {
     }
     
     func LoadData(){
-        for i in 1...10 {
-            someDataSource.append(Post(text1: "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim rem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enimrem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enimad ", text2: "yolo  \(i) ", up: i*10 , down: i*3 ))
-        }
         
+        ApiManager.sharedInstance.getRandomPost(
+            {(json : JSON) in
+                print ("-----")
+//                print (json.array)
+//                                print ("-----1")
+//                print (json[0][0])
+//                                print ("-----2")
+                if let results = json.array {
+                    for somePosts in results {
+//                        print (somePosts["Post"])
+                        self.someDataSource.append(Post(json: somePosts["Post"]))
+                    }
+                    dispatch_async(dispatch_get_main_queue(),{
+                        self.tableView.reloadData()
+                    })
+                }
+            
+            }
+        )
+        
+        
+        
+//        for i in 1...10 {
+//            someDataSource.append(Post(text1: "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim rem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enimrem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enimad ", text2: "yolo  \(i) ", up: i*10 , down: i*3 ))
+//        }
+//        
         print(someDataSource)
     }
     
@@ -48,7 +72,7 @@ class UpdateController: UITableViewController {
         dataCell.headingTextView.text = something?.tex1
 //        dataCell.textKiDosriJaga.text = something?.tex2
 //        print(dataCell.textKiJaga.text)
-        print(dataCell.headingTextView.text )
+//        print(dataCell.headingTextView.text )
         //        dataCell.customImageView!.kf_setImageWithURL(NSURL(string: (something?.tex2)!)!)
         return dataCell
     }
@@ -84,18 +108,17 @@ class UpdateController: UITableViewController {
                 
                 do {
                     let json = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)
-                    for blog in (json as? [[String: AnyObject]])!{
-                        
-                        let dat = Post(text1: "",text2: "",up: 5, down: 7)
-                        if let title = blog["title"] as? String  {
-                            dat.tex1 = title
-                        }
-                        if let thumbnailUrl = blog["thumbnailUrl"] as? String  {
-                            dat.tex2 = thumbnailUrl
-                        }
-                        
-                        self.someDataSource.append(dat)
-                    }
+//                    for blog in (json as? [[String: AnyObject]])!{
+////                        let dat = Post(text1: "",text2: "",up: 5, down: 7)
+////                        if let title = blog["title"] as? String  {
+////                            dat.tex1 = title
+////                        }
+////                        if let thumbnailUrl = blog["thumbnailUrl"] as? String  {
+////                            dat.tex2 = thumbnailUrl
+////                        }
+////                        
+////                        self.someDataSource.append(dat)
+//                    }
                     
                 } catch {
                     print("error serializing JSON: \(error)")

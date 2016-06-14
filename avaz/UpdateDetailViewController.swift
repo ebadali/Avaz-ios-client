@@ -27,9 +27,9 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource {
         
         // Self-sizing magic!
 //        tableViewRoot.rowHeight = 100
-//        tableViewRoot.rowHeight = UITableViewAutomaticDimension
+        tableViewRoot.rowHeight = UITableViewAutomaticDimension
         
-//        tableViewRoot.estimatedRowHeight = 150.0; //Set this to any value that works for you.
+        tableViewRoot.estimatedRowHeight = 180.0; //Set this to any value that works for you.
 
         
         LoadData()
@@ -97,7 +97,7 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource {
         if section == 0 {
             return " "
         }else{
-            return "Details"
+            return "Comments"
         }
     }
     
