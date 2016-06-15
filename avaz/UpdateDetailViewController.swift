@@ -75,22 +75,25 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource {
 //        let cell =  VotesView(coder: self.coder)// UITableViewCell()
         
 //        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! NameInput
-        
-        var cell = UITableViewCell()
+//        
+//        var cell = (indexPath.section == 0) ? tableView.dequeueReusableCellWithIdentifier("mapviewcell", forIndexPath: indexPath) as! MapView :
+//                                            tableView.dequeueReusableCellWithIdentifier("commentviewcell", forIndexPath: indexPath) as! CommentView
+//        
         
         if indexPath.section == 0{
             
             // THis is Map view Along with
-            cell = tableView.dequeueReusableCellWithIdentifier("mapviewcell", forIndexPath: indexPath) as! MapView
+           let cell = tableView.dequeueReusableCellWithIdentifier("mapviewcell", forIndexPath: indexPath) as! MapView
+            cell.setparams(self.data)
             
-            
+            return cell
         }
         else{
             // This will be a Comment View
-            
-            cell = tableView.dequeueReusableCellWithIdentifier("commentviewcell", forIndexPath: indexPath) as! CommentView
+           let  cell = tableView.dequeueReusableCellWithIdentifier("commentviewcell", forIndexPath: indexPath) as! CommentView
+            return cell
         }
-        return cell
+
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -112,6 +115,19 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource {
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
+    
+//    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        
+//        if section == 0 {
+//            return nil
+//        }else{
+//            let vw = UIView()
+//            vw.backgroundColor = UIColor.blackColor()
+//            
+//            return vw
+//        }
+//
+//    }
     
     
 }
