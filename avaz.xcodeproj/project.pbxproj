@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		080C5B0B1D09716700D03509 /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080C5B071D09716700D03509 /* CommentView.swift */; };
 		080C5B0C1D09716700D03509 /* CommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 080C5B081D09716700D03509 /* CommentView.xib */; };
+		086F985A1D141C3600D40AA6 /* UploadPostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086F98591D141C3600D40AA6 /* UploadPostController.swift */; };
 		087708CE1D00862900EB983B /* VotesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 087708CD1D00862900EB983B /* VotesView.xib */; };
 		087708D01D00867900EB983B /* VotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087708CF1D00867900EB983B /* VotesView.swift */; };
 		087708D21D008F7400EB983B /* UpdateDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087708D11D008F7400EB983B /* UpdateDetailViewController.swift */; };
@@ -32,6 +33,7 @@
 		00EFC70B920A6483C60163E5 /* Pods-avaz.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-avaz.debug.xcconfig"; path = "Pods/Target Support Files/Pods-avaz/Pods-avaz.debug.xcconfig"; sourceTree = "<group>"; };
 		080C5B071D09716700D03509 /* CommentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
 		080C5B081D09716700D03509 /* CommentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentView.xib; sourceTree = "<group>"; };
+		086F98591D141C3600D40AA6 /* UploadPostController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadPostController.swift; sourceTree = "<group>"; };
 		087708CD1D00862900EB983B /* VotesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VotesView.xib; sourceTree = "<group>"; };
 		087708CF1D00867900EB983B /* VotesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VotesView.swift; sourceTree = "<group>"; };
 		087708D11D008F7400EB983B /* UpdateDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateDetailViewController.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				08BFC4A01CFC4034007C4651 /* Info.plist */,
 				08BFC49D1CFC4034007C4651 /* LaunchScreen.storyboard */,
 				08BFC4981CFC4034007C4651 /* Main.storyboard */,
+				086F98591D141C3600D40AA6 /* UploadPostController.swift */,
 				08F49DE11D01C4EC005C0702 /* MapView.swift */,
 				08F49DE31D01C7D6005C0702 /* MapView.xib */,
 				080C5B071D09716700D03509 /* CommentView.swift */,
@@ -266,6 +269,7 @@
 				08F49DE21D01C4EC005C0702 /* MapView.swift in Sources */,
 				087708D01D00867900EB983B /* VotesView.swift in Sources */,
 				0890BD801D100AF500697E3F /* ApiManager.swift in Sources */,
+				086F985A1D141C3600D40AA6 /* UploadPostController.swift in Sources */,
 				08BFC4AF1CFC576F007C4651 /* UpdateController.swift in Sources */,
 				08BFC4971CFC4034007C4651 /* ViewController.swift in Sources */,
 				08BFC4951CFC4034007C4651 /* AppDelegate.swift in Sources */,

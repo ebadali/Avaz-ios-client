@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="tnO-xq-d1M">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Pg8-vr-hrF">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -127,6 +127,61 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Qc-n2-d0r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1628.8" y="-55.853333333333332"/>
+        </scene>
+        <!--Upload Post Controller-->
+        <scene sceneID="GLl-1r-6Av">
+            <objects>
+                <viewController id="Pg8-vr-hrF" customClass="UploadPostController" customModule="avaz" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="GK4-P3-5Hr"/>
+                        <viewControllerLayoutGuide type="bottom" id="Jqh-ba-2CJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Agx-kX-jtg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RuU-HI-ULR">
+                                <rect key="frame" x="16" y="20" width="288" height="150"/>
+                                <color key="backgroundColor" red="0.7077504291925818" green="1" blue="0.68452283645745771" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="I9I-mr-xOw"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RnS-Ci-o2c">
+                                <rect key="frame" x="16" y="486" width="288" height="30"/>
+                                <state key="normal" title="Take A Photo From Camera"/>
+                                <connections>
+                                    <action selector="TakeFromCamera:" destination="Pg8-vr-hrF" eventType="touchUpInside" id="ujT-ui-Waa"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Axv-rX-lhc">
+                                <rect key="frame" x="16" y="530" width="288" height="30"/>
+                                <state key="normal" title="Take A Photo From Library"/>
+                                <connections>
+                                    <action selector="TakeFromLibrary:" destination="Pg8-vr-hrF" eventType="touchUpInside" id="H0V-FU-j6Y"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="RuU-HI-ULR" secondAttribute="trailing" id="6Eb-bH-bOq"/>
+                            <constraint firstItem="RnS-Ci-o2c" firstAttribute="top" secondItem="RuU-HI-ULR" secondAttribute="bottom" constant="316" id="9Yt-qg-sfn"/>
+                            <constraint firstItem="RuU-HI-ULR" firstAttribute="leading" secondItem="Agx-kX-jtg" secondAttribute="leadingMargin" id="VYC-fL-XY5"/>
+                            <constraint firstItem="Jqh-ba-2CJ" firstAttribute="top" secondItem="Axv-rX-lhc" secondAttribute="bottom" constant="8" id="dWV-bH-uGd"/>
+                            <constraint firstItem="Axv-rX-lhc" firstAttribute="trailing" secondItem="Agx-kX-jtg" secondAttribute="trailingMargin" id="gMx-i4-kQ4"/>
+                            <constraint firstItem="RnS-Ci-o2c" firstAttribute="leading" secondItem="Agx-kX-jtg" secondAttribute="leadingMargin" id="iCV-jz-Lcd"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="RnS-Ci-o2c" secondAttribute="trailing" id="kUk-aZ-lmt"/>
+                            <constraint firstItem="RuU-HI-ULR" firstAttribute="top" secondItem="GK4-P3-5Hr" secondAttribute="bottom" id="uGJ-da-bEC"/>
+                            <constraint firstItem="Axv-rX-lhc" firstAttribute="leading" secondItem="Agx-kX-jtg" secondAttribute="leadingMargin" id="wJf-Cz-KXg"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="RuU-HI-ULR" id="G2l-nh-eWh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="erb-Fm-CZO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="385" y="335"/>
         </scene>
         <!--Test View Controller-->
         <scene sceneID="Co5-YI-BlX">
