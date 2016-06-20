@@ -26,6 +26,43 @@ class ApiManager: NSObject {
         })
     }
     
+    func LogInApi(userName: String, password: String, onCompletion: (JSON) ->Void) {
+        
+        let someTuble = ["route":baseURL, "userName":userName, "password":password];
+        makeHTTPPostRequest(someTuble, onCompletion: { json, err in
+            onCompletion(json as JSON)
+        })
+    }
+    
+    
+    func makeHTTPPostRequest(params: [String: AnyObject], onCompletion: ServiceResponse) {
+        let request = NSMutableURLRequest(URL: NSURL(string: params["route"] as! String)!)
+        request.HTTPMethod="POST"
+        
+        
+        var bodyData = ""
+        for singleItem in params{
+            bodyData += "\(singleItem.0)=\(singleItem.1)&"
+            
+        }
+        bodyData=bodyData.substringToIndex(bodyData.endIndex.predecessor())
+        
+        request.HTTPBody = bodyData.dataUsingEncoding(NSUTF8StringEncoding);
+        
+        let session = NSURLSession.sharedSession()
+        
+        let task = session.dataTaskWithRequest(request, completionHandler:
+            {(data, response, error) -> Void in
+                if let jsonData = data {
+                    let json:JSON = JSON(data: jsonData)
+                    onCompletion(json, error)
+                } else {
+                    onCompletion(nil, error)
+                }
+        })
+        task.resume()
+    }
+    
     func makeHTTPGetRequest(path: String, onCompletion: ServiceResponse) {
 
         

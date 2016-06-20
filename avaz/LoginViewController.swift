@@ -7,9 +7,13 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var email: UITextField!
+    @IBOutlet weak var password: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,4 +36,18 @@ class LoginViewController: UIViewController {
     }
     */
 
+    @IBAction func logIn(sender: AnyObject) {
+        print("logging in")
+        
+        print (" \(self.email.text)")
+        print (" \(self.password.text)")
+        
+        ApiManager.sharedInstance.LogInApi(self.email.text!, password: self.password.text!,
+           onCompletion: {(json : JSON) in
+            
+            }
+        )
+    }
+    @IBAction func saveChanged(sender: AnyObject) {
+    }
 }

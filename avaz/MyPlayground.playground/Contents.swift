@@ -36,9 +36,24 @@ extension Doers
     }
 }
 
+func tupleTest(sometuples: [String: AnyObject]) {
+    print(sometuples["asd"])
+    
+    var strr=""
+    for val in sometuples{
+        strr += "\(val.0)=\(val.1)&"
+
+    }
+    strr=strr.substringToIndex(strr.endIndex.predecessor())
+    print(strr)
+}
+
 var someDoers = Doers()
 var someInt: Int8 = 126
 someDoers.doSomethings(675)
 someDoers.doSomethingsNew(someInt)
 
+
+var sometuples = ["asd":45,"asdsa":6]
+tupleTest(sometuples)
 
