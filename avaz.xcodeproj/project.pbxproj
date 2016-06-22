@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		029887691D184B7A00D8903F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029887681D184B7A00D8903F /* LoginViewController.swift */; };
 		080C5B0B1D09716700D03509 /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080C5B071D09716700D03509 /* CommentView.swift */; };
 		080C5B0C1D09716700D03509 /* CommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 080C5B081D09716700D03509 /* CommentView.xib */; };
 		086F985A1D141C3600D40AA6 /* UploadPostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086F98591D141C3600D40AA6 /* UploadPostController.swift */; };
@@ -31,6 +32,8 @@
 
 /* Begin PBXFileReference section */
 		00EFC70B920A6483C60163E5 /* Pods-avaz.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-avaz.debug.xcconfig"; path = "Pods/Target Support Files/Pods-avaz/Pods-avaz.debug.xcconfig"; sourceTree = "<group>"; };
+		029887681D184B7A00D8903F /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		02A8D3821D16EE7C00F4E4CE /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 		080C5B071D09716700D03509 /* CommentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
 		080C5B081D09716700D03509 /* CommentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentView.xib; sourceTree = "<group>"; };
 		086F98591D141C3600D40AA6 /* UploadPostController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadPostController.swift; sourceTree = "<group>"; };
@@ -97,6 +100,7 @@
 				08BFC4A01CFC4034007C4651 /* Info.plist */,
 				08BFC49D1CFC4034007C4651 /* LaunchScreen.storyboard */,
 				08BFC4981CFC4034007C4651 /* Main.storyboard */,
+				029887681D184B7A00D8903F /* LoginViewController.swift */,
 				086F98591D141C3600D40AA6 /* UploadPostController.swift */,
 				08F49DE11D01C4EC005C0702 /* MapView.swift */,
 				08F49DE31D01C7D6005C0702 /* MapView.xib */,
@@ -110,6 +114,7 @@
 				08BFC4961CFC4034007C4651 /* ViewController.swift */,
 				087708CF1D00867900EB983B /* VotesView.swift */,
 				087708CD1D00862900EB983B /* VotesView.xib */,
+				02A8D3821D16EE7C00F4E4CE /* MyPlayground.playground */,
 			);
 			path = avaz;
 			sourceTree = "<group>";
@@ -276,6 +281,7 @@
 				08BFC4AD1CFC525E007C4651 /* CustomCell.swift in Sources */,
 				080C5B0B1D09716700D03509 /* CommentView.swift in Sources */,
 				08BFC4B11CFC5872007C4651 /* Post.swift in Sources */,
+				029887691D184B7A00D8903F /* LoginViewController.swift in Sources */,
 				08C4456C1D1160C400CB48CB /* Pointer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
