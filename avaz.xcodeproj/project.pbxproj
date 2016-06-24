@@ -30,6 +30,7 @@
 		08F49DE21D01C4EC005C0702 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F49DE11D01C4EC005C0702 /* MapView.swift */; };
 		08F49DE41D01C7D6005C0702 /* MapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08F49DE31D01C7D6005C0702 /* MapView.xib */; };
 		08F49DE61D01DAC0005C0702 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08F49DE51D01DABF005C0702 /* MapKit.framework */; };
+		08F554F31D1AB7A4000BFD63 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F554F21D1AB7A4000BFD63 /* RegisterViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		08F49DE11D01C4EC005C0702 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		08F49DE31D01C7D6005C0702 /* MapView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapView.xib; sourceTree = "<group>"; };
 		08F49DE51D01DABF005C0702 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		08F554F21D1AB7A4000BFD63 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		16F0C07F7B693587672CDA9C /* Pods-avaz.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-avaz.release.xcconfig"; path = "Pods/Target Support Files/Pods-avaz/Pods-avaz.release.xcconfig"; sourceTree = "<group>"; };
 		A568DDBA42DE9773A46878D7 /* Pods_avaz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_avaz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -109,6 +111,7 @@
 				08BFC4A01CFC4034007C4651 /* Info.plist */,
 				08BFC49D1CFC4034007C4651 /* LaunchScreen.storyboard */,
 				08BFC4981CFC4034007C4651 /* Main.storyboard */,
+				08F554F21D1AB7A4000BFD63 /* RegisterViewController.swift */,
 				029887681D184B7A00D8903F /* LoginViewController.swift */,
 				086F98591D141C3600D40AA6 /* UploadPostController.swift */,
 				08F49DE11D01C4EC005C0702 /* MapView.swift */,
@@ -289,6 +292,7 @@
 				08BFC4971CFC4034007C4651 /* ViewController.swift in Sources */,
 				08BFC4951CFC4034007C4651 /* AppDelegate.swift in Sources */,
 				08BFC4AD1CFC525E007C4651 /* CustomCell.swift in Sources */,
+				08F554F31D1AB7A4000BFD63 /* RegisterViewController.swift in Sources */,
 				080C5B0B1D09716700D03509 /* CommentView.swift in Sources */,
 				08BFC4B11CFC5872007C4651 /* Post.swift in Sources */,
 				029887691D184B7A00D8903F /* LoginViewController.swift in Sources */,

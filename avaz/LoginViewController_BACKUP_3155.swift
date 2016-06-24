@@ -9,17 +9,16 @@
 import UIKit
 import SwiftyJSON
 
-class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
+class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
 
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
-	@IBOutlet weak var register: UILabel!
+<<<<<<< HEAD
     @IBOutlet weak var fbButn: FBSDKLoginButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        addGestureRecognizerLabel();
-		
+
         if (FBSDKAccessToken.currentAccessToken() != nil)
         {
             // User is already logged in, do work such as go to next view controller.
@@ -32,7 +31,13 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
             fbButn.readPermissions = ["public_profile", "email", "user_friends"]
             fbButn.delegate = self
         }
-
+=======
+    @IBOutlet weak var register: UILabel!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        addGestureRecognizerLabel();
+>>>>>>> 73d3091f44013f2a20081adc15aa00f1b282426f
         // Do any additional setup after loading the view.
     }
 
@@ -42,6 +47,8 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
     }
     
 
+<<<<<<< HEAD
+=======
     
 //     MARK: - Navigation
 //
@@ -63,7 +70,26 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
             
         }
     }
-// Face book delegate methods
+ 
+>>>>>>> 73d3091f44013f2a20081adc15aa00f1b282426f
+
+    @IBAction func logIn(sender: AnyObject) {
+        print("logging in")
+        
+        print (" \(self.email.text)")
+        print (" \(self.password.text)")
+        
+        ApiManager.sharedInstance.LogInApi(self.email.text!, password: self.password.text!,
+           onCompletion: {(json : JSON) in
+            
+            }
+        )
+    }
+    @IBAction func saveChanged(sender: AnyObject) {
+    }
+    
+<<<<<<< HEAD
+//    Face book delegate methods
     
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
@@ -103,22 +129,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
                 print("User Email is: \(userEmail)")
             }
         })
-    }
-    @IBAction func logIn(sender: AnyObject) {
-        print("logging in")
-        
-        print (" \(self.email.text)")
-        print (" \(self.password.text)")
-        
-        ApiManager.sharedInstance.LogInApi(self.email.text!, password: self.password.text!,
-           onCompletion: {(json : JSON) in
-            
-            }
-        )
-    }
-    @IBAction func saveChanged(sender: AnyObject) {
-    }
-    
+=======
     func addGestureRecognizerLabel(){
         //Create a instance, in this case I used UITapGestureRecognizer,
         //in the docs you can see all kinds of gestures
@@ -141,5 +152,6 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
         //Your code here
         print("Hi, was clicked")
                  self.performSegueWithIdentifier("Refister_view_segue", sender: self)
+>>>>>>> 73d3091f44013f2a20081adc15aa00f1b282426f
     }
 }

@@ -9,18 +9,18 @@
 import UIKit
 import SwiftyJSON
 
-class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
+class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
 
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
-	@IBOutlet weak var register: UILabel!
-    @IBOutlet weak var fbButn: FBSDKLoginButton!
+    @IBOutlet weak var register: UILabel!
+	@IBOutlet weak var fbButn: FBSDKLoginButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        addGestureRecognizerLabel();
-		
-        if (FBSDKAccessToken.currentAccessToken() != nil)
+        addGestureRecognizerLabel();
+
+		if (FBSDKAccessToken.currentAccessToken() != nil)
         {
             // User is already logged in, do work such as go to next view controller.
         }
@@ -32,7 +32,6 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
             fbButn.readPermissions = ["public_profile", "email", "user_friends"]
             fbButn.delegate = self
         }
-
         // Do any additional setup after loading the view.
     }
 
@@ -63,7 +62,25 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
             
         }
     }
-// Face book delegate methods
+ 
+
+    @IBAction func logIn(sender: AnyObject) {
+        print("logging in")
+        
+        print (" \(self.email.text)")
+        print (" \(self.password.text)")
+        
+        ApiManager.sharedInstance.LogInApi(self.email.text!, password: self.password.text!,
+           onCompletion: {(json : JSON) in
+            
+            }
+        )
+    }
+    @IBAction func saveChanged(sender: AnyObject) {
+    }
+
+    
+//    Face book delegate methods
     
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
@@ -103,20 +120,6 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
                 print("User Email is: \(userEmail)")
             }
         })
-    }
-    @IBAction func logIn(sender: AnyObject) {
-        print("logging in")
-        
-        print (" \(self.email.text)")
-        print (" \(self.password.text)")
-        
-        ApiManager.sharedInstance.LogInApi(self.email.text!, password: self.password.text!,
-           onCompletion: {(json : JSON) in
-            
-            }
-        )
-    }
-    @IBAction func saveChanged(sender: AnyObject) {
     }
     
     func addGestureRecognizerLabel(){
