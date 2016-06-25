@@ -9,16 +9,18 @@
 import UIKit
 import SwiftyJSON
 
-class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
+class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, HamburgerProtocol{
 
+    @IBOutlet weak var menuItem: UIBarButtonItem!
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
-	@IBOutlet weak var register: UILabel!
+    @IBOutlet weak var register: UILabel!
+    @IBOutlet weak var forgetPassword: UILabel!
     @IBOutlet weak var fbButn: FBSDKLoginButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        addGestureRecognizerLabel();
+        addGestureRecognizerLabel();
 		
         if (FBSDKAccessToken.currentAccessToken() != nil)
         {
@@ -34,6 +36,17 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
         }
 
         // Do any additional setup after loading the view.
+        setupHamburger()
+        
+        
+    }
+    
+    func setupHamburger()  {
+        if self.revealViewController() != nil {
+            menuItem.target = self.revealViewController()
+            menuItem.action = "revealToggle:"
+            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
     }
 
     override func didReceiveMemoryWarning() {

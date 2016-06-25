@@ -10,8 +10,9 @@
 import UIKit
 import SwiftyJSON
 
-class UpdateController: UITableViewController {
+class UpdateController: UITableViewController, HamburgerProtocol {
     
+    @IBOutlet weak var menuItem: UIBarButtonItem!
     var someDataSource = Array<Post>()
     
     override func viewDidLoad() {
@@ -21,10 +22,21 @@ class UpdateController: UITableViewController {
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 160.0
         
+        setupHamburger()
 //        LoadFromRemote()
         LoadData()
+        
+        
     }
-    
+    func setupHamburger() {
+        if self.revealViewController() != nil {
+            menuItem.target = self.revealViewController()
+            menuItem.action = "revealToggle:"
+            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
+
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
