@@ -9,7 +9,8 @@
 import UIKit
 
 class UploadPostController: UIViewController, UIImagePickerControllerDelegate,
-UINavigationControllerDelegate{
+UINavigationControllerDelegate, HamburgerProtocol{
+    @IBOutlet weak var menuItem: UIBarButtonItem!
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var videoView: UIImageView!
@@ -22,11 +23,21 @@ UINavigationControllerDelegate{
         
         // Adding ImageView Callbacks
         addGestureRecognizerLabel()
+        setupHamburger()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func setupHamburger() {
+        if self.revealViewController() != nil {
+            menuItem.target = self.revealViewController()
+            menuItem.action = "revealToggle:"
+            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
+        
     }
     
 

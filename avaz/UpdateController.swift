@@ -111,6 +111,4 @@ class UpdateController: UITableViewController, HamburgerProtocol {
         }
 
     }
-
-    
 }

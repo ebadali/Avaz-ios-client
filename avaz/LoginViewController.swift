@@ -18,8 +18,19 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, Hamburger
     @IBOutlet weak var forgetPassword: UILabel!
     @IBOutlet weak var fbButn: FBSDKLoginButton!
     
+    
+    
+    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        activityIndicator.hidesWhenStopped = true;
+        activityIndicator.activityIndicatorViewStyle  = UIActivityIndicatorViewStyle.Gray;
+        activityIndicator.center = self.view.center;
+
+        self.view.addSubview(activityIndicator)
         addGestureRecognizerLabel();
 		
         if (FBSDKAccessToken.currentAccessToken() != nil)
@@ -38,7 +49,20 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, Hamburger
         // Do any additional setup after loading the view.
         setupHamburger()
         
+        LoadSomeTask()
         
+        
+    }
+    
+    func LoadSomeTask()  {
+        
+        activityIndicator.startAnimating()        
+        let triggerTime = (Int64(NSEC_PER_SEC) * 5)
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, triggerTime), dispatch_get_main_queue(), { () -> Void in
+            self.activityIndicator.stopAnimating()
+        })
+        
+
     }
     
     func setupHamburger()  {
@@ -81,12 +105,16 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, Hamburger
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         FBSDKGraphRequest.init(graphPath: "me", parameters: ["fields":"first_name, last_name, picture.type(large)"]).startWithCompletionHandler { (connection, result, error) -> Void in
-            let strFirstName: String = (result.objectForKey("first_name") as? String)!
-            let strLastName: String = (result.objectForKey("last_name") as? String)!
-            let strPictureURL: String = (result.objectForKey("picture")?.objectForKey("data")?.objectForKey("url") as? String)!
-            print(strFirstName)
-            print(strLastName)
-            print(strPictureURL)
+                if result != nil
+                {
+                    let strFirstName: String = (result.objectForKey("first_name") as? String)!
+                    let strLastName: String = (result.objectForKey("last_name") as? String)!
+                    let strPictureURL: String = (result.objectForKey("picture")?.objectForKey("data")?.objectForKey("url") as? String)!
+                    print(strFirstName)
+                    print(strLastName)
+                    print(strPictureURL)
+                    
+                }
 //            self.lblName.text = "Welcome, \(strFirstName) \(strLastName)"
 //            self.ivUserProfileImage.image = UIImage(data: NSData(contentsOfURL: NSURL(string: strPictureURL)!)!)
             }
