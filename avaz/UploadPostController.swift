@@ -12,9 +12,18 @@ class UploadPostController: UIViewController, UIImagePickerControllerDelegate,
 UINavigationControllerDelegate, HamburgerProtocol{
     @IBOutlet weak var menuItem: UIBarButtonItem!
 
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var videoView: UIImageView!
+    lazy var uploadImageView: UIImageView = {
+        
+
+        
+        let iv = self.AddImageToScrollView(UIImage(named: "upload")!)
+        iv.userInteractionEnabled = true
+        iv.addGestureRecognizer(UITapGestureRecognizer(target:self, action:#selector(self.TakeFromCameraAction(_:))))
+        return iv
+    }()
     
+    
+    @IBOutlet weak var scrollView: UIScrollView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +31,9 @@ UINavigationControllerDelegate, HamburgerProtocol{
         // Do any additional setup after loading the view.
         
         // Adding ImageView Callbacks
-        addGestureRecognizerLabel()
+        
+        self.scrollView.addSubview(uploadImageView)
+//        addGestureRecognizerLabel()
         setupHamburger()
     }
 
@@ -34,7 +45,7 @@ UINavigationControllerDelegate, HamburgerProtocol{
     func setupHamburger() {
         if self.revealViewController() != nil {
             menuItem.target = self.revealViewController()
-            menuItem.action = "revealToggle:"
+            menuItem.action = #selector(SWRevealViewController.revealToggle(_:))
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
         
@@ -119,49 +130,33 @@ UINavigationControllerDelegate, HamburgerProtocol{
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
 
         self.dismissViewControllerAnimated(true, completion: nil);
-        imageView.image = image
         
+        self.AddImageToScrollView(image)
 
         
         
-        let videoUrl = editingInfo[UIImagePickerControllerMediaURL] as! NSURL!
-        let pathString = videoUrl.relativePath
-        print("this is url \(pathString)")
+//        let videoUrl = editingInfo[UIImagePickerControllerMediaURL] as! NSURL!
+//        let pathString = videoUrl.relativePath
+//        print("this is url \(pathString)")
 
     }
     
-    func addGestureRecognizerLabel(){
-        //Create a instance, in this case I used UITapGestureRecognizer,
-        //in the docs you can see all kinds of gestures
-        let gestureRecognizer = UITapGestureRecognizer()
+    
+    func AddImageToScrollView(image: UIImage) -> UIImageView{
         
-        //Gesture configuration
-        gestureRecognizer.numberOfTapsRequired = 1
-        gestureRecognizer.numberOfTouchesRequired = 1
-        /*Add the target (You can use UITapGestureRecognizer's init() for this)
-         This method receives two arguments, a target(in this case is my ViewController)
-         and the callback, or function that you want to invoke when the user tap it view)*/
-        gestureRecognizer.addTarget(self, action: #selector(self.TakeFromCameraAction))
+        let endIndexx = self.scrollView.subviews.endIndex
+//        endIndexx >= 0 ? self.scrollView.subviews[endIndexx].frame.width : 0
         
-        //Add this gesture to your view, and "turn on" user interaction
-        imageView.addGestureRecognizer(gestureRecognizer)
-        imageView.userInteractionEnabled = true
+        let iv = UIImageView(frame: CGRect(x: (endIndexx == 0 || endIndexx == 1) ? self.scrollView.subviews[endIndexx].frame.width : 0  ,y: 0,width: self.scrollView.frame.width/2 , height: self.scrollView.frame.height))
+        iv.image = 	image
+        iv.userInteractionEnabled = true
         
-        
-        
-        let videoViewGestureRecognizer = UITapGestureRecognizer()
-        
-        //Gesture configuration
-        videoViewGestureRecognizer.numberOfTapsRequired = 1
-        videoViewGestureRecognizer.numberOfTouchesRequired = 1
-        /*Add the target (You can use UITapGestureRecognizer's init() for this)
-         This method receives two arguments, a target(in this case is my ViewController)
-         and the callback, or function that you want to invoke when the user tap it view)*/
-        videoViewGestureRecognizer.addTarget(self, action: #selector(self.TakeFromVideo))
 
-        videoView.addGestureRecognizer(videoViewGestureRecognizer)
-        videoView.userInteractionEnabled = true
         
-        
+//        iv.addGestureRecognizer(UITapGestureRecognizer(target:self, action:#selector(self.TakeFromCameraAction(_:))))
+        self.scrollView.addSubview(iv)//(iv, atIndex: endIndexx+1)
+//        self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.width * 2, self.scrollView.frame.height)
+        return iv
     }
+
 }
