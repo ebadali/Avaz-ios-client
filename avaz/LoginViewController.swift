@@ -10,6 +10,8 @@ import UIKit
 import SwiftyJSON
 
 class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, HamburgerProtocol{
+    
+    
 
     @IBOutlet weak var menuItem: UIBarButtonItem!
     @IBOutlet weak var email: UITextField!
@@ -18,42 +20,65 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, Hamburger
     @IBOutlet weak var forgetPassword: UILabel!
     @IBOutlet weak var fbButn: FBSDKLoginButton!
     
+    // Custom Views 
+    @IBOutlet weak var placeHolderView: UIView!
     
+    var lognView: LoginView
+    
+    required init?(coder aDecoder: NSCoder) {
+
+        lognView = LoginView(coder: aDecoder)!
+                super.init(coder: aDecoder)
+    }
     
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+    @IBOutlet weak var viewPlaceHolder: UIView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("--View Did Load Called In \(NSStringFromClass(self.classForCoder)) \n")
         
-        activityIndicator.hidesWhenStopped = true;
-        activityIndicator.activityIndicatorViewStyle  = UIActivityIndicatorViewStyle.Gray;
-        activityIndicator.center = self.view.center;
-
-        self.view.addSubview(activityIndicator)
-        addGestureRecognizerLabel();
+        self.lognView.bounds = self.placeHolderView.bounds
+        self.placeHolderView.addSubview(lognView)
+        
+//        activityIndicator.hidesWhenStopped = true;
+//        activityIndicator.activityIndicatorViewStyle  = UIActivityIndicatorViewStyle.Gray;
+//        activityIndicator.center = self.view.center;
+//
+//        self.view.addSubview(activityIndicator)
+//        addGestureRecognizerLabel();
+        
+        
 		
-        if (FBSDKAccessToken.currentAccessToken() != nil)
-        {
-            // User is already logged in, do work such as go to next view controller.
-        }
-        else
-        {
-//            let loginView : FBSDKLoginButton = FBSDKLoginButton()
-//            self.view.addSubview(loginView)
-//            loginView.center = self.view.center
-            fbButn.readPermissions = ["public_profile", "email", "user_friends"]
-            fbButn.delegate = self
-        }
+//        if (FBSDKAccessToken.currentAccessToken() != nil)
+//        {
+//            // User is already logged in, do work such as go to next view controller.
+//        }
+//        else
+//        {
+////            let loginView : FBSDKLoginButton = FBSDKLoginButton()
+////            self.view.addSubview(loginView)
+////            loginView.center = self.view.center
+//            fbButn.readPermissions = ["public_profile", "email", "user_friends"]
+//            fbButn.delegate = self
+//        }
 
         // Do any additional setup after loading the view.
         setupHamburger()
         
-        LoadSomeTask()
+//        LoadSomeTask()
         
         
     }
     
+    
+    @IBAction func ChangedSegmentedControll(sender: AnyObject) {
+            print(sender.indexPath.item)
+    }
+    override func viewWillDisappear(animated: Bool) {
+        print("--viewWillDisappear Called In \(NSStringFromClass(self.classForCoder)) \n")
+    }
     func LoadSomeTask()  {
         
         activityIndicator.startAnimating()        
@@ -68,7 +93,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, Hamburger
     func setupHamburger()  {
         if self.revealViewController() != nil {
             menuItem.target = self.revealViewController()
-            menuItem.action = "revealToggle:"
+            menuItem.action = #selector(SWRevealViewController.revealToggle(_:))
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
     }

@@ -20,7 +20,9 @@ class RegisterViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    override func viewWillDisappear(animated: Bool) {
+        print("--viewWillDisappear Called In \(NSStringFromClass(self.classForCoder)) \n")
+    }
 
     /*
     // MARK: - Navigation

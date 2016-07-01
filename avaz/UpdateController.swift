@@ -17,8 +17,9 @@ class UpdateController: UITableViewController, HamburgerProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
+        // Do any additional setup after loading the view, typically from a nib.
+                print("--View Did Load Called In \(NSStringFromClass(self.classForCoder)) \n")
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 160.0
         
@@ -27,6 +28,10 @@ class UpdateController: UITableViewController, HamburgerProtocol {
         LoadData()
         
         
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        print("--viewWillDisappear Called In \(NSStringFromClass(self.classForCoder)) \n")
     }
     func setupHamburger() {
         if self.revealViewController() != nil {

@@ -27,6 +27,8 @@ UINavigationControllerDelegate, HamburgerProtocol{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("--View Did Load Called In \(NSStringFromClass(self.classForCoder)) \n")
 
         // Do any additional setup after loading the view.
         
@@ -35,6 +37,11 @@ UINavigationControllerDelegate, HamburgerProtocol{
         self.scrollView.addSubview(uploadImageView)
 //        addGestureRecognizerLabel()
         setupHamburger()
+        
+//        addMoreImages()
+    }
+    override func viewWillDisappear(animated: Bool) {
+        print("--viewWillDisappear Called In \(NSStringFromClass(self.classForCoder)) \n")
     }
 
     override func didReceiveMemoryWarning() {
@@ -125,37 +132,58 @@ UINavigationControllerDelegate, HamburgerProtocol{
     {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-
-
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
-
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         self.dismissViewControllerAnimated(true, completion: nil);
+    }
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+        let mediaType = info[UIImagePickerControllerMediaType]
+        if mediaType!.isEqualToString("public.movie"){
+            // It is the movie
+            
+            let videoUrl = info[UIImagePickerControllerMediaURL] as! NSURL!
+            let pathString = videoUrl.relativePath
+            print("this is url \(pathString)")
+            
+        }
+        else if mediaType!.isEqualToString("public.image"){
+            // It is a Image
+            if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+                self.AddImageToScrollView(pickedImage)
+            }
+        }
         
-        self.AddImageToScrollView(image)
-
-        
-        
-//        let videoUrl = editingInfo[UIImagePickerControllerMediaURL] as! NSURL!
-//        let pathString = videoUrl.relativePath
-//        print("this is url \(pathString)")
+        //        if editingInfo.UIImagePickerControllerMediaType
+        //        if let pickedMovie =
+        //        let videoUrl = editingInfo[UIImagePickerControllerMediaURL] as! NSURL!
+        //        let pathString = videoUrl.relativePath    }
+        //        print("this is url \(pathString)")
 
     }
     
+    func addMoreImages()  {
+        for _ in 1...5 {
+            let tempImage = UIImage(named: "upload")
+            AddImageToScrollView(tempImage!)
+        }
+    }
     
     func AddImageToScrollView(image: UIImage) -> UIImageView{
-        
-        let endIndexx = self.scrollView.subviews.endIndex
+        let count = self.scrollView.subviews.count;
 //        endIndexx >= 0 ? self.scrollView.subviews[endIndexx].frame.width : 0
-        
-        let iv = UIImageView(frame: CGRect(x: (endIndexx == 0 || endIndexx == 1) ? self.scrollView.subviews[endIndexx].frame.width : 0  ,y: 0,width: self.scrollView.frame.width/2 , height: self.scrollView.frame.height))
+        print("count is : \(count) ")
+        let iv = UIImageView(frame: CGRect(x: (self.scrollView.frame.width/2)*(CGFloat(count)),y: 0,width: self.scrollView.frame.width/2 , height: self.scrollView.frame.height))
         iv.image = 	image
+        iv.contentMode = .ScaleAspectFit
         iv.userInteractionEnabled = true
         
 
         
 //        iv.addGestureRecognizer(UITapGestureRecognizer(target:self, action:#selector(self.TakeFromCameraAction(_:))))
         self.scrollView.addSubview(iv)//(iv, atIndex: endIndexx+1)
-//        self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.width * 2, self.scrollView.frame.height)
+        self.scrollView.contentSize = CGSizeMake(iv.frame.width * (CGFloat(count+1)), self.scrollView.frame.height)
+
         return iv
     }
 

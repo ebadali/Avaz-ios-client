@@ -18,7 +18,7 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print("--View Did Load Called In \(NSStringFromClass(self.classForCoder)) \n")
         // Do any additional setup after loading the view.
 
         tableViewRoot.registerNib(UINib(nibName: "MapView", bundle: nil), forCellReuseIdentifier: "mapviewcell")
@@ -34,7 +34,9 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource {
         
         LoadData()
     }
-    
+    override func viewWillDisappear(animated: Bool) {
+        print("--viewWillDisappear Called In \(NSStringFromClass(self.classForCoder)) \n")
+    }
     func LoadData() {
         
         for i in 0...10 {
@@ -53,6 +55,8 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource {
     }
     
     
+ 
+    
     // ovveriding methods
     
     
@@ -70,6 +74,8 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource {
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
     }
+    
+    
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 //        let cell =  VotesView(coder: self.coder)// UITableViewCell()
