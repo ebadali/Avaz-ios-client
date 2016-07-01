@@ -16,55 +16,42 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, Hamburger
     @IBOutlet weak var menuItem: UIBarButtonItem!
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
-    @IBOutlet weak var register: UILabel!
     @IBOutlet weak var forgetPassword: UILabel!
     @IBOutlet weak var fbButn: FBSDKLoginButton!
     
-    // Custom Views 
-    @IBOutlet weak var placeHolderView: UIView!
     
-    var lognView: LoginView
-    
-    required init?(coder aDecoder: NSCoder) {
-
-        lognView = LoginView(coder: aDecoder)!
-                super.init(coder: aDecoder)
-    }
     
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
-    @IBOutlet weak var viewPlaceHolder: UIView!
     
+    @IBAction func LogIn(sender: AnyObject) {
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("--View Did Load Called In \(NSStringFromClass(self.classForCoder)) \n")
         
-        self.lognView.bounds = self.placeHolderView.bounds
-        self.placeHolderView.addSubview(lognView)
         
 //        activityIndicator.hidesWhenStopped = true;
 //        activityIndicator.activityIndicatorViewStyle  = UIActivityIndicatorViewStyle.Gray;
 //        activityIndicator.center = self.view.center;
 //
 //        self.view.addSubview(activityIndicator)
-//        addGestureRecognizerLabel();
+//
         
         
 		
-//        if (FBSDKAccessToken.currentAccessToken() != nil)
-//        {
-//            // User is already logged in, do work such as go to next view controller.
-//        }
-//        else
-//        {
-////            let loginView : FBSDKLoginButton = FBSDKLoginButton()
-////            self.view.addSubview(loginView)
-////            loginView.center = self.view.center
-//            fbButn.readPermissions = ["public_profile", "email", "user_friends"]
-//            fbButn.delegate = self
-//        }
+        if (FBSDKAccessToken.currentAccessToken() != nil)
+        {
+            // User is already logged in, do work such as go to next view controller.
+        }
+        else
+        {
+            fbButn.readPermissions = ["public_profile", "email", "user_friends"]
+            fbButn.delegate = self
+        }
 
         // Do any additional setup after loading the view.
+        addGestureRecognizerLabel();
         setupHamburger()
         
 //        LoadSomeTask()
@@ -72,10 +59,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, Hamburger
         
     }
     
-    
-    @IBAction func ChangedSegmentedControll(sender: AnyObject) {
-            print(sender.indexPath.item)
-    }
+
     override func viewWillDisappear(animated: Bool) {
         print("--viewWillDisappear Called In \(NSStringFromClass(self.classForCoder)) \n")
     }
@@ -132,9 +116,10 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, Hamburger
         FBSDKGraphRequest.init(graphPath: "me", parameters: ["fields":"first_name, last_name, picture.type(large)"]).startWithCompletionHandler { (connection, result, error) -> Void in
                 if result != nil
                 {
-                    let strFirstName: String = (result.objectForKey("first_name") as? String)!
-                    let strLastName: String = (result.objectForKey("last_name") as? String)!
-                    let strPictureURL: String = (result.objectForKey("picture")?.objectForKey("data")?.objectForKey("url") as? String)!
+                    guard let strFirstName = (result.objectForKey("first_name") as? String), strLastName = (result.objectForKey("last_name") as? String) , strPictureURL = (result.objectForKey("picture")?.objectForKey("data")?.objectForKey("url") as? String)
+                        else{
+                            return
+                    }
                     print(strFirstName)
                     print(strLastName)
                     print(strPictureURL)
@@ -177,13 +162,18 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, Hamburger
         print (" \(self.email.text)")
         print (" \(self.password.text)")
         
-        ApiManager.sharedInstance.LogInApi(self.email.text!, password: self.password.text!,
+        guard let email = self.email.text , password = self.password.text else {
+            return
+        }
+        
+        ApiManager.sharedInstance.LogInApi(email, password: password,
            onCompletion: {(json : JSON) in
-            
+                print(json)
             }
         )
     }
     @IBAction func saveChanged(sender: AnyObject) {
+        
     }
     
     func addGestureRecognizerLabel(){
@@ -197,16 +187,57 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, Hamburger
         /*Add the target (You can use UITapGestureRecognizer's init() for this)
          This method receives two arguments, a target(in this case is my ViewController)
          and the callback, or function that you want to invoke when the user tap it view)*/
-        gestureRecognizer.addTarget(self, action: #selector(LoginViewController.showDatePicker))
+        gestureRecognizer.addTarget(self, action: #selector(LoginViewController.ShowForgetPassword))
         
         //Add this gesture to your view, and "turn on" user interaction
-        register.addGestureRecognizer(gestureRecognizer)
-        register.userInteractionEnabled = true
+        forgetPassword.addGestureRecognizer(gestureRecognizer)
+        forgetPassword.userInteractionEnabled = true
     }
-    //How you can see, this function is my "callback"
-    func showDatePicker(){
+    
+    
+    
+    func ShowForgetPassword(){
         //Your code here
-        print("Hi, was clicked")
-                 self.performSegueWithIdentifier("Refister_view_segue", sender: self)
+        
+        
+        print("Hi, Forget Password was clicked.")
+        
+        
+        // Display Pop-Over
+        let alertController = UIAlertController(title: "Forgot Password?", message: "Enter Your Email to Setup a New Password", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        alertController.addTextFieldWithConfigurationHandler() { textField in
+            textField.frame.size.height = 33
+            textField.backgroundColor = nil
+            textField.layer.borderColor = nil
+            textField.layer.borderWidth = 0
+        }
+        
+        let sendEmail = UIAlertAction(title: "Send", style: UIAlertActionStyle.Default, handler: {(alert :UIAlertAction!) in
+            print("Gallery button tapped")
+            
+            guard let forgotPassEmail = alertController.textFields![0].text else
+            {
+                return
+            }
+            
+            print(forgotPassEmail)
+            
+        })
+        
+        alertController.addAction(sendEmail)
+        
+        self.presentViewController(alertController, animated: true, completion:{
+            alertController.view.superview?.userInteractionEnabled = true
+            alertController.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.alertControllerBackgroundTapped)))
+        })
+        
+//        self.performSegueWithIdentifier("Refister_view_segue", sender: self)
+    }
+    
+    func alertControllerBackgroundTapped()
+    {
+        self.dismissViewControllerAnimated(true, completion: nil)
+        
     }
 }

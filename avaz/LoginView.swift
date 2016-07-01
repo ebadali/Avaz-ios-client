@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginView: UIView {
+class LoginView: UICollectionViewCell {
 
     @IBOutlet var view: UIView!
     required init?(coder aDecoder: NSCoder) {

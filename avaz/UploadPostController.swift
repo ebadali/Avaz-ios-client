@@ -13,9 +13,6 @@ UINavigationControllerDelegate, HamburgerProtocol{
     @IBOutlet weak var menuItem: UIBarButtonItem!
 
     lazy var uploadImageView: UIImageView = {
-        
-
-        
         let iv = self.AddImageToScrollView(UIImage(named: "upload")!)
         iv.userInteractionEnabled = true
         iv.addGestureRecognizer(UITapGestureRecognizer(target:self, action:#selector(self.TakeFromCameraAction(_:))))
