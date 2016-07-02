@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import CoreLocation
 
 class UploadPostController: UIViewController, UIImagePickerControllerDelegate,
-UINavigationControllerDelegate, HamburgerProtocol{
+UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
     @IBOutlet weak var menuItem: UIBarButtonItem!
 
     lazy var uploadImageView: UIImageView = {
@@ -21,6 +22,8 @@ UINavigationControllerDelegate, HamburgerProtocol{
     
     
     @IBOutlet weak var scrollView: UIScrollView!
+    
+    var locationManager: CLLocationManager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +37,15 @@ UINavigationControllerDelegate, HamburgerProtocol{
         self.scrollView.addSubview(uploadImageView)
 //        addGestureRecognizerLabel()
         setupHamburger()
+        
+        if (CLLocationManager.locationServicesEnabled())
+        {
+            locationManager = CLLocationManager()
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.startUpdatingLocation()
+        }
         
 //        addMoreImages()
     }
@@ -175,13 +187,51 @@ UINavigationControllerDelegate, HamburgerProtocol{
         iv.contentMode = .ScaleAspectFit
         iv.userInteractionEnabled = true
         
-
-        
 //        iv.addGestureRecognizer(UITapGestureRecognizer(target:self, action:#selector(self.TakeFromCameraAction(_:))))
         self.scrollView.addSubview(iv)//(iv, atIndex: endIndexx+1)
         self.scrollView.contentSize = CGSizeMake(iv.frame.width * (CGFloat(count+1)), self.scrollView.frame.height)
 
         return iv
+    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
+    {
+        
+        
+        let location = locations.last! as CLLocation
+        
+        CLGeocoder().reverseGeocodeLocation(location, completionHandler:
+            { (placemark, error) ->
+                Void in
+                
+                self.locationManager.stopUpdatingLocation()
+                if error != nil {
+                    return
+                    
+                }
+                if placemark?.count > 0 {
+                    let somePlaceMarker = placemark![0] 
+                    self.DisplayLocation(somePlaceMarker)
+                
+                }
+            })
+        
+    }
+    
+    func DisplayLocation(placemarker: CLPlacemark)  {
+        
+        print(placemarker.locality )
+        print(placemarker.postalCode )
+        print(placemarker.administrativeArea )
+        print(placemarker.region )
+        print(placemarker.country )
+        
+        let center = CLLocationCoordinate2D(latitude: placemarker.location!.coordinate.latitude, longitude: placemarker.location!.coordinate.longitude)
+
+        print("lat: \(center.latitude) , lng: \(center.longitude) \n")
+        
+        
+        
     }
 
 }
