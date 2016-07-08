@@ -28,6 +28,10 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, Hamburger
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let imagePAth = "/Users/ebadism/avaz/avaz/background.gif"
+        AddGif(imagePAth);
+        
+
         print("--View Did Load Called In \(NSStringFromClass(self.classForCoder)) \n")
         
         
@@ -57,12 +61,43 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, Hamburger
 //        LoadSomeTask()
         
         
+        
     }
     
 
     override func viewWillDisappear(animated: Bool) {
         print("--viewWillDisappear Called In \(NSStringFromClass(self.classForCoder)) \n")
     }
+    
+    func AddGif(path: String)  {
+        // Creating Backgorund View
+        let iv = UIWebView(frame: self.view.frame)
+        let nsurl = NSURL(fileURLWithPath: path)
+        let img = NSData(contentsOfURL: nsurl)
+        iv.loadData(img!, MIMEType: "image/gif", textEncodingName: String(), baseURL: NSURL())
+        iv.userInteractionEnabled = false;
+        iv.scalesPageToFit = true;
+//        iv.contentMode = .ScaleToFill;
+        self.view.insertSubview(iv, atIndex: 0)
+        
+        // Creating Filter
+        let filter = UIView()
+        filter.frame = self.view.frame
+        filter.backgroundColor = UIColor.blackColor()
+        filter.alpha = 0.2
+        self.view.insertSubview(filter, atIndex: 1)
+        
+        iv.center = self.view.center
+        filter.center = self.view.center
+        
+//        iv.setTranslatesAutoresizingMaskIntoConstraints(false)
+        
+//        iv.addConstraint(NSLayoutConstraint(item: iv, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0))
+//        iv.addConstraint(NSLayoutConstraint(item: iv, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 0))
+
+        
+    }
+
     func LoadSomeTask()  {
         
         activityIndicator.startAnimating()        
@@ -239,5 +274,13 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, Hamburger
     {
         self.dismissViewControllerAnimated(true, completion: nil)
         
+    }
+}
+
+extension ViewController{
+    override func viewDidAppear(animated: Bool) {
+        if animated {
+            
+        }
     }
 }

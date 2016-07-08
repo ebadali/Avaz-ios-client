@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreLocation
+import AVKit
+import AVFoundation
 
 class UploadPostController: UIViewController, UIImagePickerControllerDelegate,
 UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
@@ -47,7 +49,7 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
             locationManager.startUpdatingLocation()
         }
         
-//        addMoreImages()
+        addMoreImages()
     }
     override func viewWillDisappear(animated: Bool) {
         print("--viewWillDisappear Called In \(NSStringFromClass(self.classForCoder)) \n")
@@ -149,40 +151,145 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
         self.dismissViewControllerAnimated(true, completion: nil)
         let mediaType = info[UIImagePickerControllerMediaType]
         if mediaType!.isEqualToString("public.movie"){
+            print("Movie is picked")
             // It is the movie
             
             let videoUrl = info[UIImagePickerControllerMediaURL] as! NSURL!
             let pathString = videoUrl.relativePath
             print("this is url \(pathString)")
             
+            self.AddMediaToScrollView(pathString!, type: MediaType.Video())
+            
         }
         else if mediaType!.isEqualToString("public.image"){
+            print("Image is picked")
             // It is a Image
             if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-                self.AddImageToScrollView(pickedImage)
+                
+                let imageUrl = SaveImageToDirectory(pickedImage)
+                self.AddMediaToScrollView(imageUrl, type: MediaType.Image())
+//                self.AddImageToScrollView(pickedImage)
             }
         }
         
-        //        if editingInfo.UIImagePickerControllerMediaType
-        //        if let pickedMovie =
-        //        let videoUrl = editingInfo[UIImagePickerControllerMediaURL] as! NSURL!
-        //        let pathString = videoUrl.relativePath    }
-        //        print("this is url \(pathString)")
 
     }
+    func SaveImageToDirectory(image: UIImage) -> String {
+        
+            if let data = UIImageJPEGRepresentation(image, 0.8) {
+                
+                let filename = Utils.getDocumentsDirectory().stringByAppendingPathComponent("copy.png")
+                data.writeToFile(filename, atomically: true)
+                
+                return filename
+            }
+        
+            return ""
+        
+    }
+    
     
     func addMoreImages()  {
         for _ in 1...5 {
-            let tempImage = UIImage(named: "upload")
-            AddImageToScrollView(tempImage!)
+//            let tempImage = UIImage(named: "upload")
+//            AddImageToScrollView(tempImage!)
+            let imagePAth = "/Users/ebadism/avaz/avaz/background.gif"
+            AddMediaToScrollView(imagePAth, type: MediaType.Video())
         }
     }
     
-    func AddImageToScrollView(image: UIImage) -> UIImageView{
-        let count = self.scrollView.subviews.count;
-//        endIndexx >= 0 ? self.scrollView.subviews[endIndexx].frame.width : 0
+    func AddMediaToScrollView(path: String, type: MediaType)  {
+        let count = self.scrollView.subviews.count-2;
         print("count is : \(count) ")
-        let iv = UIImageView(frame: CGRect(x: (self.scrollView.frame.width/2)*(CGFloat(count)),y: 0,width: self.scrollView.frame.width/2 , height: self.scrollView.frame.height))
+        
+        // Todo: There should be a custom view which have:
+        // a. cancle button to drop the media,
+        // b. play tab callback to display the Media
+        print("x is : \((self.scrollView.frame.width/2)*(CGFloat(count)))")
+        
+        
+        let iv = CustomMediaCell(frame: CGRect(x: (self.scrollView.frame.width/2)*(CGFloat(count)),y: 10,width: self.scrollView.frame.width/2 , height: self.scrollView.frame.height-10), url: path, mediaType: type)
+
+        iv.userInteractionEnabled = true
+        
+        // Important callbacks.
+        iv.previewCallback = {
+            print("preview Called")
+            if case .Video() = iv.mediaType {
+                self.DisplayVideo(iv);
+                
+            }else if  case .Image() = iv.mediaType {
+                self.DisplayImage(iv);
+            }
+
+            
+        }
+        
+        iv.cancleCallback = {
+            print("cancled Called")
+        }
+        
+        
+//        let urll = "http://clips.vorwaerts-gmbh.de/VfE_html5.mp4"
+//                let iframe = "<iframe  src=\"\(urll)\" > </iframe> "
+//        let iframe = "<iframe  src=\"\(NSURL(fileURLWithPath: path))\" > </iframe> "
+        //        iv.loadHTMLString(iframe, baseURL: nil)
+ //        let nsurl = NSURL(fileURLWithPath: path)
+//        let img = NSData(contentsOfURL: nsurl)
+//        iv.loadData(img!, MIMEType: "image/gif", textEncodingName: String(), baseURL: NSURL())
+//        iv.image = UIImage(contentsOfFile: path)
+//        iv.userInteractionEnabled = true;
+        iv.contentMode = .ScaleAspectFit
+        self.scrollView.addSubview(iv)//(iv, atIndex: endIndexx+1)
+        
+        
+        self.scrollView.contentSize = CGSizeMake(iv.frame.width * (CGFloat(count+1)), self.scrollView.frame.height)
+        
+
+    }
+    
+    func TabbedOnTile(sender: AnyObject)  {
+        // Display Dialog
+        let uiAlert = UIAlertController(title: "Title", message: "Message", preferredStyle: UIAlertControllerStyle.Alert)
+        self.presentViewController(uiAlert, animated: true, completion: nil)
+        
+        uiAlert.addAction(UIAlertAction(title: "Open", style: .Default, handler: { action in
+            print("click opened: \n")
+        }))
+        
+        uiAlert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: { action in
+            print("click closed: \n")
+        }))
+        
+    }
+    
+    func DisplayImage(image: CustomMediaCell)  {
+        
+    }
+    func DisplayVideo(image: CustomMediaCell)  {
+        
+    }
+    func VideoClickListner(sender: AnyObject)  {
+        print("Video Listner")
+//        let playerViewController = AVPlayerViewController()
+//        let playerView = AVPlayer("")
+//        playerViewController.player = playerView
+//        
+//        self.presentViewController(playerViewController, animated: true){
+//            playerViewController.player?.play()
+//        }
+        
+    }
+    func ImageClickListner(sender: AnyObject)  {
+        print("Image Listner")
+    }
+    
+    
+    func AddImageToScrollView(image: UIImage) -> UIImageView{
+        let count = self.scrollView.subviews.count-2;
+//        endIndexx >= 0 ? self.scrollView.subviews[endIndexx].frame.width : 0
+        print("count is in add image scrollview: \(count) ")
+        let iv = UIImageView(frame: CGRect(x: (self.scrollView.frame.width/2)*(CGFloat(count)),y: 0,width: self.scrollView.frame.width/2 , height: self.scrollView.frame.height-10))
         iv.image = 	image
         iv.contentMode = .ScaleAspectFit
         iv.userInteractionEnabled = true

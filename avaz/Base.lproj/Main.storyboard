@@ -372,6 +372,7 @@
                                                                 </constraints>
                                                             </stackView>
                                                         </subviews>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </stackView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D7t-zq-5pW">
                                                         <rect key="frame" x="0.0" y="337" width="232" height="24"/>
@@ -384,6 +385,7 @@
                                                         </connections>
                                                     </button>
                                                 </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstItem="HSn-Xf-CrL" firstAttribute="width" secondItem="Y8C-96-x0c" secondAttribute="width" id="0Z7-k5-5Nc"/>
                                                     <constraint firstAttribute="trailingMargin" secondItem="D7t-zq-5pW" secondAttribute="trailing" id="5Ie-gc-iDY"/>
@@ -391,7 +393,7 @@
                                                 </constraints>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="bottomMargin" secondItem="Y8C-96-x0c" secondAttribute="bottom" id="GUq-HE-fhS"/>
                                             <constraint firstItem="Y8C-96-x0c" firstAttribute="leading" secondItem="J4T-ql-haD" secondAttribute="leadingMargin" id="HEj-zw-htb"/>
@@ -400,9 +402,10 @@
                                         </constraints>
                                     </view>
                                 </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="FGc-ox-fva" secondAttribute="trailing" constant="20" id="47G-g0-F0d"/>
                             <constraint firstItem="FGc-ox-fva" firstAttribute="centerX" secondItem="HFN-xB-6l3" secondAttribute="centerX" id="BOC-qW-EmE"/>

@@ -2,6 +2,7 @@
 
 import UIKit
 
+
 var str = "Hello, playground"
 
 
@@ -56,4 +57,19 @@ someDoers.doSomethingsNew(someInt)
 
 var sometuples = ["asd":45,"asdsa":6]
 tupleTest(sometuples)
+
+class Utils
+{
+//    static let sharedInstance = Utils()
+//    private init() {}
+    
+    
+    static func getDocumentsDirectory() -> NSString {
+        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
+    }
+}
+
+Utils.getDocumentsDirectory()
 

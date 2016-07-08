@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		022BF9E41D2F896B00126414 /* CustomMediaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022BF9E31D2F896A00126414 /* CustomMediaCell.swift */; };
+		0234F2CF1D2E53330020027D /* background.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0234F2CE1D2E53330020027D /* background.gif */; };
+		0234F2D11D2E6B020020027D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0234F2D01D2E6B020020027D /* Utils.swift */; };
 		025BFB961D25D7ED00342E55 /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 025BFB951D25D7ED00342E55 /* LoginView.xib */; };
 		025BFB981D25D82600342E55 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025BFB971D25D82600342E55 /* LoginView.swift */; };
 		0276B7991D1EB5B40007A4F2 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0276B7981D1EB5B40007A4F2 /* File.swift */; };
@@ -39,6 +42,9 @@
 
 /* Begin PBXFileReference section */
 		00EFC70B920A6483C60163E5 /* Pods-avaz.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-avaz.debug.xcconfig"; path = "Pods/Target Support Files/Pods-avaz/Pods-avaz.debug.xcconfig"; sourceTree = "<group>"; };
+		022BF9E31D2F896A00126414 /* CustomMediaCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomMediaCell.swift; sourceTree = "<group>"; };
+		0234F2CE1D2E53330020027D /* background.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = background.gif; sourceTree = "<group>"; };
+		0234F2D01D2E6B020020027D /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		025BFB951D25D7ED00342E55 /* LoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
 		025BFB971D25D82600342E55 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		0276B7981D1EB5B40007A4F2 /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
@@ -126,6 +132,7 @@
 				02FCC2B01D1EA422009EF1A7 /* SWRevealViewController */,
 				08BFC4941CFC4034007C4651 /* AppDelegate.swift */,
 				08BFC49B1CFC4034007C4651 /* Assets.xcassets */,
+				0234F2CE1D2E53330020027D /* background.gif */,
 				08BFC4AC1CFC525E007C4651 /* CustomCell.swift */,
 				08BFC4A01CFC4034007C4651 /* Info.plist */,
 				08BFC49D1CFC4034007C4651 /* LaunchScreen.storyboard */,
@@ -135,7 +142,9 @@
 				0276B7981D1EB5B40007A4F2 /* File.swift */,
 				08F554F21D1AB7A4000BFD63 /* RegisterViewController.swift */,
 				029887681D184B7A00D8903F /* LoginViewController.swift */,
+				022BF9E31D2F896A00126414 /* CustomMediaCell.swift */,
 				086F98591D141C3600D40AA6 /* UploadPostController.swift */,
+				0234F2D01D2E6B020020027D /* Utils.swift */,
 				08F49DE11D01C4EC005C0702 /* MapView.swift */,
 				08F49DE31D01C7D6005C0702 /* MapView.xib */,
 				080C5B071D09716700D03509 /* CommentView.swift */,
@@ -243,6 +252,7 @@
 			files = (
 				08BFC49F1CFC4034007C4651 /* LaunchScreen.storyboard in Resources */,
 				08BFC49C1CFC4034007C4651 /* Assets.xcassets in Resources */,
+				0234F2CF1D2E53330020027D /* background.gif in Resources */,
 				087708CE1D00862900EB983B /* VotesView.xib in Resources */,
 				025BFB961D25D7ED00342E55 /* LoginView.xib in Resources */,
 				080C5B0C1D09716700D03509 /* CommentView.xib in Resources */,
@@ -306,6 +316,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				022BF9E41D2F896B00126414 /* CustomMediaCell.swift in Sources */,
 				087708D21D008F7400EB983B /* UpdateDetailViewController.swift in Sources */,
 				08F49DE21D01C4EC005C0702 /* MapView.swift in Sources */,
 				02FCC2B31D1EA43C009EF1A7 /* SWRevealViewController.m in Sources */,
@@ -317,6 +328,7 @@
 				08BFC4971CFC4034007C4651 /* ViewController.swift in Sources */,
 				08BFC4951CFC4034007C4651 /* AppDelegate.swift in Sources */,
 				025BFB981D25D82600342E55 /* LoginView.swift in Sources */,
+				0234F2D11D2E6B020020027D /* Utils.swift in Sources */,
 				08BFC4AD1CFC525E007C4651 /* CustomCell.swift in Sources */,
 				08F554F31D1AB7A4000BFD63 /* RegisterViewController.swift in Sources */,
 				080C5B0B1D09716700D03509 /* CommentView.swift in Sources */,
