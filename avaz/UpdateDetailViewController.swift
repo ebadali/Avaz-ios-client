@@ -16,6 +16,8 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource {
     var data : Post!
     
     
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("--View Did Load Called In \(NSStringFromClass(self.classForCoder)) \n")
@@ -78,25 +80,20 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource {
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//        let cell =  VotesView(coder: self.coder)// UITableViewCell()
-        
-//        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! NameInput
-//        
-//        var cell = (indexPath.section == 0) ? tableView.dequeueReusableCellWithIdentifier("mapviewcell", forIndexPath: indexPath) as! MapView :
-//                                            tableView.dequeueReusableCellWithIdentifier("commentviewcell", forIndexPath: indexPath) as! CommentView
-//        
+
         
         if indexPath.section == 0{
             
             // THis is Map view Along with
            let cell = tableView.dequeueReusableCellWithIdentifier("mapviewcell", forIndexPath: indexPath) as! MapView
             cell.setparams(self.data)
-            
+            print("Loading map view")
             return cell
         }
         else{
             // This will be a Comment View
            let  cell = tableView.dequeueReusableCellWithIdentifier("commentviewcell", forIndexPath: indexPath) as! CommentView
+                        print("Loading comment view")
             return cell
         }
 
@@ -104,7 +101,7 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource {
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
-            return " "
+            return "Post"
         }else{
             return "Comments"
         }

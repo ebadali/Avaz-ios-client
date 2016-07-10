@@ -148,31 +148,34 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="caV-4E-LEf">
-                                <rect key="frame" x="26" y="84" width="268" height="248"/>
+                                <rect key="frame" x="36" y="84" width="248" height="416"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f3w-Lp-QSD">
-                                        <rect key="frame" x="0.0" y="0.0" width="268" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="248" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Detail" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5pv-Dm-DCc">
-                                        <rect key="frame" x="0.0" y="50" width="268" height="50"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="6o7-PN-2eT"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="UeA-Dx-5V0">
+                                        <rect key="frame" x="0.0" y="50" width="248" height="246"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aUv-4G-zsV">
-                                        <rect key="frame" x="0.0" y="120" width="268" height="128"/>
+                                        <rect key="frame" x="0.0" y="316" width="248" height="100"/>
                                         <color key="backgroundColor" red="0.54372754776203092" green="1" blue="0.79670549256587919" alpha="0.27676309121621623" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="8EC-uV-2f8"/>
+                                        </constraints>
                                     </scrollView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="aUv-4G-zsV" firstAttribute="bottom" secondItem="caV-4E-LEf" secondAttribute="bottomMargin" id="3D9-Ya-PyH"/>
+                                    <constraint firstItem="UeA-Dx-5V0" firstAttribute="trailing" secondItem="caV-4E-LEf" secondAttribute="trailingMargin" id="Kn1-7Z-wTm"/>
                                     <constraint firstItem="aUv-4G-zsV" firstAttribute="leading" secondItem="caV-4E-LEf" secondAttribute="leadingMargin" id="lzZ-T4-nIe"/>
+                                    <constraint firstItem="UeA-Dx-5V0" firstAttribute="leading" secondItem="caV-4E-LEf" secondAttribute="leadingMargin" id="rIm-q5-aYh"/>
                                     <constraint firstItem="aUv-4G-zsV" firstAttribute="trailing" secondItem="caV-4E-LEf" secondAttribute="trailingMargin" id="u6h-ar-sLn"/>
-                                    <constraint firstItem="aUv-4G-zsV" firstAttribute="top" secondItem="5pv-Dm-DCc" secondAttribute="bottom" constant="20" id="xOD-aw-Qtj"/>
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Axv-rX-lhc">
@@ -183,13 +186,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="caV-4E-LEf" secondAttribute="bottom" constant="236" id="1Y3-Hd-vxA"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="caV-4E-LEf" secondAttribute="trailing" constant="10" id="JvW-ib-ZyT"/>
+                            <constraint firstItem="caV-4E-LEf" firstAttribute="leading" secondItem="Agx-kX-jtg" secondAttribute="leadingMargin" constant="20" id="Ned-vW-kia"/>
                             <constraint firstItem="caV-4E-LEf" firstAttribute="centerX" secondItem="Agx-kX-jtg" secondAttribute="centerX" id="OSN-bN-nD4"/>
-                            <constraint firstItem="caV-4E-LEf" firstAttribute="leading" secondItem="Agx-kX-jtg" secondAttribute="leadingMargin" constant="10" id="d3m-Wk-jJh"/>
+                            <constraint firstItem="Axv-rX-lhc" firstAttribute="top" secondItem="caV-4E-LEf" secondAttribute="bottom" constant="30" id="ZU1-R6-FfK"/>
                             <constraint firstItem="Jqh-ba-2CJ" firstAttribute="top" secondItem="Axv-rX-lhc" secondAttribute="bottom" constant="8" id="dWV-bH-uGd"/>
                             <constraint firstItem="Axv-rX-lhc" firstAttribute="trailing" secondItem="Agx-kX-jtg" secondAttribute="trailingMargin" id="gMx-i4-kQ4"/>
-                            <constraint firstItem="caV-4E-LEf" firstAttribute="top" secondItem="GK4-P3-5Hr" secondAttribute="bottom" constant="20" id="kvd-c1-dch"/>
+                            <constraint firstItem="caV-4E-LEf" firstAttribute="top" secondItem="GK4-P3-5Hr" secondAttribute="bottom" constant="20" id="ifT-xE-b4k"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="caV-4E-LEf" secondAttribute="trailing" constant="20" id="s4a-rU-BDV"/>
                             <constraint firstItem="Axv-rX-lhc" firstAttribute="leading" secondItem="Agx-kX-jtg" secondAttribute="leadingMargin" id="wJf-Cz-KXg"/>
                         </constraints>
                     </view>
@@ -197,8 +200,10 @@
                         <barButtonItem key="leftBarButtonItem" title="Item" id="v7Y-AV-w1m"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="detailText" destination="UeA-Dx-5V0" id="pgr-YD-3wE"/>
                         <outlet property="menuItem" destination="v7Y-AV-w1m" id="i2u-gI-5J4"/>
                         <outlet property="scrollView" destination="aUv-4G-zsV" id="IdA-NU-cgw"/>
+                        <outlet property="titleText" destination="f3w-Lp-QSD" id="2kF-bR-zFe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="erb-Fm-CZO" userLabel="First Responder" sceneMemberID="firstResponder"/>

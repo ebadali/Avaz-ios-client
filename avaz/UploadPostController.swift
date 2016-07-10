@@ -21,7 +21,12 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
         iv.addGestureRecognizer(UITapGestureRecognizer(target:self, action:#selector(self.TakeFromCameraAction(_:))))
         return iv
     }()
+
     
+    //-------
+    @IBOutlet weak var titleText: UITextField!
+    
+    @IBOutlet weak var detailText: UITextView!
     
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -29,6 +34,7 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         print("--View Did Load Called In \(NSStringFromClass(self.classForCoder)) \n")
 
@@ -115,10 +121,11 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
     }
     
     func TakeFromGallery()  {
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.SavedPhotosAlbum) {
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
             imagePicker.sourceType = .PhotoLibrary;
+            imagePicker.mediaTypes = ["public.image", "public.movie"]
             self.presentViewController(imagePicker, animated: true, completion: nil)
         }
     }
@@ -176,9 +183,9 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
     }
     func SaveImageToDirectory(image: UIImage) -> String {
         
-            if let data = UIImageJPEGRepresentation(image, 0.8) {
+            if let data = UIImageJPEGRepresentation(image, 0.2) {
                 
-                let filename = Utils.getDocumentsDirectory().stringByAppendingPathComponent("copy.png")
+                let filename = Utils.getDocumentsDirectory().stringByAppendingPathComponent("copy.jpg")
                 data.writeToFile(filename, atomically: true)
                 
                 return filename
@@ -194,8 +201,10 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
 //            let tempImage = UIImage(named: "upload")
 //            AddImageToScrollView(tempImage!)
             let imagePAth = "/Users/ebadism/avaz/avaz/background.gif"
-            AddMediaToScrollView(imagePAth, type: MediaType.Video())
+            AddMediaToScrollView(imagePAth, type: MediaType.Image())
         }
+        
+        
     }
     
     func AddMediaToScrollView(path: String, type: MediaType)  {
@@ -211,7 +220,7 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
         let iv = CustomMediaCell(frame: CGRect(x: (self.scrollView.frame.width/2)*(CGFloat(count)),y: 10,width: self.scrollView.frame.width/2 , height: self.scrollView.frame.height-10), url: path, mediaType: type)
 
         iv.userInteractionEnabled = true
-        
+        iv.tag = count
         // Important callbacks.
         iv.previewCallback = {
             print("preview Called")
@@ -227,6 +236,8 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
         
         iv.cancleCallback = {
             print("cancled Called")
+            self.RemoveThisMediaCell(iv)
+            
         }
         
         
@@ -244,10 +255,9 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
         
         
         self.scrollView.contentSize = CGSizeMake(iv.frame.width * (CGFloat(count+1)), self.scrollView.frame.height)
-        
-
+      
     }
-    
+    //FIXME: Unused method
     func TabbedOnTile(sender: AnyObject)  {
         // Display Dialog
         let uiAlert = UIAlertController(title: "Title", message: "Message", preferredStyle: UIAlertControllerStyle.Alert)
@@ -263,12 +273,59 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
         
     }
     
-    func DisplayImage(image: CustomMediaCell)  {
-        
+    func OutFromLargeView(sender: UITapGestureRecognizer)  {
+        sender.view?.removeFromSuperview()
     }
+    
+    func DisplayImage(image: CustomMediaCell)  {
+        let newImageView = UIImageView(image: UIImage(contentsOfFile: image.url))
+        newImageView.frame = self.view.frame
+        newImageView.backgroundColor = .blackColor()
+        newImageView.contentMode = .ScaleAspectFit
+        newImageView.userInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action:#selector(self.OutFromLargeView(_:)))
+        newImageView.addGestureRecognizer(tap)
+        self.view.addSubview(newImageView)
+    }
+    
     func DisplayVideo(image: CustomMediaCell)  {
         
+        let playerViewController = AVPlayerViewController()
+        let playerView = AVPlayer(URL: NSURL(fileURLWithPath: image.url))
+        playerViewController.player = playerView
+        
+        self.presentViewController(playerViewController, animated: true){
+            playerViewController.player?.play()
+        }
     }
+    
+    func RemoveThisMediaCell(image: CustomMediaCell)  {
+//        print("try to this \(image.tag)")
+        // Do indexing 
+        
+        //FIXME: Move back all the cells by recalculating their positions.
+        
+        var found = false;
+        var counter = 0
+        for subview in self.scrollView.subviews  {
+//            print("Removing this \(subview.tag)")
+            
+            if found {
+                subview.frame.origin.x = (subview.frame.origin.x-image.frame.width)
+                counter += 1
+            }
+            else if subview.tag == image.tag {
+                subview.removeFromSuperview()
+                found = true
+            }
+            
+        }
+        
+        
+        
+    }
+    
+    
     func VideoClickListner(sender: AnyObject)  {
         print("Video Listner")
 //        let playerViewController = AVPlayerViewController()

@@ -19,6 +19,8 @@ class MapView: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        print("awake from nib")
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -27,21 +29,33 @@ class MapView: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    
+    
     func setparams(post: Post) {
-        self.detail_TextView.text =  post.detail
-        self.loc_TextView.text = post.loc
         
+        print(self.map_MKView.annotations.count)
+        if self.map_MKView.annotations.count == 0 {
         
-        
-        let initialLocation = CLLocationCoordinate2D(latitude: 21.282778, longitude: -157.829444)
-        centerMapOnLocation(initialLocation);
-        
-        let artwork = Pointer(title: "Event Occure",
-                              locationName: post.loc,
-                              discipline: "Event",
-                              location: initialLocation)
-        
-        self.map_MKView.addAnnotation(artwork)
+            self.detail_TextView.text =  post.detail
+            self.loc_TextView.text = post.loc
+
+            dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_UTILITY.rawValue),0))
+            {
+                
+                let initialLocation = CLLocationCoordinate2D(latitude: 21.282778, longitude: -157.829444)
+                self.centerMapOnLocation(initialLocation);
+                
+                let artwork = Pointer(title: "Event Occure",
+                                      locationName: post.loc,
+                                      discipline: "Event",
+                                      location: initialLocation)
+                
+
+                dispatch_async(dispatch_get_main_queue(),{
+                     self.map_MKView.addAnnotation(artwork)
+                })
+            }
+        }
         
     }
     
@@ -50,6 +64,8 @@ class MapView: UITableViewCell {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location,
                                                                   regionRadius * 2.0, regionRadius * 2.0)
         self.map_MKView.setRegion(coordinateRegion, animated: true)
+        
+        
     }
 
 }

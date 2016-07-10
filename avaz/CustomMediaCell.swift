@@ -15,7 +15,9 @@ enum MediaType{
     
 }
 
-class CustomMediaCell: UIView {
+class CustomMediaCell:  UIView {
+    
+
     
     
     // Objects To Use
@@ -37,8 +39,14 @@ class CustomMediaCell: UIView {
        initialize()
     }
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        initialize()
+    }
+    
     func initialize()  {
-        button.backgroundColor = UIColor.redColor()
+        button.image = UIImage(named: "cancle")
         filter.backgroundColor = UIColor.blackColor()
         filter.alpha = 0.2
         imageView.backgroundColor = UIColor.whiteColor()
@@ -71,10 +79,10 @@ class CustomMediaCell: UIView {
         
         
         // Offset each button's origin by the length of the button plus spacing.
-        let butnHeight = totalHeight/8
+        let butnHeight = totalHeight/6
         let butnWidth = totalWidth/6
         
-        button.frame = CGRect(x: totalWidth-butnWidth-10, y: butnHeight/2, width: butnWidth, height: butnHeight)
+        button.frame = CGRect(x: totalWidth-butnWidth, y: (butnHeight/2), width: butnWidth, height: butnHeight)
         filter.frame = CGRect(x: 0, y: 0, width: totalWidth, height: totalHeight/4)
         
         // Lets Create an Image View
@@ -103,9 +111,12 @@ class CustomMediaCell: UIView {
                 
                 // Set Compress Data
                 self.imageView.image = UIImage(data: UIImageJPEGRepresentation(UIImage(CGImage: cgImage), 0.1)!)
+                print("done compressing")
             }else if  case .Image() = self.mediaType {
                                 print("compressing image")
                 // Set Compress Data
+                
+                //FIXME: there was an undetected bug, when deleting and adding more images.
                 self.imageView.image = UIImage(data: UIImageJPEGRepresentation(UIImage(imageLiteral: self.url), 0.1)!)
             }
         } catch let error as NSError {

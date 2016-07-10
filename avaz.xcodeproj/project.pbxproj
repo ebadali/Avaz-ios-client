@@ -96,6 +96,62 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		021E5C7D1D311AAC00E135EC /* model */ = {
+			isa = PBXGroup;
+			children = (
+				08BFC4B01CFC5872007C4651 /* Post.swift */,
+				0276B7981D1EB5B40007A4F2 /* File.swift */,
+				08C4456B1D1160C400CB48CB /* Pointer.swift */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
+		021E5C7E1D311AB700E135EC /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				08BFC4AE1CFC576F007C4651 /* UpdateController.swift */,
+				087708D11D008F7400EB983B /* UpdateDetailViewController.swift */,
+				08F554F21D1AB7A4000BFD63 /* RegisterViewController.swift */,
+				029887681D184B7A00D8903F /* LoginViewController.swift */,
+				086F98591D141C3600D40AA6 /* UploadPostController.swift */,
+				08BFC4961CFC4034007C4651 /* ViewController.swift */,
+			);
+			name = controller;
+			sourceTree = "<group>";
+		};
+		021E5C7F1D311AC800E135EC /* views */ = {
+			isa = PBXGroup;
+			children = (
+				025BFB951D25D7ED00342E55 /* LoginView.xib */,
+				025BFB971D25D82600342E55 /* LoginView.swift */,
+				08BFC4AC1CFC525E007C4651 /* CustomCell.swift */,
+				022BF9E31D2F896A00126414 /* CustomMediaCell.swift */,
+				08F49DE11D01C4EC005C0702 /* MapView.swift */,
+				08F49DE31D01C7D6005C0702 /* MapView.xib */,
+				080C5B071D09716700D03509 /* CommentView.swift */,
+				080C5B081D09716700D03509 /* CommentView.xib */,
+				087708CF1D00867900EB983B /* VotesView.swift */,
+				087708CD1D00862900EB983B /* VotesView.xib */,
+			);
+			name = views;
+			sourceTree = "<group>";
+		};
+		021E5C801D311BA400E135EC /* api */ = {
+			isa = PBXGroup;
+			children = (
+				0890BD7F1D100AF500697E3F /* ApiManager.swift */,
+			);
+			name = api;
+			sourceTree = "<group>";
+		};
+		021E5C811D311BCF00E135EC /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				0234F2D01D2E6B020020027D /* Utils.swift */,
+			);
+			name = utils;
+			sourceTree = "<group>";
+		};
 		02FCC2B01D1EA422009EF1A7 /* SWRevealViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -129,34 +185,18 @@
 		08BFC4931CFC4034007C4651 /* avaz */ = {
 			isa = PBXGroup;
 			children = (
+				021E5C811D311BCF00E135EC /* utils */,
+				021E5C801D311BA400E135EC /* api */,
+				021E5C7F1D311AC800E135EC /* views */,
+				021E5C7E1D311AB700E135EC /* controller */,
+				021E5C7D1D311AAC00E135EC /* model */,
 				02FCC2B01D1EA422009EF1A7 /* SWRevealViewController */,
 				08BFC4941CFC4034007C4651 /* AppDelegate.swift */,
 				08BFC49B1CFC4034007C4651 /* Assets.xcassets */,
 				0234F2CE1D2E53330020027D /* background.gif */,
-				08BFC4AC1CFC525E007C4651 /* CustomCell.swift */,
 				08BFC4A01CFC4034007C4651 /* Info.plist */,
 				08BFC49D1CFC4034007C4651 /* LaunchScreen.storyboard */,
 				08BFC4981CFC4034007C4651 /* Main.storyboard */,
-				025BFB951D25D7ED00342E55 /* LoginView.xib */,
-				025BFB971D25D82600342E55 /* LoginView.swift */,
-				0276B7981D1EB5B40007A4F2 /* File.swift */,
-				08F554F21D1AB7A4000BFD63 /* RegisterViewController.swift */,
-				029887681D184B7A00D8903F /* LoginViewController.swift */,
-				022BF9E31D2F896A00126414 /* CustomMediaCell.swift */,
-				086F98591D141C3600D40AA6 /* UploadPostController.swift */,
-				0234F2D01D2E6B020020027D /* Utils.swift */,
-				08F49DE11D01C4EC005C0702 /* MapView.swift */,
-				08F49DE31D01C7D6005C0702 /* MapView.xib */,
-				080C5B071D09716700D03509 /* CommentView.swift */,
-				080C5B081D09716700D03509 /* CommentView.xib */,
-				08BFC4B01CFC5872007C4651 /* Post.swift */,
-				08BFC4AE1CFC576F007C4651 /* UpdateController.swift */,
-				087708D11D008F7400EB983B /* UpdateDetailViewController.swift */,
-				0890BD7F1D100AF500697E3F /* ApiManager.swift */,
-				08C4456B1D1160C400CB48CB /* Pointer.swift */,
-				087708CF1D00867900EB983B /* VotesView.swift */,
-				08BFC4961CFC4034007C4651 /* ViewController.swift */,
-				087708CD1D00862900EB983B /* VotesView.xib */,
 				02A8D3821D16EE7C00F4E4CE /* MyPlayground.playground */,
 				02F2BA041D1DE697007CEDCB /* avaz-Bridging-Header.h */,
 			);
@@ -193,6 +233,7 @@
 				08BFC48F1CFC4034007C4651 /* Resources */,
 				1DA16397597B782F50187F5C /* Embed Pods Frameworks */,
 				DBFDAC9435DA585AF28D426B /* Copy Pods Resources */,
+				022BF9E51D2FF9A600126414 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -264,6 +305,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		022BF9E51D2FF9A600126414 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "TAGS=\"TODO:|FIXME:\"\nfind \"${SRCROOT}\" \\( -name \"*.h\" -or -name \"*.m\" -or -name \"*.swift\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\"";
+		};
 		1DA16397597B782F50187F5C /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

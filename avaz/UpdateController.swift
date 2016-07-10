@@ -24,8 +24,10 @@ class UpdateController: UITableViewController, HamburgerProtocol {
         self.tableView.estimatedRowHeight = 160.0
         
         setupHamburger()
-//        LoadFromRemote()
-        LoadData()
+        LoadFromRemote()
+        
+        
+//        LoadData()
         
         
     }
@@ -36,7 +38,7 @@ class UpdateController: UITableViewController, HamburgerProtocol {
     func setupHamburger() {
         if self.revealViewController() != nil {
             menuItem.target = self.revealViewController()
-            menuItem.action = "revealToggle:"
+            menuItem.action = #selector(SWRevealViewController.revealToggle(_:))
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
 
@@ -51,7 +53,7 @@ class UpdateController: UITableViewController, HamburgerProtocol {
         
         
         for i in 1...10 {
-            someDataSource.append(Post(details: "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim rem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enimrem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enimad ", title: "yolo  \(i) ", up: i*10 , down: i*3, loc: "Some where on planet earth", latitude: 32.4 , longitude : 64.334))
+            someDataSource.append(Post(details: "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim rem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enimrem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enimad ", title: "helloWorld  \(i) ", up: i*10 , down: i*3, loc: "Some where on planet earth", latitude: 32.4 , longitude : 64.334))
         }
         
         print(someDataSource)
