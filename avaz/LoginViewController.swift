@@ -28,7 +28,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, Hamburger
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let imagePAth = "/Users/ebadism/avaz/avaz/background.gif"
+        let imagePAth = "background"
         AddGif(imagePAth);
         
 
@@ -72,7 +72,11 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, Hamburger
     func AddGif(path: String)  {
         // Creating Backgorund View
         let iv = UIWebView(frame: self.view.frame)
-        let nsurl = NSURL(fileURLWithPath: path)
+
+        let urlPath = NSBundle.mainBundle().pathForResource(path, ofType: "gif")
+        
+
+        let nsurl = NSURL(fileURLWithPath: urlPath!)
         let img = NSData(contentsOfURL: nsurl)
         iv.loadData(img!, MIMEType: "image/gif", textEncodingName: String(), baseURL: NSURL())
         iv.userInteractionEnabled = false;
