@@ -200,8 +200,13 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
         for _ in 1...5 {
 //            let tempImage = UIImage(named: "upload")
 //            AddImageToScrollView(tempImage!)
-            let imagePAth = "/Users/ebadism/avaz/avaz/background.gif"
-            AddMediaToScrollView(imagePAth, type: MediaType.Image())
+            let imagePath = "background"
+            let urlPath = NSBundle.mainBundle().pathForResource(imagePath, ofType: "gif")
+            
+            
+//            let nsurl = NSURL(fileURLWithPath: urlPath!)
+//            let img = NSData(contentsOfURL: nsurl)
+            AddMediaToScrollView(urlPath!, type: MediaType.Image())
         }
         
         

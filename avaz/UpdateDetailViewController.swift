@@ -9,10 +9,11 @@
 import UIKit
 class UpdateDetailViewController: UIViewController, UITableViewDataSource {
 
+    
     @IBOutlet weak var tableViewRoot: UITableView!
     
     var arr1 = [{" Object -1 "}]
-    var arr2 = [{" Object -1 "}]
+    var arr2 = ["Hello"]
     var data : Post!
     
     
@@ -53,18 +54,18 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource {
         // Adding Comment View
         
         
-        tableViewRoot.registerNib(UINib(nibName: "MapView", bundle: nil), forCellReuseIdentifier: "mapviewcell")
+        self.tableViewRoot.registerNib(UINib(nibName: "MapView", bundle: nil), forCellReuseIdentifier: "mapviewcell")
         
-        tableViewRoot.registerNib(UINib(nibName: "CommentView", bundle: nil), forCellReuseIdentifier: "commentviewcell")
+        self.tableViewRoot.registerNib(UINib(nibName: "CommentView", bundle: nil), forCellReuseIdentifier: "commentviewcell")
         
         // Self-sizing magic!
 //        tableViewRoot.rowHeight = 100
-        tableViewRoot.rowHeight = UITableViewAutomaticDimension
+        self.tableViewRoot.rowHeight = UITableViewAutomaticDimension
         
-        tableViewRoot.estimatedRowHeight = 180.0; //Set this to any value that works for you.
+        self.tableViewRoot.estimatedRowHeight = 180.0; //Set this to any value that works for you.
 
         
-        LoadData()
+//        LoadData()
         
         
         self.view.addSubview(self.button)
@@ -81,7 +82,7 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource {
         }
         
         for i in 0...10 {
-            arr2.append({" Object \(i) "})
+            arr2.append(" ashjgsajhd sadashjdg ajsdjasd ajshgd sdg asjdga sdajgsdjhagd adjhgajhdg jhasgdasd akjsdh akhashjgsajhd sadashjdg ajsdjasd ajshgd sdg asjdga sdajgsdjhagd adjhgajhdg jhasgdasd akjsdh akh \(i) ")
         }
         
     }
@@ -112,7 +113,7 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
         
-        if indexPath.section == 0{
+        if indexPath.section == DetailViewTypes.Map.rawValue{
             
             // THis is Map view Along with
            let cell = tableView.dequeueReusableCellWithIdentifier("mapviewcell", forIndexPath: indexPath) as! MapView
@@ -121,8 +122,8 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource {
         }
         else{
             // This will be a Comment View
-           let  cell = tableView.dequeueReusableCellWithIdentifier("commentviewcell", forIndexPath: indexPath) as! CommentView
-            
+            let  cell = tableView.dequeueReusableCellWithIdentifier("commentviewcell", forIndexPath: indexPath) as! CommentView
+            cell.commenterText.text = arr2[indexPath.row]
             return cell
         }
 
@@ -149,6 +150,7 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource {
     }
     
     
+    
     @IBOutlet var newWordField: UITextField?
 
     
@@ -167,7 +169,22 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource {
             
             print(Comment)
             
-            self.arr2.append({Comment})
+            self.arr2.append(Comment)
+            print("data added")
+
+            
+            
+            self.tableViewRoot.beginUpdates()
+            self.tableViewRoot.insertRowsAtIndexPaths([
+                NSIndexPath(forRow: self.arr2.count-1, inSection: DetailViewTypes.Comment.rawValue)
+                ], withRowAnimation: .Automatic)
+            self.tableViewRoot.endUpdates()
+//            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                //reload your tableView
+//                self.tableViewRoot.reloadData()
+//                            print("dispathced")
+//            })
+
             
         })
         
@@ -244,9 +261,9 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource {
 }
 
 
-enum DetailViewTypes {
-    case Map
-    case Comment
+enum DetailViewTypes : Int{
+    case Map = 0
+    case Comment = 1
 }
 
 

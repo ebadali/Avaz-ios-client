@@ -9,7 +9,10 @@
 import UIKit
 
 class CommentView: UITableViewCell {
-
+    
+    @IBOutlet weak var commenterImage: UIImageView!
+    @IBOutlet weak var commenterText: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

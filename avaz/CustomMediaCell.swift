@@ -109,15 +109,22 @@ class CustomMediaCell:  UIView {
                 imgGenerator.appliesPreferredTrackTransform = true
                 let cgImage = try imgGenerator.copyCGImageAtTime(CMTimeMake(0, 1), actualTime: nil)
                 
+                guard let loadedImage: UIImage = UIImage(CGImage: cgImage) else {
+                    return
+                    
+                }
                 // Set Compress Data
-                self.imageView.image = UIImage(data: UIImageJPEGRepresentation(UIImage(CGImage: cgImage), 0.1)!)
+                self.imageView.image = UIImage(data: UIImageJPEGRepresentation(loadedImage, 0.1)!)
                 print("done compressing")
             }else if  case .Image() = self.mediaType {
                                 print("compressing image")
                 // Set Compress Data
+                guard let loadedImage: UIImage = UIImage(imageLiteral: self.url) else {
+                    return
                 
+                }
                 //FIXME: there was an undetected bug, when deleting and adding more images.
-                self.imageView.image = UIImage(data: UIImageJPEGRepresentation(UIImage(imageLiteral: self.url), 0.1)!)
+                self.imageView.image = UIImage(data: UIImageJPEGRepresentation(loadedImage, 0.1)!)
             }
         } catch let error as NSError {
             print("Error generating thumbnail: \(error)")
