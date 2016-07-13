@@ -81,7 +81,7 @@ UINavigationControllerDelegate {
             // It is a Image
             if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
                 
-//                self.imageView.clipsToBounds = true
+                self.imageView.clipsToBounds = true
 //                                //half of the width
 //                self.imageView.layer.cornerRadius = self.imageView.frame.width
                 self.imageView.image = pickedImage
