@@ -71,5 +71,9 @@ class Utils
     }
 }
 
-Utils.getDocumentsDirectory()
+//Utils.getDocumentsDirectory()
+
+
+var somstr = "Hello"
+print ( somstr + "worl 2")
 

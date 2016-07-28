@@ -24,6 +24,35 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, Hamburger
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
     
     @IBAction func LogIn(sender: AnyObject) {
+        print("logging in")
+        
+        print (" \(self.email.text)")
+        print (" \(self.password.text)")
+        
+        guard let email = self.email.text , password = self.password.text else {
+            return
+        }
+        
+        ApiManager.sharedInstance.LogInApi(email, password: password,
+                onCompletion:
+            {(json : JSON) in
+                    print(json)
+                
+
+                
+                    if (json != nil && json["status"] == "success")
+                    {
+                        var data = json["data"]
+                        UserData.sharedInstance.SetSessionID(String(data["sessionid"]))
+                        UserData.sharedInstance.SetCurrentUser(data["user"])
+                        
+                        //Todo: save user
+                        print(data)
+                        
+                    }
+                    
+            }
+        )
     }
     
     override func viewDidLoad() {

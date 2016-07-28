@@ -16,7 +16,7 @@ class ApiManager: NSObject {
     
 //    let baseURL = "http://api.randomuser.me/"
 //    let baseURL = "http://beta.json-generator.com/api/json/get/4JnRwJKE-"
-    let baseURL = "http://beta.json-generator.com/api/json/get/4JnRwJKE-"
+    let baseURL = "http://localhost:8001/"
     
 
     func getRandomPost(onCompletion: (JSON) -> Void) {
@@ -26,13 +26,24 @@ class ApiManager: NSObject {
         })
     }
     
+//    ------ API's -----------
+    
     func LogInApi(userName: String, password: String, onCompletion: (JSON) ->Void) {
         
-        let someTuble = ["route":baseURL, "userName":userName, "password":password];
+        let someTuble = ["route":baseURL+"user/login", "username":userName, "password":password];
         makeHTTPPostRequest(someTuble, onCompletion: { json, err in
             onCompletion(json as JSON)
         })
     }
+    func RegsiterApi(userName: String,email: String, password: String, pic: UIImage,  onCompletion: (JSON) ->Void) {
+        
+        let someTuble = ["route":baseURL+"user/login", "username":userName, "password":password];
+        makeHTTPPostRequest(someTuble, onCompletion: { json, err in
+            onCompletion(json as JSON)
+        })
+    }
+    
+//    ------ API's -----------
     
     
     func makeHTTPPostRequest(params: [String: AnyObject], onCompletion: ServiceResponse) {
