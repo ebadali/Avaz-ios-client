@@ -94,28 +94,54 @@ class UpdateController: UITableViewController, HamburgerProtocol {
 
     
     func LoadFromRemote() {
-        dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_UTILITY.rawValue),0))
-        {
-        ApiManager.sharedInstance.getRandomPost(
-            {(json : JSON) in
-                print ("-----")
-                //                print (json.array)
-                //                                print ("-----1")
-                //                print (json[0][0])
-                //                                print ("-----2")
-                if let results = json.array {
-                    for somePosts in results {
-                        //                        print (somePosts["Post"])
-                        self.someDataSource.append(Post(json: somePosts["Post"]))
-                    }
-                    dispatch_async(dispatch_get_main_queue(),{
-                        self.tableView.reloadData()
-                    })
-                }
-                
+        
+        ApiManager.sharedInstance.getAllPost(
+        {(json : JSON) in
+//            print(json)
+            guard let posts = json["posts"].array,
+                      locs = json["locations"].array,
+                      medias = json["media"].array else
+            {
+                // Not Found.
+                return
             }
-        )
-        }
+            
+            let Mmin = min(posts.count, min(locs.count, medias.count))
+            for i in 0..<Mmin {
+//                print("\(post) - \(media) - \(loc)")
+                
+                self.someDataSource.append(Post(post: posts[i], media: medias[i], location: locs[i]))
+            }
+            
+            dispatch_async(dispatch_get_main_queue(),{
+                                    self.tableView.reloadData()
+                                })
+            
+        })
+        
+        
+//        dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_UTILITY.rawValue),0))
+//        {
+//        ApiManager.sharedInstance.getRandomPost(
+//            {(json : JSON) in
+//                print ("-----")
+//                //                print (json.array)
+//                //                                print ("-----1")
+//                //                print (json[0][0])
+//                //                                print ("-----2")
+//                if let results = json.array {
+//                    for somePosts in results {
+//                        //                        print (somePosts["Post"])
+//                        self.someDataSource.append(Post(json: somePosts["Post"]))
+//                    }
+//                    dispatch_async(dispatch_get_main_queue(),{
+//                        self.tableView.reloadData()
+//                    })
+//                }
+//                
+//            }
+//        )
+//        }
 
     }
 }

@@ -15,6 +15,8 @@ class Post {
 //    var postedBy : User
     
         var up = 0 , down = 0
+    
+    var media: Media?
         
     init(details : String, title : String, up: Int, down: Int, loc : String, latitude : Double ,longitude : Double )
         {
@@ -41,6 +43,25 @@ class Post {
         self.up = json["Votes"]["up"].intValue
         self.down = json["Votes"]["down"].intValue
 
+    }
+    
+    init(post : JSON, media : JSON , location : JSON)
+    {
+        
+//        self.loc = location["loc"].stringValue
+        self.lat = location["latitude"].doubleValue
+        self.lng = location["longitude"].doubleValue
+
+        
+        self.title = post["title"].stringValue
+        
+        self.media = Media(media: media)
+        
+        self.detail = (self.media?.content)!
+        
+        self.up = 0
+        self.down = 0
+        
     }
     
 }

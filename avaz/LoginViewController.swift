@@ -33,35 +33,37 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, Hamburger
             return
         }
         
-        ApiManager.sharedInstance.getAllPost { (json : JSON) in
-            
-            if (json != nil )
-            {
-                
-                
-                //Todo: Redirect To SomeWhere
-                print(json)
-                
-            }
-            
-        }
         
-//        ApiManager.sharedInstance.LogInApi(email, password: password,
-//                onCompletion:
-//            {(json : JSON) in
-//                
-//                    if (json != nil )
-//                    {
-//                        UserData.sharedInstance.SetSessionID(String(json["sessionid"]))
-//                        UserData.sharedInstance.SetCurrentUser(json["user"])
-//                        
-//                        //Todo: Redirect To SomeWhere
-//                        print(json)
-//                        
-//                    }
-//                    
-//            }
-//        )
+        
+        ApiManager.sharedInstance.LogInApi(email, password: password,
+                onCompletion:
+            {(json : JSON) in
+                
+                    if (json != nil )
+                    {
+                        UserData.sharedInstance.SetSessionID(String(json["sessionid"]))
+                        UserData.sharedInstance.SetCurrentUser(json["user"])
+                        
+                        //Todo: Redirect To SomeWhere
+                        print("Login \n\(json)")
+                        
+                        
+                        ApiManager.sharedInstance.getAllPost { (json : JSON) in
+                            
+                            if (json != nil )
+                            {
+                                
+                                
+                                //Todo: Redirect To SomeWhere
+                                print("getAllPost \n\(json)")
+                                
+                            }
+                            
+                        }
+                    }
+                    
+            }
+        )
     }
     
     override func viewDidLoad() {
