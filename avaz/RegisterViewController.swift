@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
 UINavigationControllerDelegate {
@@ -15,6 +16,7 @@ UINavigationControllerDelegate {
     @IBOutlet weak var userName: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var imageView: UIImageView!
+    
     
     
     override func viewDidLoad() {
@@ -35,12 +37,39 @@ UINavigationControllerDelegate {
 
     @IBAction func SignUp(sender: AnyObject) {
         guard let username = self.userName.text, email = self.email.text , password = self.password.text
-            else
+             else
         {
             return
         }
+  
+        //1. Save the Image
+        //2. Get the Url
+        let imageUrl = (self.imageView.image != nil )  ?  Utils.SaveImageToDirectory(self.imageView.image!)  : ""
+        //3. Send the Url to the Api Manager.
         
-        print(" \(username) , \(email) ,  \(password)")
+        print(" \(username) , \(email) ,  \(password) , \(imageUrl)")
+        
+        
+        ApiManager.sharedInstance.RegsiterApi(username, email: email, password: password, pic: imageUrl,
+                                           onCompletion:
+            {(json : JSON) in
+                
+                print("Responce1 \(json) \n")
+                
+                
+                if (json != nil )
+                {
+                    //Todo: should add Login Here too.
+                    print("Responce2 \(json) \n")
+                    
+                }
+                
+            
+            
+            }
+        )
+        
+        
     }
     @IBAction func AlreadyHaveAnAcount(sender: AnyObject) {
         self.navigationController!.popViewControllerAnimated(true)
@@ -81,10 +110,14 @@ UINavigationControllerDelegate {
             // It is a Image
             if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
                 
+
                 self.imageView.clipsToBounds = true
 //                                //half of the width
 //                self.imageView.layer.cornerRadius = self.imageView.frame.width
                 self.imageView.image = pickedImage
+
+                
+                
             }
         }
         

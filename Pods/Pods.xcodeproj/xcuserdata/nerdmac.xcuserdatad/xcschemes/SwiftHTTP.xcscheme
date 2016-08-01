@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '8FE143E03458146F883DA6FE'
-               BlueprintName = 'Pods-avaz'
+               BlueprintIdentifier = 'F905508D636CD2F1F5CDED95'
+               BlueprintName = 'SwiftHTTP'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'Pods_avaz.framework'>
+               BuildableName = 'SwiftHTTP.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

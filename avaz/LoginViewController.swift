@@ -33,26 +33,35 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, Hamburger
             return
         }
         
-        ApiManager.sharedInstance.LogInApi(email, password: password,
-                onCompletion:
-            {(json : JSON) in
-                    print(json)
+        ApiManager.sharedInstance.getAllPost { (json : JSON) in
+            
+            if (json != nil )
+            {
                 
-
                 
-                    if (json != nil && json["status"] == "success")
-                    {
-                        var data = json["data"]
-                        UserData.sharedInstance.SetSessionID(String(data["sessionid"]))
-                        UserData.sharedInstance.SetCurrentUser(data["user"])
-                        
-                        //Todo: save user
-                        print(data)
-                        
-                    }
-                    
+                //Todo: Redirect To SomeWhere
+                print(json)
+                
             }
-        )
+            
+        }
+        
+//        ApiManager.sharedInstance.LogInApi(email, password: password,
+//                onCompletion:
+//            {(json : JSON) in
+//                
+//                    if (json != nil )
+//                    {
+//                        UserData.sharedInstance.SetSessionID(String(json["sessionid"]))
+//                        UserData.sharedInstance.SetCurrentUser(json["user"])
+//                        
+//                        //Todo: Redirect To SomeWhere
+//                        print(json)
+//                        
+//                    }
+//                    
+//            }
+//        )
     }
     
     override func viewDidLoad() {

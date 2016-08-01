@@ -173,7 +173,7 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
             // It is a Image
             if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
                 
-                let imageUrl = SaveImageToDirectory(pickedImage)
+                let imageUrl = Utils.SaveImageToDirectory(pickedImage)
                 self.AddMediaToScrollView(imageUrl, type: MediaType.Image())
 //                self.AddImageToScrollView(pickedImage)
             }
@@ -181,19 +181,7 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
         
 
     }
-    func SaveImageToDirectory(image: UIImage) -> String {
-        
-            if let data = UIImageJPEGRepresentation(image, 0.2) {
-                
-                let filename = Utils.getDocumentsDirectory().stringByAppendingPathComponent("copy.jpg")
-                data.writeToFile(filename, atomically: true)
-                
-                return filename
-            }
-        
-            return ""
-        
-    }
+   
     
     
     func addMoreImages()  {
