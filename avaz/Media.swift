@@ -14,12 +14,16 @@ class Media {
     var videos: [String]?
     var images: [String]?
     var content: String?
-
+    init(text: String)
+    {
+        self.content = text
+    }
     
     init(media: JSON)
     {
         let text = media["text"]
         self.content = text[text.dictionaryValue.keys.first!].stringValue
+//        self.content = "sdsd"
         
         
         guard let allVides = media["videourl"].array,

@@ -27,6 +27,7 @@
 		0879B2B81D4A30C80078C5EB /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0879B2B71D4A30C70078C5EB /* UserData.swift */; };
 		0879B2BA1D4A319A0078C5EB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0879B2B91D4A319A0078C5EB /* User.swift */; };
 		0890BD801D100AF500697E3F /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0890BD7F1D100AF500697E3F /* ApiManager.swift */; };
+		089EF9DB1D52082600B5F163 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089EF9DA1D52082600B5F163 /* Comment.swift */; };
 		08ABC22A145FC4AD3894B62D /* Pods_avaz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A568DDBA42DE9773A46878D7 /* Pods_avaz.framework */; };
 		08BFC4951CFC4034007C4651 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BFC4941CFC4034007C4651 /* AppDelegate.swift */; };
 		08BFC4971CFC4034007C4651 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BFC4961CFC4034007C4651 /* ViewController.swift */; };
@@ -68,6 +69,7 @@
 		0879B2B71D4A30C70078C5EB /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		0879B2B91D4A319A0078C5EB /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0890BD7F1D100AF500697E3F /* ApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
+		089EF9DA1D52082600B5F163 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		08BFC4911CFC4034007C4651 /* avaz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = avaz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08BFC4941CFC4034007C4651 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		08BFC4961CFC4034007C4651 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 				08C4456B1D1160C400CB48CB /* Pointer.swift */,
 				0879B2B91D4A319A0078C5EB /* User.swift */,
 				02756E841D4FE340007A02E8 /* Media.swift */,
+				089EF9DA1D52082600B5F163 /* Comment.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -388,6 +391,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				02756E851D4FE340007A02E8 /* Media.swift in Sources */,
+				089EF9DB1D52082600B5F163 /* Comment.swift in Sources */,
 				022BF9E41D2F896B00126414 /* CustomMediaCell.swift in Sources */,
 				087708D21D008F7400EB983B /* UpdateDetailViewController.swift in Sources */,
 				08F49DE21D01C4EC005C0702 /* MapView.swift in Sources */,

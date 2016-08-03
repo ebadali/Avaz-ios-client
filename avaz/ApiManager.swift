@@ -60,13 +60,60 @@ class ApiManager: NSObject {
     }
     
     
+    //// get all Comments
+    func getAllComments(postid : String? , onCompletion: (JSON) ->Void) {
+        
+        guard let postToFetch = postid else{
+            return
+        }
+        
+        let parameters = [ "sessionid": UserData.sharedInstance.GetSessionID(), "postid":postToFetch];
+        makeHTTPGetRequest(baseURL+"post/getallcomments", params:parameters, onCompletion: { json, err in
+            onCompletion(json as JSON)
+        })
+        
+    }
+    
+    
+    
+    //// Insert a Comment
+    func insertAComment(postid : String?, comment: Comment , onCompletion: (JSON) ->Void) {
+        
+        guard let postToFetch = postid else{
+            return
+        }
+        
+        let parameters = [ "sessionid": UserData.sharedInstance.GetSessionID(), "postid":postToFetch , "comment": comment.media.content! ];
+        makeHTTPPostRequest(baseURL+"post/docomment", params:parameters, onCompletion: { json, err in
+            onCompletion(json as JSON)
+        })
+        
+    }
+    
+    //// Insert a Post
+    func insertAPost( post: Post , onCompletion: (JSON) ->Void) {
+        let parameters = [ "sessionid": UserData.sharedInstance.GetSessionID(),
+                           "title": post.title,
+                           "location": post.getlocation() as AnyObject,
+                           "text": post.media?.content as! AnyObject ]
+        
+        makeHTTPPostRequest(baseURL+"post/dopost", params: parameters, onCompletion: { json, err in
+            onCompletion(json as JSON)
+        })
+        
+    }
+    
+    
+
+    
 //    ------ End API's -----------
     
     
     func makeHTTPPostRequest(baseurl: String , params: [String: AnyObject], onCompletion: ServiceResponse) {
 
+        
+        //Todo: Could add sessionid object in params may be concat two array.
         do {
-//            ["aParam": "aValue", "file": Upload(fileUrl: fileUrl)]
             let opt = try HTTP.POST(baseurl, parameters: params)
             opt.start { response in
 

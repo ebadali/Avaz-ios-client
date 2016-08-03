@@ -7,13 +7,16 @@
 //
 
 import UIKit
+import SwiftyJSON
+
 class UpdateDetailViewController: UIViewController, UITableViewDataSource {
 
     
     @IBOutlet weak var tableViewRoot: UITableView!
     
     var arr1 = [{" Object -1 "}]
-    var arr2 = ["Hello"]
+    var comments = [Comment]()
+    
     var data : Post!
     
     
@@ -66,7 +69,7 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource {
 
         
 //        LoadData()
-        
+        LoadRemoteData()
         
         self.view.addSubview(self.button)
     }
@@ -75,6 +78,38 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource {
     override func viewWillDisappear(animated: Bool) {
         print("--viewWillDisappear Called In \(NSStringFromClass(self.classForCoder)) \n")
     }
+    
+    
+    func LoadRemoteData()  {
+        
+        
+        
+        ApiManager.sharedInstance.getAllComments(data.postID,
+            onCompletion: {(json : JSON) in
+                print("All Commments are - \(json)")
+                
+                guard let mediaobj = json["media"].array
+                    else
+                {
+                    // Not Found.
+                    return
+                }
+                
+                for obj in mediaobj
+                {
+                    self.comments.append( Comment(mediaJson: obj) )
+                }
+                
+                
+                
+                dispatch_async(dispatch_get_main_queue(),{
+                    self.tableViewRoot.reloadData()
+                })
+                
+        })
+
+    }
+    
     func LoadData() {
         
         for i in 0...10 {
@@ -82,7 +117,7 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource {
         }
         
         for i in 0...10 {
-            arr2.append(" ashjgsajhd sadashjdg ajsdjasd ajshgd sdg asjdga sdajgsdjhagd adjhgajhdg jhasgdasd akjsdh akhashjgsajhd sadashjdg ajsdjasd ajshgd sdg asjdga sdajgsdjhagd adjhgajhdg jhasgdasd akjsdh akh \(i) ")
+            comments.append(Comment(text: " ashjgsajhd sadashjdg ajsdjasd ajshgd sdg asjdga sdajgsdjhagd adjhgajhdg jhasgdasd akjsdh akhashjgsajhd sadashjdg ajsdjasd ajshgd sdg asjdga sdajgsdjhagd adjhgajhdg jhasgdasd akjsdh akh \(i) "))
         }
         
     }
@@ -100,7 +135,7 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource {
         }
         else{
             // Cooment View Count.
-            return arr2.count
+            return comments.count
         }
     }
     
@@ -123,7 +158,10 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource {
         else{
             // This will be a Comment View
             let  cell = tableView.dequeueReusableCellWithIdentifier("commentviewcell", forIndexPath: indexPath) as! CommentView
-            cell.commenterText.text = arr2[indexPath.row]
+//            cell.commenterText.text = comments[indexPath.row]
+//            cell.commenterImage.image = LoadImage(comments[])
+            print("index is \(indexPath.row)")
+            cell.setData(comments[indexPath.row].media.content, posterImageUrl: comments[indexPath.row].media.content)
             return cell
         }
 
@@ -163,20 +201,20 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource {
             alert -> Void in
             
             let firstTextField = alertController.textFields![0] as UITextField
-            guard let Comment = firstTextField.text where firstTextField.text != "" else{
+            guard let CommentText = firstTextField.text where firstTextField.text != "" else{
                 return
             }
             
-            print(Comment)
+            print(CommentText)
             
-            self.arr2.append(Comment)
+            self.comments.append(Comment(text: CommentText))
             print("data added")
 
             
             
             self.tableViewRoot.beginUpdates()
             self.tableViewRoot.insertRowsAtIndexPaths([
-                NSIndexPath(forRow: self.arr2.count-1, inSection: DetailViewTypes.Comment.rawValue)
+                NSIndexPath(forRow: self.comments.count-1, inSection: DetailViewTypes.Comment.rawValue)
                 ], withRowAnimation: .Automatic)
             self.tableViewRoot.endUpdates()
 //            dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -184,6 +222,8 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource {
 //                self.tableViewRoot.reloadData()
 //                            print("dispathced")
 //            })
+            
+            self.sendThisComment(Comment(text: CommentText))
 
             
         })
@@ -202,43 +242,21 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource {
         
         self.presentViewController(alertController, animated: true, completion: nil)
 
-//        let deletedString = ""
-//        
-//        func wordEntered(alert: UIAlertAction!){
-//            // store the new word
-//            self.newWordField!.text = deletedString + " " + self.newWordField!.text!
-//            
-//            print("wordEntered \(self.newWordField!.text) ")
-//        }
-//        func addTextField(textField: UITextField!){
-//            // add the text field and make the result global
-//            textField.placeholder = "Definition"
-//            self.newWordField = textField
-//            
-//            print("addTextField  \(self.newWordField!.text)")
-//        }
-//        
-//        // display an alert
-//        let newWordPrompt = UIAlertController(title: "Enter definition", message: "Trainging the machine!", preferredStyle: UIAlertControllerStyle.Alert)
-//        newWordPrompt.addTextFieldWithConfigurationHandler(addTextField)
-//        newWordPrompt.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
-//        newWordPrompt.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: wordEntered))
-//        presentViewController(newWordPrompt, animated: true, completion: nil)
-        
-        
-//        alertController.addAction(gallery)
-//        alertController.addAction(camera)
-//        
-//        self.presentViewController(alertController, animated: true, completion:{
-//            alertController.view.superview?.userInteractionEnabled = true
-//            alertController.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.alertControllerBackgroundTapped)))
-//        })
 
     }
     
     func alertControllerBackgroundTapped()
     {
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    
+    func sendThisComment(cmnt: Comment)  {
+        ApiManager.sharedInstance.insertAComment(data.postID, comment: cmnt,
+                                            
+            onCompletion: {(json : JSON) in
+                print("All Commments are - \(json)")
+        })
     }
     
     

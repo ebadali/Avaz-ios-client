@@ -16,9 +16,10 @@ class Post {
     
         var up = 0 , down = 0
     
+    var postID : String
     var media: Media?
         
-    init(details : String, title : String, up: Int, down: Int, loc : String, latitude : Double ,longitude : Double )
+    init(postid: String, details : String, title : String, up: Int, down: Int, loc : String, latitude : Double ,longitude : Double )
         {
             self.detail = details
             self.title = title
@@ -28,6 +29,8 @@ class Post {
             self.loc = loc
             self.lat = latitude
             self.lng = longitude
+            
+            self.postID = postid
         }
 //
      init(json : JSON )
@@ -42,12 +45,14 @@ class Post {
         self.title = json["title"].stringValue
         self.up = json["Votes"]["up"].intValue
         self.down = json["Votes"]["down"].intValue
+        
+         self.postID = json["id"].stringValue
 
     }
     
     init(post : JSON, media : JSON , location : JSON)
     {
-        
+        self.postID = post["id"].stringValue
 //        self.loc = location["loc"].stringValue
         self.lat = location["latitude"].doubleValue
         self.lng = location["longitude"].doubleValue
@@ -61,6 +66,11 @@ class Post {
         
         self.up = 0
         self.down = 0
+        
+    }
+    
+    func getlocation() -> String {
+        return String("\(self.lat),\(self.lng)")
         
     }
     

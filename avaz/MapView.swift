@@ -36,7 +36,7 @@ class MapView: UITableViewCell {
         print(self.map_MKView.annotations.count)
         if self.map_MKView.annotations.count == 0 {
         
-            self.detail_TextView.text =  post.detail
+            self.detail_TextView.text =  post.title
             self.loc_TextView.text = post.loc
 
             dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_UTILITY.rawValue),0))

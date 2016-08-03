@@ -53,7 +53,7 @@ class UpdateController: UITableViewController, HamburgerProtocol {
         
         
         for i in 1...10 {
-            someDataSource.append(Post(details: "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim rem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enimrem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enimad ", title: "helloWorld  \(i) ", up: i*10 , down: i*3, loc: "Some where on planet earth", latitude: 32.4 , longitude : 64.334))
+            someDataSource.append(Post(postid:"post-\(i)", details: "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim rem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enimrem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enimad ", title: "helloWorld  \(i) ", up: i*10 , down: i*3, loc: "Some where on planet earth", latitude: 32.4 , longitude : 64.334))
         }
         
         print(someDataSource)
@@ -95,6 +95,7 @@ class UpdateController: UITableViewController, HamburgerProtocol {
     
     func LoadFromRemote() {
         
+        
         ApiManager.sharedInstance.getAllPost(
         {(json : JSON) in
 //            print(json)
@@ -105,7 +106,7 @@ class UpdateController: UITableViewController, HamburgerProtocol {
                 // Not Found.
                 return
             }
-            
+            // being overly consious
             let Mmin = min(posts.count, min(locs.count, medias.count))
             for i in 0..<Mmin {
 //                print("\(post) - \(media) - \(loc)")
