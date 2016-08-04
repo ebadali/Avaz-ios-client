@@ -8,23 +8,28 @@
 
 
 import SwiftyJSON
-class User {
+class User : NSData{
     var UserName = ""
     var PicId = ""
     var Email = ""
     
-    init()
+    override init()
     {
-        
+        super.init()
     }
    
     init(json : JSON )
     {
+        super.init()
         //        pictureURL = json["user"]["picture"].stringValue
         self.UserName = json["username"].stringValue
         self.PicId = json["picreference"].stringValue
         self.Email = json["email"].stringValue
         
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
 }

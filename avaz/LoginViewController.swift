@@ -9,11 +9,10 @@
 import UIKit
 import SwiftyJSON
 
-class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, HamburgerProtocol{
+class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
     
     
 
-    @IBOutlet weak var menuItem: UIBarButtonItem!
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var forgetPassword: UILabel!
@@ -33,37 +32,37 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, Hamburger
             return
         }
         
+         self.dismissViewControllerAnimated(true, completion: nil)
         
-        
-        ApiManager.sharedInstance.LogInApi(email, password: password,
-                onCompletion:
-            {(json : JSON) in
-                
-                    if (json != nil )
-                    {
-                        UserData.sharedInstance.SetSessionID(String(json["sessionid"]))
-                        UserData.sharedInstance.SetCurrentUser(json["user"])
-                        
-                        //Todo: Redirect To SomeWhere
-                        print("Login \n\(json)")
-                        
-                        
-                        ApiManager.sharedInstance.getAllPost { (json : JSON) in
-                            
-                            if (json != nil )
-                            {
-                                
-                                
-                                //Todo: Redirect To SomeWhere
-                                print("getAllPost \n\(json)")
-                                
-                            }
-                            
-                        }
-                    }
-                    
-            }
-        )
+//        ApiManager.sharedInstance.LogInApi(email, password: password,
+//                onCompletion:
+//            {(json : JSON) in
+//                
+//                    if (json != nil )
+//                    {
+//                        UserData.sharedInstance.SetSessionID(String(json["sessionid"]))
+//                        UserData.sharedInstance.SetCurrentUser(json["user"])
+//                        
+//                        //Todo: Redirect To SomeWhere
+//                        print("Login \n\(json)")
+//                        
+//                        
+//                        ApiManager.sharedInstance.getAllPost { (json : JSON) in
+//                            
+//                            if (json != nil )
+//                            {
+//                                
+//                                
+//                                //Todo: Redirect To SomeWhere
+//                                print("getAllPost \n\(json)")
+//                                
+//                            }
+//                            
+//                        }
+//                    }
+//                    
+//            }
+//        )
     }
     
     override func viewDidLoad() {
@@ -96,7 +95,6 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, Hamburger
 
         // Do any additional setup after loading the view.
         addGestureRecognizerLabel();
-        setupHamburger()
         
 //        LoadSomeTask()
         
@@ -152,14 +150,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, Hamburger
         
 
     }
-    
-    func setupHamburger()  {
-        if self.revealViewController() != nil {
-            menuItem.target = self.revealViewController()
-            menuItem.action = #selector(SWRevealViewController.revealToggle(_:))
-            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-        }
-    }
+  
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -235,22 +226,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, Hamburger
         })
     }
 
-    @IBAction func logIn(sender: AnyObject) {
-        print("logging in")
-        
-        print (" \(self.email.text)")
-        print (" \(self.password.text)")
-        
-        guard let email = self.email.text , password = self.password.text else {
-            return
-        }
-        
-        ApiManager.sharedInstance.LogInApi(email, password: password,
-           onCompletion: {(json : JSON) in
-                print(json)
-            }
-        )
-    }
+ 
     @IBAction func saveChanged(sender: AnyObject) {
         
     }

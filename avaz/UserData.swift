@@ -70,7 +70,8 @@ class UserData{
         {
             self.sessionId  = defaults.stringForKey(Keys.USER_OBJECT.rawValue)
         }
-        return self.sessionId!
+//        return self.sessionId!
+        return ""
     }
     
     

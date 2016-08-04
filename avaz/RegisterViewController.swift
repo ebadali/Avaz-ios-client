@@ -62,6 +62,8 @@ UINavigationControllerDelegate {
                     //Todo: should add Login Here too.
                     print("Responce2 \(json) \n")
                     
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                    
                 }
                 
             
@@ -72,7 +74,8 @@ UINavigationControllerDelegate {
         
     }
     @IBAction func AlreadyHaveAnAcount(sender: AnyObject) {
-        self.navigationController!.popViewControllerAnimated(true)
+//        self.navigationController!.popViewControllerAnimated(true)
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func addGestureRecognizerLabel(){
