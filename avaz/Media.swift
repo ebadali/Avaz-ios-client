@@ -11,12 +11,17 @@ import SwiftyJSON
 
 class Media {
     
-    var videos: [String]?
-    var images: [String]?
+    var videos: [String] = []
+    var images: [String] = []
     var content: String?
     init(text: String)
     {
         self.content = text
+    }
+    
+    init()
+    {
+        self.content = ""
     }
     
     init(media: JSON)
@@ -34,16 +39,40 @@ class Media {
         
         
         for video in allVides {
-            videos?.append(video[video.dictionaryValue.keys.first!].stringValue)
+            addMediaContent(video[video.dictionaryValue.keys.first!].stringValue, type: .Video())
         }
         
         
         for img in allImages {
-            videos?.append(img[img.dictionaryValue.keys.first!].stringValue)
+
+            addMediaContent(img[img.dictionaryValue.keys.first!].stringValue, type: .Image())
+            
         }
         
     }
     
+    func setTextContent(contn: String)  {
+        self.content = contn
+    }    
     
+    func addMediaContent(url: String, type : MediaType)  {
+        if case .Video() = type {
+            videos.append(url)
+        }else if  case .Image() = type {
+            images.append(url)
+        }
+    }
+    
+    func removeMediaContent(url: String, type : MediaType)  {
+        if case .Video() = type , let foundIndex = videos.indexOf(url)  {
+            videos.removeAtIndex(foundIndex)
+        }else if  case .Image() = type , let foundIndex = images.indexOf(url){
+            images.removeAtIndex(foundIndex)
+        }
+    }
     
 }
+
+
+
+

@@ -10,6 +10,7 @@ import UIKit
 import CoreLocation
 import AVKit
 import AVFoundation
+import SwiftyJSON
 
 class UploadPostController: UIViewController, UIImagePickerControllerDelegate,
 UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
@@ -22,7 +23,44 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
         return iv
     }()
 
+    @IBAction func createThePost(sender: AnyObject) {
+        
+        print("creating Posts.")
+        
+        
+        guard let title = self.titleText.text,
+                detailText = self.detailText.text
+        else
+        {
+            // Cant Create the post
+            return
+        }
+        
+        // Lets Create a post Object.
+        if self.center?.longitude != nil && self.center?.latitude != nil {
+            self.mediaObject.content = detailText
+            let post = Post(postid:  "unknownid", media: self.mediaObject, title : title, up: 0, down: 0, loc : "", latitude : self.center!.latitude ,longitude : (self.center?.longitude)!)
+           
+            
+            ApiManager.sharedInstance.insertAPost(post, onCompletion:
+            {(json : JSON) in
+                
+                if (json != nil )
+                {
+                    // Got A post.
+                    //Todo: Redirect To SomeWhere
+                    print("After Posting \n\(json)")
+                    
+                }
+                
+            })
+            
+        }
+    }
     
+    var mediaArray:[String] = []
+    var mediaObject = Media()
+    var center: CLLocationCoordinate2D?
     //-------
     @IBOutlet weak var titleText: UITextField!
     
@@ -230,26 +268,23 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
         iv.cancleCallback = {
             print("cancled Called")
             self.RemoveThisMediaCell(iv)
+            self.mediaObject.removeMediaContent(iv.url, type: iv.mediaType)
             
         }
-        
-        
-//        let urll = "http://clips.vorwaerts-gmbh.de/VfE_html5.mp4"
-//                let iframe = "<iframe  src=\"\(urll)\" > </iframe> "
-//        let iframe = "<iframe  src=\"\(NSURL(fileURLWithPath: path))\" > </iframe> "
-        //        iv.loadHTMLString(iframe, baseURL: nil)
- //        let nsurl = NSURL(fileURLWithPath: path)
-//        let img = NSData(contentsOfURL: nsurl)
-//        iv.loadData(img!, MIMEType: "image/gif", textEncodingName: String(), baseURL: NSURL())
-//        iv.image = UIImage(contentsOfFile: path)
-//        iv.userInteractionEnabled = true;
+
         iv.contentMode = .ScaleAspectFit
         self.scrollView.addSubview(iv)//(iv, atIndex: endIndexx+1)
         
         
         self.scrollView.contentSize = CGSizeMake(iv.frame.width * (CGFloat(count+1)), self.scrollView.frame.height)
+        
+        
+        
+        self.mediaObject.addMediaContent(path, type: type)
       
-    }
+    }    
+
+    
     //FIXME: Unused method
     func TabbedOnTile(sender: AnyObject)  {
         // Display Dialog
@@ -375,6 +410,7 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
         
     }
     
+    
     func DisplayLocation(placemarker: CLPlacemark)  {
         
         print(placemarker.locality )
@@ -383,9 +419,9 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
         print(placemarker.region )
         print(placemarker.country )
         
-        let center = CLLocationCoordinate2D(latitude: placemarker.location!.coordinate.latitude, longitude: placemarker.location!.coordinate.longitude)
+        center = CLLocationCoordinate2D(latitude: placemarker.location!.coordinate.latitude, longitude: placemarker.location!.coordinate.longitude)
 
-        print("lat: \(center.latitude) , lng: \(center.longitude) \n")
+        print("lat: \(center!.latitude) , lng: \(center!.longitude) \n")
         
         
         

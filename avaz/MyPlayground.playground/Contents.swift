@@ -77,3 +77,81 @@ class Utils
 var somstr = "Hello"
 print ( somstr + "worl 2")
 
+//var a:[CGFloat] = [1, 2, 3, 3.5]
+//var b:[CGFloat] = [4]
+var a:[String] = ["1","2","3"]
+var b:[String] = ["4"]
+//let index = 1
+////if 0 ... a.count ~= index {
+////    a[index..<index] = b[0..<b.count]
+////}
+//var finl = b.count + a.count
+a[a.count..<a.count] = b[0..<b.count]
+
+print(a)
+
+
+//var a:[String: AnyObject] = ["1": 1 as  AnyObject ]
+//var b:[String: AnyObject] = ["2": 2 as  AnyObject ]
+//
+//var newaerry = b.reduce(a) { (var dict, pair) in
+//    dict[pair.0] = pair.1
+//    return dict
+//}
+//print(newaerry)
+//let values = [2.0,4.0,5.0,7.0]
+//let squares2 = values.map{somevale in  (somevale*somevale) }
+//print (squares2)
+
+var images = ["11","22","33","44"]
+
+//let multipliedFlattenedArray = values.flatMap { $0.map { $0+5 } }
+
+
+let arry = images.flatMap { ( $0) }
+print(arry)
+//var arry = images.map({
+//    (val: String ) -> String in
+//    return val.map{}
+//    }
+//)
+//print(arry)
+
+
+
+//let values = [2.0,4.0,5.0,7.0]
+//let squares2 = values.map({
+//    (value: Double) -> String in
+//    return String(value * value)
+//})
+//
+//print(squares2)
+
+
+let entries = ["x=5", "y=7", "z=10"]
+
+let dict = entries.reduce([String:AnyObject]()) { (var dict, entry) in
+    print("------")
+    print(entry)
+    print(dict.count)
+    dict["file\(dict.count+1)"] = entry
+    return dict
+}
+
+print("*******")
+print(dict)
+//for key in dict.keys {
+//    print("Value for key '\(key)' is \(dict[key]).")
+//}
+let numbers = [7, 8, 9, 10]
+let actualIndexAndNum: [String] = zip(numbers.indices, numbers).map { "\($0): \($1)" }
+print(actualIndexAndNum)
+
+//var a = ["a", "b", "c"]
+//var b = ["d", "e", "f"]
+//
+//let res = [a, b].reduce([],combine:+)
+//print(res)
+
+
+

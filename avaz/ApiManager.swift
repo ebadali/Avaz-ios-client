@@ -92,10 +92,20 @@ class ApiManager: NSObject {
     
     //// Insert a Post
     func insertAPost( post: Post , onCompletion: (JSON) ->Void) {
-        let parameters = [ "sessionid": UserData.sharedInstance.GetSessionID(),
+        let statparameters:[String: AnyObject] = [ "sessionid": UserData.sharedInstance.GetSessionID(),
                            "title": post.title,
                            "location": post.getlocation() as AnyObject,
                            "text": post.media?.content as! AnyObject ]
+        
+        // This should be upload array.
+        
+        let param2:[String: AnyObject] = post.getUploadableMedia()
+        
+        
+        let parameters = statparameters.reduce(param2) { (var dict, pair) in
+            dict[pair.0] = pair.1
+            return dict
+        }
         
         makeHTTPPostRequest(baseURL+"post/dopost", params: parameters, onCompletion: { json, err in
             onCompletion(json as JSON)

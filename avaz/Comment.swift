@@ -16,14 +16,16 @@ class Comment {
 //    var videoUrl: String?
     
     var media : Media
-
-    init(mediaJson: JSON){
+    var user : User
+    init(mediaJson: JSON, userJson: JSON){
         
         self.media = Media(media: mediaJson)
+        self.user = User(json: userJson)
     }
     
     init(text: String){
         
         self.media = Media(text: text)
+        self.user = UserData.sharedInstance.GetCurrentUser()
     }
 }

@@ -198,6 +198,9 @@
                                 <rect key="frame" x="20" y="562" width="560" height="30"/>
                                 <color key="backgroundColor" red="0.018591562980333265" green="0.506780098572575" blue="1" alpha="0.27676309121621623" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Post"/>
+                                <connections>
+                                    <action selector="createThePost:" destination="Pg8-vr-hrF" eventType="touchUpInside" id="F08-Rk-m7B"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

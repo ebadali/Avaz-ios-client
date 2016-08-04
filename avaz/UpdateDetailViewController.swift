@@ -88,16 +88,18 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource {
             onCompletion: {(json : JSON) in
                 print("All Commments are - \(json)")
                 
-                guard let mediaobj = json["media"].array
+                guard let mediaobj = json["media"].array,
+                          commenters = json["users"].array
                     else
                 {
                     // Not Found.
                     return
                 }
                 
-                for obj in mediaobj
+                let counter = min(mediaobj.count,commenters.count)
+                for i in 0..<counter
                 {
-                    self.comments.append( Comment(mediaJson: obj) )
+                    self.comments.append( Comment(mediaJson: mediaobj[i], userJson: commenters[i]) )
                 }
                 
                 
@@ -160,8 +162,8 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource {
             let  cell = tableView.dequeueReusableCellWithIdentifier("commentviewcell", forIndexPath: indexPath) as! CommentView
 //            cell.commenterText.text = comments[indexPath.row]
 //            cell.commenterImage.image = LoadImage(comments[])
-            print("index is \(indexPath.row)")
-            cell.setData(comments[indexPath.row].media.content, posterImageUrl: comments[indexPath.row].media.content)
+//            print("index is \(indexPath.row)")
+            cell.setData(comments[indexPath.row].media.content, posterImageUrl: comments[indexPath.row].user.PicId)
             return cell
         }
 
