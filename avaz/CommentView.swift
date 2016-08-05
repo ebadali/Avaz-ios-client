@@ -45,10 +45,11 @@ class CommentView: UITableViewCell {
         print("in the CommentView ")        
         self.textContent = text
         self.imageUrl = posterImageUrl
+
         
         
         self.commenterText.text = self.textContent
-        
+        self.commenterImage.loadImageUsingCacheWithUrlString(self.imageUrl!)
         // Lets Load An Image.
         
         
