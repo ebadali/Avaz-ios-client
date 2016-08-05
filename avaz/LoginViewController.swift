@@ -32,37 +32,35 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
             return
         }
         
-         self.dismissViewControllerAnimated(true, completion: nil)
+//        self.dismissViewControllerAnimated(true, completion: nil)
         
-//        ApiManager.sharedInstance.LogInApi(email, password: password,
-//                onCompletion:
-//            {(json : JSON) in
-//                
-//                    if (json != nil )
-//                    {
-//                        UserData.sharedInstance.SetSessionID(String(json["sessionid"]))
-//                        UserData.sharedInstance.SetCurrentUser(json["user"])
-//                        
-//                        //Todo: Redirect To SomeWhere
-//                        print("Login \n\(json)")
-//                        
-//                        
-//                        ApiManager.sharedInstance.getAllPost { (json : JSON) in
-//                            
-//                            if (json != nil )
-//                            {
-//                                
-//                                
-//                                //Todo: Redirect To SomeWhere
-//                                print("getAllPost \n\(json)")
-//                                
-//                            }
-//                            
-//                        }
-//                    }
-//                    
-//            }
-//        )
+        ApiManager.sharedInstance.LogInApi(email, password: password,
+                onCompletion:
+            {(json : JSON) in
+                
+                    if (json != nil )
+                    {
+                        UserData.sharedInstance.SetSessionID(String(json["sessionid"]))
+                        UserData.sharedInstance.SetCurrentUser(json["user"])
+                        
+                        //Todo: Redirect To SomeWhere
+                        print("Login \n\(json)")
+                        
+                        
+                        ApiManager.sharedInstance.getAllPost { (json : JSON) in
+
+                            if (json != nil )
+                            {
+                                //Todo: Redirect To SomeWhere
+                                print("getAllPost \n\(json)")
+                                self.dismissViewControllerAnimated(true, completion: nil)
+                            }
+                            
+                        }
+                    }
+                    
+            }
+        )
     }
     
     override func viewDidLoad() {

@@ -9,5 +9,6 @@
 
 
 protocol HamburgerProtocol{
+    var controllerType: ControllerType  { get set }
     func setupHamburger()
 }

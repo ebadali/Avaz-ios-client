@@ -34,7 +34,7 @@ class Post {
             self.lng = longitude
             
             self.postID = postid
-            self.user = UserData.sharedInstance.GetCurrentUser()
+            self.user = UserData.sharedInstance.currentUser
             
             
         }

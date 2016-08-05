@@ -14,22 +14,33 @@ enum Keys: String {
     case SESSION_ID  = "session_id" ;
 }
 
+
+enum ControllerType : String{
+    case HOME = "home";
+    case POST = "post";
+    case HISTORY = "history";
+    
+}
+
 class UserData{
     
     static let sharedInstance = UserData()
     var sessionId: String?
     var currentUser: User?
     let defaults:NSUserDefaults
-
+    
+    var currentControllerType : ControllerType = .HOME
+    
     private init() {
         defaults = NSUserDefaults.standardUserDefaults()
 
         
-        if let userObject = defaults.objectForKey(Keys.USER_OBJECT.rawValue) as? User,
+        if let userObject = defaults.objectForKey(Keys.USER_OBJECT.rawValue),
                 sessionValue = defaults.stringForKey(Keys.USER_OBJECT.rawValue)
         
         {
-            self.currentUser = userObject
+            
+            self.currentUser = NSKeyedUnarchiver.unarchiveObjectWithData(userObject as! NSData) as? User
             self.sessionId = sessionValue
         }
         else
@@ -47,7 +58,9 @@ class UserData{
 
         // Todo: This should be Atomic.
         self.currentUser = User(json: data)
-        defaults.setObject(self.currentUser, forKey: Keys.USER_OBJECT.rawValue)
+        let encodedData = NSKeyedArchiver.archivedDataWithRootObject(self.currentUser!)
+        defaults.setObject(encodedData, forKey: Keys.USER_OBJECT.rawValue)
+        defaults.synchronize()
     }
     
     func SetSessionID(data: String)  {
@@ -56,24 +69,34 @@ class UserData{
     }
     
     
-    func GetCurrentUser()  -> User{
-        
-        if self.currentUser == nil
-        {
-            self.currentUser  = defaults.objectForKey(Keys.USER_OBJECT.rawValue) as? User
-        }
-        return self.currentUser!
-    }
-    
-    func GetSessionID() -> String  {
-        if self.sessionId == ""
-        {
-            self.sessionId  = defaults.stringForKey(Keys.USER_OBJECT.rawValue)
-        }
+//    func GetCurrentUser()  -> User{
+//        
+//        if self.currentUser == nil
+//        {
+//            
+//            let userObject  = defaults.objectForKey(Keys.USER_OBJECT.rawValue)
+//            self.currentUser = NSKeyedUnarchiver.unarchiveObjectWithData(userObject as! NSData) as? User
+//            
+//        }
+//        return self.currentUser!
+//    }
+//    
+//    func GetSessionID() -> String  {
+//        if self.sessionId == ""
+//        {
+//            self.sessionId  = defaults.stringForKey(Keys.USER_OBJECT.rawValue)
+//        }
 //        return self.sessionId!
-        return ""
-    }
+//
+//    }
     
+    
+    func SetControllerType(type: ControllerType)  {
+        self.currentControllerType = type
+    }
+    func GetControllerType() -> ControllerType {
+        return self.currentControllerType
+    }
     
     
     

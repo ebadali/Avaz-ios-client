@@ -8,18 +8,23 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, HamburgerProtocol{
+class HomeViewController: UIViewController,  HamburgerProtocol{
     
+    
+    var controllerType = ControllerType.HOME
     @IBOutlet weak var menuITem: UIBarButtonItem!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.title = "HomeViewController"
         // Do any additional setup after loading the view, typically from a nib.
         print("HomeViewController did load")
+//        self.revealViewController().delegate = self;
         setupHamburger()
         
-        let isLoggedIn:String = UserData.sharedInstance.GetSessionID()
+        let isLoggedIn:String = UserData.sharedInstance.sessionId!
         if (isLoggedIn == "") {
             self.performSegueWithIdentifier("goto_login", sender: self)
         } 
@@ -31,6 +36,8 @@ class HomeViewController: UIViewController, HamburgerProtocol{
             menuITem.action = #selector(SWRevealViewController.revealToggle(_:))
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
+        
+        UserData.sharedInstance.SetControllerType(self.controllerType)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -46,4 +53,8 @@ class HomeViewController: UIViewController, HamburgerProtocol{
             
         }
     }
+    
+    
+    
+    
 }

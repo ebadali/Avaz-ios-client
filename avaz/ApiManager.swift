@@ -46,13 +46,13 @@ class ApiManager: NSObject {
         let picData =  ( pic != "") ?  Upload(fileUrl: NSURL(fileURLWithPath: pic!)) : ""
         let parameters = [ "username":userName, "password":password, "email":email, "file": picData];
         makeHTTPPostRequest(baseURL+"user/register", params: parameters, onCompletion: { json, err in
-            onCompletion(json as JSON)
+            onCompletion(json as JSON )
         })
     }
     
     func getAllPost(onCompletion: (JSON) ->Void) {
         
-        let parameters = [ "sessionid": UserData.sharedInstance.GetSessionID()];
+        let parameters = [ "sessionid": UserData.sharedInstance.sessionId as! AnyObject];
         makeHTTPGetRequest(baseURL+"post/getallpost", params:parameters, onCompletion: { json, err in
             onCompletion(json as JSON)
         })
@@ -67,7 +67,7 @@ class ApiManager: NSObject {
             return
         }
         
-        let parameters = [ "sessionid": UserData.sharedInstance.GetSessionID(), "postid":postToFetch];
+        let parameters = [ "sessionid": UserData.sharedInstance.sessionId as! AnyObject, "postid":postToFetch];
         makeHTTPGetRequest(baseURL+"post/getallcomments", params:parameters, onCompletion: { json, err in
             onCompletion(json as JSON)
         })
@@ -83,7 +83,7 @@ class ApiManager: NSObject {
             return
         }
         
-        let parameters = [ "sessionid": UserData.sharedInstance.GetSessionID(), "postid":postToFetch , "comment": comment.media.content! ];
+        let parameters = [ "sessionid": UserData.sharedInstance.sessionId as! AnyObject, "postid":postToFetch , "comment": comment.media.content! ];
         makeHTTPPostRequest(baseURL+"post/docomment", params:parameters, onCompletion: { json, err in
             onCompletion(json as JSON)
         })
@@ -92,7 +92,7 @@ class ApiManager: NSObject {
     
     //// Insert a Post
     func insertAPost( post: Post , onCompletion: (JSON) ->Void) {
-        let statparameters:[String: AnyObject] = [ "sessionid": UserData.sharedInstance.GetSessionID(),
+        let statparameters:[String: AnyObject] = [ "sessionid": UserData.sharedInstance.sessionId as! AnyObject,
                            "title": post.title,
                            "location": post.getlocation() as AnyObject,
                            "text": post.media?.content as! AnyObject ]

@@ -26,6 +26,6 @@ class Comment {
     init(text: String){
         
         self.media = Media(text: text)
-        self.user = UserData.sharedInstance.GetCurrentUser()
+        self.user = UserData.sharedInstance.currentUser!
     }
 }

@@ -12,6 +12,7 @@ import SwiftyJSON
 class UpdateDetailViewController: UIViewController, UITableViewDataSource {
 
     
+    
     @IBOutlet weak var tableViewRoot: UITableView!
     
     var arr1 = [{" Object -1 "}]
@@ -163,7 +164,7 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource {
 //            cell.commenterText.text = comments[indexPath.row]
 //            cell.commenterImage.image = LoadImage(comments[])
 //            print("index is \(indexPath.row)")
-            cell.setData(comments[indexPath.row].media.content, posterImageUrl: comments[indexPath.row].user.PicId)
+            cell.setData(comments[indexPath.row].media.content, posterImageUrl: comments[indexPath.row].user.PicId as String)
             return cell
         }
 

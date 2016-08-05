@@ -14,6 +14,10 @@ import SwiftyJSON
 
 class UploadPostController: UIViewController, UIImagePickerControllerDelegate,
 UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
+    
+    
+    var controllerType = ControllerType.POST
+    
     @IBOutlet weak var menuItem: UIBarButtonItem!
 
     lazy var uploadImageView: UIImageView = {
@@ -110,6 +114,8 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
             menuItem.action = #selector(SWRevealViewController.revealToggle(_:))
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
+        
+        UserData.sharedInstance.SetControllerType(self.controllerType)
         
     }
     

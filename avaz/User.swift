@@ -8,19 +8,17 @@
 
 
 import SwiftyJSON
-class User : NSData{
-    var UserName = ""
-    var PicId = ""
-    var Email = ""
+class User : NSObject, NSCoding{
+    var UserName:NSString = ""
+    var PicId:NSString = ""
+    var Email:NSString = ""
     
     override init()
     {
-        super.init()
     }
    
     init(json : JSON )
     {
-        super.init()
         //        pictureURL = json["user"]["picture"].stringValue
         self.UserName = json["username"].stringValue
         self.PicId = json["picreference"].stringValue
@@ -28,8 +26,26 @@ class User : NSData{
         
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    
+    
+    init(username: NSString, picid:NSString, email: NSString) {
+        self.UserName = username
+        self.PicId = picid
+        self.Email = email
+        
+    }
+    
+    required convenience init(coder aDecoder: NSCoder) {
+        let username = aDecoder.decodeObjectForKey("username") as! String
+        let picreference = aDecoder.decodeObjectForKey("picreference") as! String
+        let email = aDecoder.decodeObjectForKey("email") as! String
+        self.init(username: username, picid: picreference, email: email)
+    }
+    
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(self.UserName, forKey: "username")
+        aCoder.encodeObject(self.PicId, forKey: "picreference")
+        aCoder.encodeObject(self.Email, forKey: "email")
     }
     
 }

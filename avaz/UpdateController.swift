@@ -12,11 +12,18 @@ import SwiftyJSON
 
 class UpdateController: UITableViewController, HamburgerProtocol {
     
+     var controllerType = ControllerType.HISTORY
+    
+    
     @IBOutlet weak var menuItem: UIBarButtonItem!
     var someDataSource = Array<Post>()
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.title = "UpdateController"
         
         // Do any additional setup after loading the view, typically from a nib.
                 print("--View Did Load Called In \(NSStringFromClass(self.classForCoder)) \n")
@@ -41,7 +48,10 @@ class UpdateController: UITableViewController, HamburgerProtocol {
             menuItem.action = #selector(SWRevealViewController.revealToggle(_:))
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
-
+        
+        
+        UserData.sharedInstance.SetControllerType(self.controllerType)
+       
     }
 
     override func didReceiveMemoryWarning() {

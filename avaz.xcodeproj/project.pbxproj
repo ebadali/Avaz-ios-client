@@ -38,6 +38,8 @@
 		08BFC4AD1CFC525E007C4651 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BFC4AC1CFC525E007C4651 /* CustomCell.swift */; };
 		08BFC4AF1CFC576F007C4651 /* UpdateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BFC4AE1CFC576F007C4651 /* UpdateController.swift */; };
 		08BFC4B11CFC5872007C4651 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BFC4B01CFC5872007C4651 /* Post.swift */; };
+		08C0FC061D549B6D0052179C /* ImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C0FC051D549B6D0052179C /* ImageViewExtension.swift */; };
+		08C0FC081D54A5DC0052179C /* OptionMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C0FC071D54A5DC0052179C /* OptionMenuController.swift */; };
 		08C4456C1D1160C400CB48CB /* Pointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C4456B1D1160C400CB48CB /* Pointer.swift */; };
 		08F49DE21D01C4EC005C0702 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F49DE11D01C4EC005C0702 /* MapView.swift */; };
 		08F49DE41D01C7D6005C0702 /* MapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08F49DE31D01C7D6005C0702 /* MapView.xib */; };
@@ -82,6 +84,8 @@
 		08BFC4AC1CFC525E007C4651 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		08BFC4AE1CFC576F007C4651 /* UpdateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateController.swift; sourceTree = "<group>"; };
 		08BFC4B01CFC5872007C4651 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Post.swift; path = model/Post.swift; sourceTree = "<group>"; };
+		08C0FC051D549B6D0052179C /* ImageViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewExtension.swift; sourceTree = "<group>"; };
+		08C0FC071D54A5DC0052179C /* OptionMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionMenuController.swift; sourceTree = "<group>"; };
 		08C4456B1D1160C400CB48CB /* Pointer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pointer.swift; sourceTree = "<group>"; };
 		08F49DE11D01C4EC005C0702 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		08F49DE31D01C7D6005C0702 /* MapView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapView.xib; sourceTree = "<group>"; };
@@ -129,6 +133,7 @@
 				086F98591D141C3600D40AA6 /* UploadPostController.swift */,
 				08BFC4961CFC4034007C4651 /* ViewController.swift */,
 				02E5B8C71D53DD250000DFFB /* HomeViewController.swift */,
+				08C0FC071D54A5DC0052179C /* OptionMenuController.swift */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -207,6 +212,7 @@
 		08BFC4931CFC4034007C4651 /* avaz */ = {
 			isa = PBXGroup;
 			children = (
+				08C0FC041D549B470052179C /* extensions */,
 				0879B2B61D4A30A50078C5EB /* data */,
 				021E5C811D311BCF00E135EC /* utils */,
 				021E5C801D311BA400E135EC /* api */,
@@ -224,6 +230,14 @@
 				02F2BA041D1DE697007CEDCB /* avaz-Bridging-Header.h */,
 			);
 			path = avaz;
+			sourceTree = "<group>";
+		};
+		08C0FC041D549B470052179C /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				08C0FC051D549B6D0052179C /* ImageViewExtension.swift */,
+			);
+			name = extensions;
 			sourceTree = "<group>";
 		};
 		92AF3540184B7ACDCD16F006 /* Pods */ = {
@@ -410,9 +424,11 @@
 				025BFB981D25D82600342E55 /* LoginView.swift in Sources */,
 				0234F2D11D2E6B020020027D /* Utils.swift in Sources */,
 				08BFC4AD1CFC525E007C4651 /* CustomCell.swift in Sources */,
+				08C0FC061D549B6D0052179C /* ImageViewExtension.swift in Sources */,
 				08F554F31D1AB7A4000BFD63 /* RegisterViewController.swift in Sources */,
 				080C5B0B1D09716700D03509 /* CommentView.swift in Sources */,
 				08BFC4B11CFC5872007C4651 /* Post.swift in Sources */,
+				08C0FC081D54A5DC0052179C /* OptionMenuController.swift in Sources */,
 				029887691D184B7A00D8903F /* LoginViewController.swift in Sources */,
 				0879B2B81D4A30C80078C5EB /* UserData.swift in Sources */,
 				08C4456C1D1160C400CB48CB /* Pointer.swift in Sources */,
