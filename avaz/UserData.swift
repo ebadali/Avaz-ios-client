@@ -19,7 +19,7 @@ enum ControllerType : String{
     case HOME = "home";
     case POST = "post";
     case HISTORY = "history";
-    
+    case LOGOUT = "logout";
 }
 
 class UserData{
@@ -96,6 +96,11 @@ class UserData{
     }
     func GetControllerType() -> ControllerType {
         return self.currentControllerType
+    }
+    
+    func ClearAll()  {
+        SetSessionID("")
+        SetCurrentUser(nil)
     }
     
     

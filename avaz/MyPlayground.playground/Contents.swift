@@ -1,6 +1,6 @@
 //: Playground - noun: a place where people can play
 
-import UIKit
+import Cocoa
 
 
 var str = "Hello, playground"
@@ -152,6 +152,8 @@ print(actualIndexAndNum)
 //
 //let res = [a, b].reduce([],combine:+)
 //print(res)
+
+
 
 
 

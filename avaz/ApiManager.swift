@@ -114,6 +114,17 @@ class ApiManager: NSObject {
     }
     
     
+    // Logout call back
+    func logOut(  onCompletion: (JSON) ->Void) {
+        let parameters:[String: AnyObject] = [ "sessionid": UserData.sharedInstance.sessionId as! AnyObject]
+        
+        
+        makeHTTPGetRequest(baseURL+"user/logout", params: parameters, onCompletion: { json, err in
+            onCompletion(json as JSON)
+        })
+        
+    }
+    
 
     
 //    ------ End API's -----------

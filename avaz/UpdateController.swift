@@ -22,7 +22,9 @@ class UpdateController: UITableViewController, HamburgerProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        self.refreshControl?.addTarget(self, action: #selector(self.handleReferesh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+
         self.title = "UpdateController"
         
         // Do any additional setup after loading the view, typically from a nib.
@@ -131,5 +133,18 @@ class UpdateController: UITableViewController, HamburgerProtocol {
             
         })
         
+    }
+    
+    
+    
+    func handleReferesh(refreshControl: UIRefreshControl)  {
+        print("Handling referesh")
+        
+        
+       let tempPost = self.someDataSource.first
+//        self.someDataSource.append(tempPost!)
+        
+        self.tableView.reloadData()
+        refreshControl.endRefreshing()
     }
 }

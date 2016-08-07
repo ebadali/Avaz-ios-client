@@ -25,13 +25,13 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
     @IBAction func LogIn(sender: AnyObject) {
         print("logging in")
         
-        print (" \(self.email.text)")
-        print (" \(self.password.text)")
+
         
-        guard let email = self.email.text , password = self.password.text else {
+        guard let email = self.email!.text , password = self.password!.text else {
             return
         }
-        
+        print (" \(email)")
+        print (" \(password)")
 //        self.dismissViewControllerAnimated(true, completion: nil)
         
         ApiManager.sharedInstance.LogInApi(email, password: password,

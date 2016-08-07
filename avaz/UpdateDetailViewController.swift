@@ -11,7 +11,13 @@ import SwiftyJSON
 
 class UpdateDetailViewController: UIViewController, UITableViewDataSource {
 
-    
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(self.handleReferesh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        
+        return refreshControl
+    }()
+
     
     @IBOutlet weak var tableViewRoot: UITableView!
     
@@ -72,6 +78,7 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource {
 //        LoadData()
         LoadRemoteData()
         
+        self.view.addSubview(self.refreshControl)
         self.view.addSubview(self.button)
     }
     
@@ -264,7 +271,16 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource {
     
     
     
-    
+    func handleReferesh(refreshControl: UIRefreshControl)  {
+        print("Handling referesh")
+        
+        
+        let tempPost = self.comments.first
+        //        self.someDataSource.append(tempPost!)
+        
+        self.tableViewRoot.reloadData()
+        refreshControl.endRefreshing()
+    }
 //    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 //        
 //        if section == 0 {

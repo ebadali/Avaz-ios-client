@@ -21,8 +21,10 @@ extension UIImageView{
             return
         }
         
+        
+        let finalurl = "http://localhost:8001/media/getmedia?url=\(urlString)"
         //otherwise fire off a new download
-        let url = NSURL(string: urlString)
+        let url = NSURL(string: finalurl)
         NSURLSession.sharedSession().dataTaskWithURL(url!, completionHandler: { (data, response, error) in
             
             //download hit an error so lets return out
