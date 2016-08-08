@@ -80,7 +80,9 @@ class UpdateController: UITableViewController, HamburgerProtocol {
         
         let dataCell = tableView.dequeueReusableCellWithIdentifier("myCell", forIndexPath: indexPath) as! CustomCell
         let something: Post? = someDataSource[indexPath.row]
-        dataCell.headingTextView.text = something?.title
+        dataCell.setData(something?.title, posterImageUrl: something?.user?.PicId as? String)
+        
+        //        dataCell.headingTextView.text = something?.title
         //        dataCell.customImageView!.kf_setImageWithURL(NSURL(string: (something?.tex2)!)!)
         return dataCell
     }
