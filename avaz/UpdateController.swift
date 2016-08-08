@@ -94,7 +94,7 @@ class UpdateController: UITableViewController, HamburgerProtocol {
             //                let selectedIndex = self.tableView.indexPathForCell(sender as! UITableViewCell)
             //                fourthSeq.data = self.someDataSource[(selectedIndex?.row)!]
             //            }
-        }else{
+        }else if segue.identifier == "postdetailsegue" {
             
             if let detail: UpdateDetailViewController = segue.destinationViewController as? UpdateDetailViewController {
                 

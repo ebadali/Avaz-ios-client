@@ -10,6 +10,7 @@ import UIKit
 let imageCache = NSCache()
 extension UIImageView{
     
+
     
     func loadImageUsingCacheWithUrlString(urlString: String) {
         
@@ -17,7 +18,16 @@ extension UIImageView{
         
         //check cache for image first
         if let cachedImage = imageCache.objectForKey(urlString) as? UIImage {
-            self.image = cachedImage
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                self.clipsToBounds = true
+                self.image = cachedImage
+                            self.alpha = 0
+                            UIView.animateWithDuration(0.25, animations: { () -> Void in
+                                self.alpha = 1
+                            })
+            })
+
             return
         }
         
@@ -37,11 +47,13 @@ extension UIImageView{
                 
                 if let downloadedImage = UIImage(data: data!) {
                     imageCache.setObject(downloadedImage, forKey: urlString)
-                    
+
+
+                    self.clipsToBounds = true
                     self.image = downloadedImage
-                    
+
                     self.alpha = 0
-                    UIView.animateWithDuration(0.25, animations: { () -> Void in
+                    UIView.animateWithDuration(0.98, animations: { () -> Void in
                         self.alpha = 1
                     })
                 }

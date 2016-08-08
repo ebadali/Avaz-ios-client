@@ -11,36 +11,35 @@
         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="mapviewcell" rowHeight="348" id="5Un-Qh-SWN" customClass="MapView" customModule="avaz" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="499" height="348"/>
             <autoresizingMask key="autoresizingMask"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5Un-Qh-SWN" id="hWh-yX-xbe">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" verticalHuggingPriority="450" tableViewCell="5Un-Qh-SWN" id="hWh-yX-xbe">
                 <rect key="frame" x="0.0" y="0.0" width="499" height="347"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleAspectFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="nst-tN-t9n">
-                        <rect key="frame" x="8" y="8" width="483" height="331"/>
+                    <stackView opaque="NO" contentMode="scaleAspectFill" verticalHuggingPriority="450" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="nst-tN-t9n">
+                        <rect key="frame" x="8" y="21" width="483" height="306"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleAspectFill" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Zzj-fx-Oo7">
-                                <rect key="frame" x="0.0" y="0.0" width="483" height="161"/>
+                                <rect key="frame" x="0.0" y="0.0" width="483" height="50"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cZ7-Ar-VqN">
-                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <color key="backgroundColor" red="0.45408337280779654" green="1" blue="0.81564742278483604" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="30" id="Gtj-7L-XYh"/>
-                                            <constraint firstAttribute="height" constant="30" id="XjR-cF-V8A"/>
+                                            <constraint firstAttribute="width" constant="50" id="Gtj-7L-XYh"/>
+                                            <constraint firstAttribute="height" constant="50" id="XjR-cF-V8A"/>
                                         </constraints>
                                     </imageView>
-                                    <stackView opaque="NO" contentMode="scaleAspectFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="gf6-Sf-jmP">
-                                        <rect key="frame" x="40" y="0.0" width="443" height="79"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="DID-tV-lD9">
+                                        <rect key="frame" x="60" y="0.0" width="423" height="50"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HSj-UP-yxD">
-                                                <rect key="frame" x="0.0" y="0.0" width="443" height="54"/>
-                                                <string key="text">asdsda hsadjhasd jashdg sadg asda asdsda hsadjhasd jashdg sadg asda asdsda hsadjhasd jashdg sadg asda asdsda hsadjhasd jashdg sadg asda </string>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="User Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2G0-sv-4Du">
+                                                <rect key="frame" x="0.0" y="0.0" width="423" height="26"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="at Bahadurabad" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="khB-W9-2Yh">
-                                                <rect key="frame" x="0.0" y="64" width="443" height="15"/>
+                                                <rect key="frame" x="0.0" y="35" width="423" height="15"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -48,19 +47,32 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="DID-tV-lD9" firstAttribute="centerY" secondItem="Zzj-fx-Oo7" secondAttribute="centerY" id="8Qf-Lc-vRv"/>
+                                    <constraint firstItem="cZ7-Ar-VqN" firstAttribute="centerY" secondItem="Zzj-fx-Oo7" secondAttribute="centerY" id="k3A-uF-vad"/>
+                                </constraints>
                             </stackView>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="xbU-Eb-wWE">
-                                <rect key="frame" x="0.0" y="171" width="483" height="160"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="asdsda hsadjhasd jashdg sadg asda asdsda hsadjhasd jashdg sadg asda asdsda hsadjhasd j" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HSj-UP-yxD">
+                                <rect key="frame" x="0.0" y="60" width="483" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="xbU-Eb-wWE">
+                                <rect key="frame" x="0.0" y="106" width="483" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="4S2-fq-1QU"/>
+                                </constraints>
                             </mapView>
                         </subviews>
                     </stackView>
                 </subviews>
                 <color key="backgroundColor" red="0.7141943741215957" green="1" blue="0.76092568175607955" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
-                    <constraint firstItem="nst-tN-t9n" firstAttribute="top" secondItem="hWh-yX-xbe" secondAttribute="topMargin" id="0ld-I0-dCX"/>
                     <constraint firstItem="nst-tN-t9n" firstAttribute="leading" secondItem="hWh-yX-xbe" secondAttribute="leadingMargin" id="H16-2L-mlR"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="nst-tN-t9n" secondAttribute="bottom" id="SWt-rw-QVg"/>
                     <constraint firstAttribute="trailingMargin" secondItem="nst-tN-t9n" secondAttribute="trailing" id="So7-Xy-5Wm"/>
+                    <constraint firstItem="nst-tN-t9n" firstAttribute="centerX" secondItem="hWh-yX-xbe" secondAttribute="centerX" id="fXh-xU-k1u"/>
+                    <constraint firstItem="nst-tN-t9n" firstAttribute="centerY" secondItem="hWh-yX-xbe" secondAttribute="centerY" id="qeq-qL-djy"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -68,6 +80,7 @@
                 <outlet property="icon_imageView" destination="cZ7-Ar-VqN" id="ExL-05-JwY"/>
                 <outlet property="loc_TextView" destination="khB-W9-2Yh" id="sKe-cr-VRY"/>
                 <outlet property="map_MKView" destination="xbU-Eb-wWE" id="Zz3-Gt-Ooi"/>
+                <outlet property="postedBy" destination="2G0-sv-4Du" id="dfq-nf-Myh"/>
             </connections>
             <point key="canvasLocation" x="543.5" y="414"/>
         </tableViewCell>

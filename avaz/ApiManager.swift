@@ -138,9 +138,9 @@ class ApiManager: NSObject {
             let opt = try HTTP.POST(baseurl, parameters: params)
             opt.start { response in
 
-                print("text is :  \(response.text) " )
-                print("responce is :  \(response) " )
-                
+//                print("text is :  \(response.text) " )
+//                print("responce is :  \(response) " )
+//                
                 
                 
                 var json: NSDictionary?
@@ -162,7 +162,7 @@ class ApiManager: NSObject {
                 // Checking All Failures.
                 
                 if  status == "success" {
-                    print("completed: \(json!["data"])")
+//                    print("completed: \(json!["data"])")
                     let data = json!["data"]
                     onCompletion(JSON(data!), nil)
                 }else{
@@ -171,7 +171,7 @@ class ApiManager: NSObject {
                 }
             }
         }catch let error {
-            print("got an error creating the request: \(error)\n")
+//            print("got an error creating the request: \(error)\n")
             onCompletion(nil, "\(error)")
             
         }
@@ -203,7 +203,7 @@ class ApiManager: NSObject {
                 // Checking All Failures.
                 
                 if  status == "success" {
-                    print("completed: \(json!["data"])")
+//                    print("completed: \(json!["data"])")
                     let data = json!["data"]
                     onCompletion(JSON(data!), nil)
                 }else{
@@ -213,7 +213,7 @@ class ApiManager: NSObject {
 
             }
         } catch let error {
-            print("got an error creating the request: \(error)")
+//            print("got an error creating the request: \(error)")
             onCompletion(nil, "\(error)")
         }
 //        let request = NSMutableURLRequest(URL: NSURL(string: path)!)

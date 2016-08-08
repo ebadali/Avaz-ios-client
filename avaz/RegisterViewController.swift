@@ -9,6 +9,8 @@
 import UIKit
 import SwiftyJSON
 
+
+
 class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
 UINavigationControllerDelegate {
 
@@ -17,7 +19,7 @@ UINavigationControllerDelegate {
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var imageView: UIImageView!
     
-    
+    var signUpCompletedDelegate:SignUpDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,13 +63,9 @@ UINavigationControllerDelegate {
                 {
                     //Todo: should add Login Here too.
                     print("Responce2 \(json) \n")
-                    
+                    self.signUpCompletedDelegate.DoneSigningUp(username, password: password)
                     self.dismissViewControllerAnimated(true, completion: nil)
-                    
                 }
-                
-            
-            
             }
         )
         

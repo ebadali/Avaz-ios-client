@@ -31,7 +31,6 @@ class CommentView: UITableViewCell {
     func setData(text: String?, posterImageUrl : String?)  {
         
         
-
 //        guard let tempText = text ,
 //                tempUrl = posterImageUrl
 //        where
@@ -42,7 +41,7 @@ class CommentView: UITableViewCell {
 //        }
         
         
-        print("in the CommentView ")        
+//        print("in the CommentView ")        
         self.textContent = text
         self.imageUrl = posterImageUrl
 

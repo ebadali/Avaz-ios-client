@@ -12,8 +12,8 @@ import SwiftyJSON
 class OptionMenuController: UITableViewController {
     
     
-    @IBOutlet weak var logoutCell: UITableViewCell!
-    
+//    @IBOutlet weak var logoutCell: UITableViewCell!
+//    @IBOutlet weak var logoutView: UIStackView!
     
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var profileUsername: UILabel!
@@ -40,30 +40,19 @@ class OptionMenuController: UITableViewController {
         
         print("In Lgout")
         
-        UserData.sharedInstance.ClearAll()
+
         ApiManager.sharedInstance.logOut({(json : JSON) in
             
             if (json != nil )
             {
 
-                
+                UserData.sharedInstance.ClearAll()
                 //Todo: Redirect To SomeWhere
-                print("Login \n\(json)")
+                print("Logout cleared data \n\(json)")
                 
-                
-                ApiManager.sharedInstance.getAllPost { (json : JSON) in
-                    
-                    if (json != nil )
-                    {
-                        //Todo: Redirect To SomeWhere
-                        print("Finished Logout")
-                    }
-                    
-                }
             }
             
-            }
-        )
+        })
         
     }
     
@@ -75,11 +64,9 @@ class OptionMenuController: UITableViewController {
         // Do any additional setup after loading the view, typically from a nib.
         print("***OptionMenuController did load")
 
-        
-        logoutCell.addGestureRecognizer(logOutCallBack)
-        logoutCell.userInteractionEnabled = true
-        
-        
+//        logoutView.userInteractionEnabled = true
+//        logoutView.addGestureRecognizer(logOutCallBack)
+
         if let userUrl = UserData.sharedInstance.currentUser
         {
             profileImage.loadImageUsingCacheWithUrlString((userUrl.PicId) as String)

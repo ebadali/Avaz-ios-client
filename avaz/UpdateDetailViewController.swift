@@ -11,12 +11,12 @@ import SwiftyJSON
 
 class UpdateDetailViewController: UIViewController, UITableViewDataSource {
 
-    lazy var refreshControl: UIRefreshControl = {
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(self.handleReferesh(_:)), forControlEvents: UIControlEvents.ValueChanged)
-        
-        return refreshControl
-    }()
+//    lazy var refreshControl: UIRefreshControl = {
+//        let refreshControl = UIRefreshControl()
+//        refreshControl.addTarget(self, action: #selector(self.handleReferesh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+//        
+//        return refreshControl
+//    }()
 
     
     @IBOutlet weak var tableViewRoot: UITableView!
@@ -55,6 +55,7 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource {
         return filter
     }()
 
+    var mapViewHeight: CGFloat = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,22 +64,20 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource {
 
         // Adding Comment View
         
-        
+
         self.tableViewRoot.registerNib(UINib(nibName: "MapView", bundle: nil), forCellReuseIdentifier: "mapviewcell")
         
         self.tableViewRoot.registerNib(UINib(nibName: "CommentView", bundle: nil), forCellReuseIdentifier: "commentviewcell")
         
-        // Self-sizing magic!
-//        tableViewRoot.rowHeight = 100
-        self.tableViewRoot.rowHeight = UITableViewAutomaticDimension
-        
-        self.tableViewRoot.estimatedRowHeight = 180.0; //Set this to any value that works for you.
+        mapViewHeight = NSBundle.mainBundle().loadNibNamed("MapView", owner: self, options: nil)[0].bounds.size.height
 
+
+    
         
 //        LoadData()
         LoadRemoteData()
         
-        self.view.addSubview(self.refreshControl)
+//        self.view.addSubview(self.refreshControl)
         self.view.addSubview(self.button)
     }
     
@@ -94,7 +93,7 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource {
         
         ApiManager.sharedInstance.getAllComments(data.postID,
             onCompletion: {(json : JSON) in
-                print("All Commments are - \(json)")
+//                print("All Commments are - \(json)")
                 
                 guard let mediaobj = json["media"].array,
                           commenters = json["users"].array
@@ -154,6 +153,7 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource {
     }
     
     
+  
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
@@ -190,7 +190,9 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource {
 //        return cell!.frame.height
 //    }
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        
+
+        return indexPath.section == 0  ? mapViewHeight : UITableViewAutomaticDimension
     }
     
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -218,7 +220,7 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource {
             print(CommentText)
             
             self.comments.append(Comment(text: CommentText))
-            print("data added")
+//            print("data added")
 
             
             
@@ -227,11 +229,7 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource {
                 NSIndexPath(forRow: self.comments.count-1, inSection: DetailViewTypes.Comment.rawValue)
                 ], withRowAnimation: .Automatic)
             self.tableViewRoot.endUpdates()
-//            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                //reload your tableView
-//                self.tableViewRoot.reloadData()
-//                            print("dispathced")
-//            })
+
             
             self.sendThisComment(Comment(text: CommentText))
 
@@ -281,18 +279,12 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource {
         self.tableViewRoot.reloadData()
         refreshControl.endRefreshing()
     }
-//    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        
-//        if section == 0 {
-//            return nil
-//        }else{
-//            let vw = UIView()
-//            vw.backgroundColor = UIColor.blackColor()
-//            
-//            return vw
-//        }
-//
-//    }
+
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        mapView.removeFromSuperview()
+    }
     
     
 }

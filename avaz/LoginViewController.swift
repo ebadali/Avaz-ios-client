@@ -9,15 +9,17 @@
 import UIKit
 import SwiftyJSON
 
-class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
+class LoginViewController: UIViewController,  SignUpDelegate, FBSDKLoginButtonDelegate{
     
     
-
+    
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var forgetPassword: UILabel!
     @IBOutlet weak var fbButn: FBSDKLoginButton!
     
+    
+    var signInCompletedDelegate:SignInDelegate!
     
     
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
@@ -25,42 +27,65 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
     @IBAction func LogIn(sender: AnyObject) {
         print("logging in")
         
-
+        
+        
+        
         
         guard let email = self.email!.text , password = self.password!.text else {
             return
         }
-        print (" \(email)")
-        print (" \(password)")
-//        self.dismissViewControllerAnimated(true, completion: nil)
         
-        ApiManager.sharedInstance.LogInApi(email, password: password,
-                onCompletion:
+        DoLogin(email, password: password)
+        
+        
+    }
+    
+    func DoLogin(username: String, password: String)  {
+        print (" \(username)")
+        print (" \(password)")
+        //        self.dismissViewControllerAnimated(true, completion: nil)
+        
+        ApiManager.sharedInstance.LogInApi(username, password: password,
+                                           onCompletion:
             {(json : JSON) in
                 
-                    if (json != nil )
-                    {
-                        UserData.sharedInstance.SetSessionID(String(json["sessionid"]))
-                        UserData.sharedInstance.SetCurrentUser(json["user"])
-                        
-                        //Todo: Redirect To SomeWhere
-                        print("Login \n\(json)")
-                        
-                        
-                        ApiManager.sharedInstance.getAllPost { (json : JSON) in
-
-                            if (json != nil )
-                            {
-                                //Todo: Redirect To SomeWhere
-                                print("getAllPost \n\(json)")
-                                self.dismissViewControllerAnimated(true, completion: nil)
-                            }
-                            
-                        }
-                    }
+                if (json != nil )
+                {
+                    UserData.sharedInstance.SetSessionID(String(json["sessionid"]))
+                    UserData.sharedInstance.SetCurrentUser(json["user"])
                     
+                    //Todo: Redirect To SomeWhere
+                    print("Login \n\(json)")
+                    
+                    
+                    ApiManager.sharedInstance.getAllPost { (json : JSON) in
+                        
+                        if (json != nil )
+                        {
+                            
+                            
+                            //Todo: Redirect To SomeWhere
+                            
+                            print("getAllPost \n\(json)")
+                            self.signInCompletedDelegate?.DoneSigningIn(json)
+                            self.dismissViewControllerAnimated(true, completion: nil)
+                        }
+                        
+                    }
+                }
+                
             }
         )
+    }
+    
+    func DoneSigningUp(userName: String,password: String ) {
+        print("Done SignUp with \(userName) and \(password)")
+        
+        guard let email:String = userName , password:String = password else {
+            return
+        }
+        
+        DoLogin(email, password: password)
     }
     
     override func viewDidLoad() {
@@ -68,19 +93,19 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
         let imagePAth = "background"
         AddGif(imagePAth);
         
-
+        
         print("--View Did Load Called In \(NSStringFromClass(self.classForCoder)) \n")
         
         
-//        activityIndicator.hidesWhenStopped = true;
-//        activityIndicator.activityIndicatorViewStyle  = UIActivityIndicatorViewStyle.Gray;
-//        activityIndicator.center = self.view.center;
-//
-//        self.view.addSubview(activityIndicator)
-//
+        //        activityIndicator.hidesWhenStopped = true;
+        //        activityIndicator.activityIndicatorViewStyle  = UIActivityIndicatorViewStyle.Gray;
+        //        activityIndicator.center = self.view.center;
+        //
+        //        self.view.addSubview(activityIndicator)
+        //
         
         
-		
+        
         if (FBSDKAccessToken.currentAccessToken() != nil)
         {
             // User is already logged in, do work such as go to next view controller.
@@ -90,17 +115,17 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
             fbButn.readPermissions = ["public_profile", "email", "user_friends"]
             fbButn.delegate = self
         }
-
+        
         // Do any additional setup after loading the view.
         addGestureRecognizerLabel();
         
-//        LoadSomeTask()
+        //        LoadSomeTask()
         
         
         
     }
     
-
+    
     override func viewWillDisappear(animated: Bool) {
         print("--viewWillDisappear Called In \(NSStringFromClass(self.classForCoder)) \n")
     }
@@ -108,16 +133,16 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
     func AddGif(path: String)  {
         // Creating Backgorund View
         let iv = UIWebView(frame: self.view.frame)
-
+        
         let urlPath = NSBundle.mainBundle().pathForResource(path, ofType: "gif")
         
-
+        
         let nsurl = NSURL(fileURLWithPath: urlPath!)
         let img = NSData(contentsOfURL: nsurl)
         iv.loadData(img!, MIMEType: "image/gif", textEncodingName: String(), baseURL: NSURL())
         iv.userInteractionEnabled = false;
         iv.scalesPageToFit = true;
-//        iv.contentMode = .ScaleToFill;
+        //        iv.contentMode = .ScaleToFill;
         self.view.insertSubview(iv, atIndex: 0)
         
         // Creating Filter
@@ -130,73 +155,64 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
         iv.center = self.view.center
         filter.center = self.view.center
         
-//        iv.setTranslatesAutoresizingMaskIntoConstraints(false)
+        //        iv.setTranslatesAutoresizingMaskIntoConstraints(false)
         
-//        iv.addConstraint(NSLayoutConstraint(item: iv, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0))
-//        iv.addConstraint(NSLayoutConstraint(item: iv, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 0))
-
+        //        iv.addConstraint(NSLayoutConstraint(item: iv, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0))
+        //        iv.addConstraint(NSLayoutConstraint(item: iv, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 0))
+        
         
     }
-
+    
     func LoadSomeTask()  {
         
-        activityIndicator.startAnimating()        
+        activityIndicator.startAnimating()
         let triggerTime = (Int64(NSEC_PER_SEC) * 5)
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, triggerTime), dispatch_get_main_queue(), { () -> Void in
             self.activityIndicator.stopAnimating()
         })
         
-
+        
     }
-  
-
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
     
-//     MARK: - Navigation
-//
-//     In a storyboard-based application, you will often want to do a little preparation before navigation
+    
+    //     MARK: - Navigation
+    //
+    //     In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "pop_over" {
+        if segue.identifier == "register" {
             
-            //            if let fourthSeq: ScreenFour = segue.destinationViewController as? ScreenFour{
-            //                let selectedIndex = self.tableView.indexPathForCell(sender as! UITableViewCell)
-            //                fourthSeq.data = self.someDataSource[(selectedIndex?.row)!]
-            //            }
-        }else{
-            
-//            if let detail: UpdateDetailViewController = segue.destinationViewController as? UpdateDetailViewController {
-//                
-//                let selectedIndex = self.tableView.indexPathForCell(sender as! UITableViewCell)
-//                detail.data = self.someDataSource[(selectedIndex?.row)!]
-//            }
-            
+            if let register = segue.destinationViewController as? RegisterViewController{
+                register.signUpCompletedDelegate = self
+            }
         }
     }
-// Face book delegate methods
+    // Face book delegate methods
     
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         FBSDKGraphRequest.init(graphPath: "me", parameters: ["fields":"first_name, last_name, picture.type(large)"]).startWithCompletionHandler { (connection, result, error) -> Void in
-                if result != nil
-                {
-                    guard let strFirstName = (result.objectForKey("first_name") as? String), strLastName = (result.objectForKey("last_name") as? String) , strPictureURL = (result.objectForKey("picture")?.objectForKey("data")?.objectForKey("url") as? String)
-                        else{
-                            return
-                    }
-                    print(strFirstName)
-                    print(strLastName)
-                    print(strPictureURL)
-                    
+            if result != nil
+            {
+                guard let strFirstName = (result.objectForKey("first_name") as? String), strLastName = (result.objectForKey("last_name") as? String) , strPictureURL = (result.objectForKey("picture")?.objectForKey("data")?.objectForKey("url") as? String)
+                    else{
+                        return
                 }
-//            self.lblName.text = "Welcome, \(strFirstName) \(strLastName)"
-//            self.ivUserProfileImage.image = UIImage(data: NSData(contentsOfURL: NSURL(string: strPictureURL)!)!)
+                print(strFirstName)
+                print(strLastName)
+                print(strPictureURL)
+                
             }
-
+            //            self.lblName.text = "Welcome, \(strFirstName) \(strLastName)"
+            //            self.ivUserProfileImage.image = UIImage(data: NSData(contentsOfURL: NSURL(string: strPictureURL)!)!)
+        }
+        
     }
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
@@ -223,8 +239,8 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
             }
         })
     }
-
- 
+    
+    
     @IBAction func saveChanged(sender: AnyObject) {
         
     }
@@ -285,7 +301,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate{
             alertController.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.alertControllerBackgroundTapped)))
         })
         
-//        self.performSegueWithIdentifier("Refister_view_segue", sender: self)
+        //        self.performSegueWithIdentifier("Refister_view_segue", sender: self)
     }
     
     func alertControllerBackgroundTapped()

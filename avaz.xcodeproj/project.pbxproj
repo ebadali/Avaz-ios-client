@@ -21,6 +21,7 @@
 		02FCC2B31D1EA43C009EF1A7 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02FCC2B21D1EA43C009EF1A7 /* SWRevealViewController.m */; };
 		080C5B0B1D09716700D03509 /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080C5B071D09716700D03509 /* CommentView.swift */; };
 		080C5B0C1D09716700D03509 /* CommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 080C5B081D09716700D03509 /* CommentView.xib */; };
+		081D5DE51D58A98800E923E8 /* DataLoadingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081D5DE41D58A98800E923E8 /* DataLoadingDelegate.swift */; };
 		086F985A1D141C3600D40AA6 /* UploadPostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086F98591D141C3600D40AA6 /* UploadPostController.swift */; };
 		087708CE1D00862900EB983B /* VotesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 087708CD1D00862900EB983B /* VotesView.xib */; };
 		087708D01D00867900EB983B /* VotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087708CF1D00867900EB983B /* VotesView.swift */; };
@@ -66,6 +67,7 @@
 		02FCC2B21D1EA43C009EF1A7 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		080C5B071D09716700D03509 /* CommentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
 		080C5B081D09716700D03509 /* CommentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentView.xib; sourceTree = "<group>"; };
+		081D5DE41D58A98800E923E8 /* DataLoadingDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataLoadingDelegate.swift; sourceTree = "<group>"; };
 		086F98591D141C3600D40AA6 /* UploadPostController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadPostController.swift; sourceTree = "<group>"; };
 		087708CD1D00862900EB983B /* VotesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VotesView.xib; sourceTree = "<group>"; };
 		087708CF1D00867900EB983B /* VotesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VotesView.swift; sourceTree = "<group>"; };
@@ -180,6 +182,14 @@
 			name = SWRevealViewController;
 			sourceTree = "<group>";
 		};
+		081D5DE31D58A93600E923E8 /* protocoles */ = {
+			isa = PBXGroup;
+			children = (
+				081D5DE41D58A98800E923E8 /* DataLoadingDelegate.swift */,
+			);
+			name = protocoles;
+			sourceTree = "<group>";
+		};
 		0879B2B61D4A30A50078C5EB /* data */ = {
 			isa = PBXGroup;
 			children = (
@@ -212,6 +222,7 @@
 		08BFC4931CFC4034007C4651 /* avaz */ = {
 			isa = PBXGroup;
 			children = (
+				081D5DE31D58A93600E923E8 /* protocoles */,
 				08C0FC041D549B470052179C /* extensions */,
 				0879B2B61D4A30A50078C5EB /* data */,
 				021E5C811D311BCF00E135EC /* utils */,
@@ -423,6 +434,7 @@
 				08BFC4951CFC4034007C4651 /* AppDelegate.swift in Sources */,
 				025BFB981D25D82600342E55 /* LoginView.swift in Sources */,
 				0234F2D11D2E6B020020027D /* Utils.swift in Sources */,
+				081D5DE51D58A98800E923E8 /* DataLoadingDelegate.swift in Sources */,
 				08BFC4AD1CFC525E007C4651 /* CustomCell.swift in Sources */,
 				08C0FC061D549B6D0052179C /* ImageViewExtension.swift in Sources */,
 				08F554F31D1AB7A4000BFD63 /* RegisterViewController.swift in Sources */,

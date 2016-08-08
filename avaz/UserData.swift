@@ -54,6 +54,11 @@ class UserData{
         
     }
     
+    func IsLoggedIn() -> Bool {
+
+        return self.sessionId != ""
+    }
+    
     func SetCurrentUser(data: JSON)  {
 
         // Todo: This should be Atomic.
