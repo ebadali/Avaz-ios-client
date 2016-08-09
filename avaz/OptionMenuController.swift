@@ -69,7 +69,7 @@ class OptionMenuController: UITableViewController {
 
         if let userUrl = UserData.sharedInstance.currentUser
         {
-            profileImage.loadImageUsingCacheWithUrlString((userUrl.PicId) as String)
+            profileImage.loadImageRemotely((userUrl.PicId) as String)
             profileUsername.text = (userUrl.UserName) as String
             
         }

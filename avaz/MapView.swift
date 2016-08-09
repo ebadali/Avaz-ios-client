@@ -22,13 +22,90 @@ class MapView: UITableViewCell {
     @IBOutlet weak var postedBy: UILabel!
     
     
-    var currentPost: Post? = nil
+    @IBOutlet weak var mediaView: UIView!
+    @IBOutlet weak var segmentControll: UISegmentedControl!
     
+    
+    var currentPost: Post? = nil
+    var customView : MediaView?
+    
+    var previewCallback :PreviewDelegate?
+    
+    func CustomInit()  {
+        if self.customView == nil{
+            print("CustomInit scrollview from nib in MapView")
+            self.customView  = MediaView(frame: CGRect(x: 0, y: 0, width: self.mediaView.bounds.size.width, height: self.mediaView.bounds.size.height), uploadable: false)
+            self.mediaView.addSubview(customView!)
+            toggleViews(true)
+            
+            
+            
+            
+            
+            //            for images in (self.currentPost?.media?.images)! {
+            //                print("media items are \(images)")
+            //            }
+            
+            
+        }
+        
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         
-        print("awake from nib")
+        print("awake from nib in MapView")
+        
+        
+        CustomInit()
+        
+    }
+    
+    var LoadedPostData = false
+    func LoadPostMedia() {
+        
+        if         LoadedPostData == false
+        {
+            
+            let media  = self.customView?.AddImageToScrollView("social-media")
+            
+            media!.previewCallback = {
+                print("preview Called")
+                self.previewCallback?.PreviewImage(media!)
+                //            switch media?.mediaType {
+                //            case .Image():
+                //                self.previewCallback?.PreviewImage(media!)
+                //            case .Video():
+                //                self.previewCallback?.PreviewVideo(media!)
+                //            }
+                
+            }
+            
+            media!.cancleCallback = {
+                print("cancled Called")
+                
+            }
+            
+            LoadedPostData = true
+            
+        }
+        
+    }
+    
+    
+    @IBAction func viewChanged(sender: UISegmentedControl) {
+        
+        switch segmentControll.selectedSegmentIndex
+        {
+        case 0:
+            toggleViews(true)
+        case 1:
+            toggleViews(false)
+        default:
+            break;
+        }
+        
+        LoadPostMedia()
     }
     
     override func setSelected(selected: Bool, animated: Bool) {
@@ -37,24 +114,29 @@ class MapView: UITableViewCell {
         // Configure the view for the selected state
     }
     
-
- 
     
     
-    
-    
-    func setparams(post: Post) {
+    func toggleViews(value: Bool)  {
         
+        self.map_MKView.hidden = !value
+        self.mediaView.hidden = value
+        
+        
+    }
+    
+    
+    
+    func setparams(post: Post, callback: PreviewDelegate) {
         
         if self.currentPost != nil
         {
             return
         }
         
-        
+        self.previewCallback = callback
         self.currentPost = post
         self.detail_TextView.text = post.title
-                self.icon_imageView.loadImageUsingCacheWithUrlString((post.user?.PicId as? String)!)
+        self.icon_imageView.loadImageRemotely((post.user?.PicId as? String)!)
         
         
         if self.map_MKView.annotations.count == 0 {
@@ -102,6 +184,9 @@ class MapView: UITableViewCell {
         }
         
     }
+    
+    
+
     
     func centerMapOnLocation(location: CLLocationCoordinate2D) {
         let regionRadius: CLLocationDistance = 1000

@@ -27,6 +27,16 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
         return iv
     }()
 
+    
+    
+    
+//    lazy var mediaViews: Media = {
+//        self.customView  = MediaView(frame: CGRect(x: 0, y: 0, width: self.mediaView.bounds.size.width, height: self.mediaView.bounds.size.height), uploadable: false)
+//        self.mediaView.addSubview(customView!)
+//        
+//        
+//    }
+    
     @IBAction func createThePost(sender: AnyObject) {
         
         print("creating Posts.")
@@ -72,6 +82,8 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
     
     @IBOutlet weak var scrollView: UIScrollView!
     
+    
+//    var mediaView : UIView!
     var locationManager: CLLocationManager!
     
     override func viewDidLoad() {
@@ -188,8 +200,8 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
                 
             })
         }
-        
     }
+    
     func alertControllerBackgroundTapped()
     {
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -254,7 +266,7 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
         print("x is : \((self.scrollView.frame.width/2)*(CGFloat(count)))")
         
         
-        let iv = CustomMediaCell(frame: CGRect(x: (self.scrollView.frame.width/2)*(CGFloat(count)),y: 10,width: self.scrollView.frame.width/2 , height: self.scrollView.frame.height-10), url: path, mediaType: type)
+        let iv = CustomMediaCell(frame: CGRect(x: (self.scrollView.frame.width/2)*(CGFloat(count)),y: 10,width: self.scrollView.frame.width/2 , height: self.scrollView.frame.height-10), url: path, mediaType: type, accessType: AccessType.Local())
 
         iv.userInteractionEnabled = true
         iv.tag = count

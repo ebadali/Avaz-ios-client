@@ -27,7 +27,7 @@ class CustomCell: UITableViewCell {
     func setData(text: String?, posterImageUrl : String?)  {
         if let lableText = text , imageUrl = posterImageUrl {
             self.headingTextView.text = lableText
-            self.priorityImageView.loadImageUsingCacheWithUrlString(imageUrl)
+            self.priorityImageView.loadImageRemotely(imageUrl)
         }
     }
 

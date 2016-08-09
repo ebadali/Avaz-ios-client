@@ -48,7 +48,7 @@ class CommentView: UITableViewCell {
         
         
         self.commenterText.text = self.textContent
-        self.commenterImage.loadImageUsingCacheWithUrlString(self.imageUrl!)
+        self.commenterImage.loadImageRemotely(self.imageUrl!)
         // Lets Load An Image.
         
         
@@ -56,17 +56,5 @@ class CommentView: UITableViewCell {
 }
 
 
-// Todo: Will user image loading and caching library here.
-extension UIImageView {
-    func downloadImageFrom(link link:String, contentMode: UIViewContentMode) {
-        NSURLSession.sharedSession().dataTaskWithURL( NSURL(string:link)!, completionHandler: {
-            (data, response, error) -> Void in
-            dispatch_async(dispatch_get_main_queue()) {
-                self.contentMode =  contentMode
-                if let data = data { self.image = UIImage(data: data) }
-            }
-        }).resume()
-    }
-}
 
 

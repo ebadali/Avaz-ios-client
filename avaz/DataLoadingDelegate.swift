@@ -20,3 +20,10 @@ protocol SignUpDelegate
 {
     func DoneSigningUp(username : String, password: String)
 }
+
+
+protocol PreviewDelegate
+{
+    func PreviewVideo(mediaObject : CustomMediaCell)
+    func PreviewImage(mediaObject : CustomMediaCell)
+}

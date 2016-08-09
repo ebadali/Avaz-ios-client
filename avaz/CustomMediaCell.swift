@@ -15,28 +15,50 @@ enum MediaType{
     
 }
 
+
+enum AccessType{
+    case Remote();
+    case Local();
+    
+}
+
 class CustomMediaCell:  UIView {
     
-
+    
     
     
     // Objects To Use
     var url: String = ""
     var mediaType: MediaType = .Video()
+    var accessType: AccessType = .Local()
+    
     var cancleCallback = {}
     var previewCallback = {}
     
     
     
-    let button = UIImageView()
-    let imageView = UIImageView()
+    lazy var button = UIImageView()
+    var imageView = UIImageView(){
+        didSet {
+            
+        }
+    }
     let filter = UIView()
-
-    let padding = 10
+    
+    let padding = 40
+    lazy var subtractingHorizontalFact: Int = {
+        return Int(self.frame.size.width/8)
+    }()
+    lazy var subtractingVecticalFact: Int = {
+        return Int(self.frame.size.height/6)
+    }()
+    
+    
+    
     
     required init?(coder aDecoder: NSCoder) {
-         super.init(coder: aDecoder)
-       initialize()
+        super.init(coder: aDecoder)
+        initialize()
     }
     
     override init(frame: CGRect) {
@@ -46,56 +68,72 @@ class CustomMediaCell:  UIView {
     }
     
     func initialize()  {
-        button.image = UIImage(named: "cancle")
-        filter.backgroundColor = UIColor.blackColor()
-        filter.alpha = 0.2
-        imageView.backgroundColor = UIColor.whiteColor()
         
-        imageView.userInteractionEnabled = true
-        
-        addSubview(imageView)
-        addSubview(button)
-        addSubview(filter)
-        
-        
-        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.PreviewButton(_:))))
-        filter.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.CancleButton(_:))))
+        if self.url == ""{
+            url = "notfound"
+        }else{
+            
+            button.image = UIImage(named: "cancle")
+            filter.backgroundColor = UIColor.blackColor()
+            filter.alpha = 0.2
+            
+            imageView.backgroundColor = UIColor.whiteColor()
+            imageView.userInteractionEnabled = true
+            
+            CustomLayouting()
+            
+            
+            
+            
+            imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.PreviewButton(_:))))
+            filter.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.CancleButton(_:))))
+         
+            self.addSubview(imageView)
+            
 
-        getThumbnail()
+            self.addSubview(filter)
+            self.addSubview(button)
+        }
         
     }
     
-    init(frame: CGRect, url: String, mediaType: MediaType) {
-
+    init(frame: CGRect, url: String, mediaType: MediaType, accessType : AccessType) {
+        
         super.init(frame: frame)
         self.url = url
         self.mediaType = mediaType
+        self.accessType = accessType
         initialize()
     }
-    override func layoutSubviews() {
+    func CustomLayouting() {
+        
+        print("layout Subviews Called")
         // Set the button's width and height to a square the size of the frame's height.
-        let totalHeight = Int(frame.size.height) - padding
-        let totalWidth = Int(frame.size.width) - padding
+        let totalHeight = Int(self.frame.size.height) - subtractingVecticalFact
+        let totalWidth = Int(self.frame.size.width) - (subtractingHorizontalFact*3)
         
-        
+
         // Offset each button's origin by the length of the button plus spacing.
-        let butnHeight = totalHeight/6
-        let butnWidth = totalWidth/6
+        let butnY = subtractingVecticalFact/2
+        let butnX = totalWidth - totalWidth/12
         
-        button.frame = CGRect(x: totalWidth-butnWidth, y: (butnHeight/2), width: butnWidth, height: butnHeight)
-        filter.frame = CGRect(x: 0, y: 0, width: totalWidth, height: totalHeight/4)
+        button.frame = CGRect(x: butnX, y: butnY, width: totalWidth/8, height: totalWidth/8)
+        filter.frame = CGRect(x: subtractingHorizontalFact/2, y: subtractingVecticalFact/2, width: totalWidth, height: totalHeight/4)
         
         // Lets Create an Image View
-        imageView.frame = CGRect(x: 0, y: 0, width: totalWidth, height: totalHeight)
-        imageView.image = UIImage(contentsOfFile: url)
+        imageView.frame = CGRect(x: subtractingHorizontalFact/2, y: subtractingVecticalFact/2, width: totalWidth, height: totalHeight)
+        imageView.loadmedia(url, mediatype: self.mediaType, accessType: self.accessType)
         
-       
+//        LoadImage(url)
+//        imageView.image = UIImage(named:  url)
+//        .imageWithRenderingMode(.AlwaysTemplate))
+        
         
     }
     
     override func intrinsicContentSize() -> CGSize {
         let buttonSize = Int(frame.size.height)
-        let width = 455;
+        let width = Int(frame.size.width);
         return CGSize(width: width, height: buttonSize)
     }
     
@@ -117,14 +155,12 @@ class CustomMediaCell:  UIView {
                 self.imageView.image = UIImage(data: UIImageJPEGRepresentation(loadedImage, 0.1)!)
                 print("done compressing")
             }else if  case .Image() = self.mediaType {
-                                print("compressing image")
+                print("compressing image")
                 // Set Compress Data
-                guard let loadedImage: UIImage = UIImage(imageLiteral: self.url) else {
-                    return
-                
+                if let loadedImage = UIImage(named: self.url) {
+                    //FIXME: there was an undetected bug, when deleting and adding more images.
+                    self.imageView.image = UIImage(data: UIImageJPEGRepresentation(loadedImage, 0.1)!)
                 }
-                //FIXME: there was an undetected bug, when deleting and adding more images.
-                self.imageView.image = UIImage(data: UIImageJPEGRepresentation(loadedImage, 0.1)!)
             }
         } catch let error as NSError {
             print("Error generating thumbnail: \(error)")
@@ -134,7 +170,7 @@ class CustomMediaCell:  UIView {
     // MARK: Button Action
     
     func CancleButton(button: AnyObject) {
-
+        
         cancleCallback()
     }
     
@@ -144,5 +180,5 @@ class CustomMediaCell:  UIView {
     }
     
     
-
+    
 }

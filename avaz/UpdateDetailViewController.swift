@@ -8,8 +8,9 @@
 
 import UIKit
 import SwiftyJSON
-
-class UpdateDetailViewController: UIViewController, UITableViewDataSource {
+import AVKit
+import AVFoundation
+class UpdateDetailViewController: UIViewController, UITableViewDataSource , PreviewDelegate{
 
 //    lazy var refreshControl: UIRefreshControl = {
 //        let refreshControl = UIRefreshControl()
@@ -162,7 +163,7 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource {
             
             // THis is Map view Along with
            let cell = tableView.dequeueReusableCellWithIdentifier("mapviewcell", forIndexPath: indexPath) as! MapView
-            cell.setparams(self.data)
+            cell.setparams(self.data, callback: self)
             return cell
         }
         else{
@@ -283,9 +284,40 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource {
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        mapView.removeFromSuperview()
+        let mpView = NSBundle.mainBundle().loadNibNamed("MapView", owner: self, options: nil)[0] as? MapView
+        mpView?.removeFromSuperview()
+//        mapView.removeFromSuperview()
     }
     
+    
+    func OutFromLargeView(sender: UITapGestureRecognizer)  {
+        sender.view?.removeFromSuperview()
+    }
+    
+    
+    func PreviewImage(mediaObject : CustomMediaCell){
+        print("Lets Display someVideo")
+        
+        let newImageView = UIImageView(image: mediaObject.imageView.image)
+        newImageView.frame = self.view.frame
+        newImageView.backgroundColor = .blackColor()
+        newImageView.contentMode = .ScaleAspectFit
+        newImageView.userInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action:#selector(self.OutFromLargeView(_:)))
+        newImageView.addGestureRecognizer(tap)
+        self.view.addSubview(newImageView)
+    }
+    func PreviewVideo(mediaObject : CustomMediaCell){
+        print("Lets Display someImage")
+        
+        let playerViewController = AVPlayerViewController()
+        let playerView = AVPlayer(URL: NSURL(fileURLWithPath: mediaObject.url))
+        playerViewController.player = playerView
+        
+        self.presentViewController(playerViewController, animated: true){
+            playerViewController.player?.play()
+        }
+    }
     
 }
 
