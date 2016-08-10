@@ -226,8 +226,9 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource , Prev
             
             
             self.tableViewRoot.beginUpdates()
+//            self.comments.count-1
             self.tableViewRoot.insertRowsAtIndexPaths([
-                NSIndexPath(forRow: self.comments.count-1, inSection: DetailViewTypes.Comment.rawValue)
+                NSIndexPath(forRow: 0, inSection: DetailViewTypes.Comment.rawValue)
                 ], withRowAnimation: .Automatic)
             self.tableViewRoot.endUpdates()
 

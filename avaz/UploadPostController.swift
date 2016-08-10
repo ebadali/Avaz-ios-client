@@ -20,22 +20,12 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
     
     @IBOutlet weak var menuItem: UIBarButtonItem!
 
-    lazy var uploadImageView: UIImageView = {
-        let iv = self.AddImageToScrollView(UIImage(named: "upload")!)
-        iv.userInteractionEnabled = true
-        iv.addGestureRecognizer(UITapGestureRecognizer(target:self, action:#selector(self.TakeFromCameraAction(_:))))
-        return iv
-    }()
+    
+    var uploadImageView: CustomMediaCell?
 
     
+    @IBOutlet weak var mediaPlaceHolder: MediaView!
     
-    
-//    lazy var mediaViews: Media = {
-//        self.customView  = MediaView(frame: CGRect(x: 0, y: 0, width: self.mediaView.bounds.size.width, height: self.mediaView.bounds.size.height), uploadable: false)
-//        self.mediaView.addSubview(customView!)
-//        
-//        
-//    }
     
     @IBAction func createThePost(sender: AnyObject) {
         
@@ -80,7 +70,6 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
     
     @IBOutlet weak var detailText: UITextView!
     
-    @IBOutlet weak var scrollView: UIScrollView!
     
     
 //    var mediaView : UIView!
@@ -96,8 +85,19 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
         
         // Adding ImageView Callbacks
         
-        self.scrollView.addSubview(uploadImageView)
-//        addGestureRecognizerLabel()
+        // Uploadable Image view is created and placed.
+        uploadImageView = self.mediaPlaceHolder.AddImageToScrollView("upload", mediaType: MediaType.Image(), accessType: AccessType.Local())
+        uploadImageView?.previewCallback = {
+            self.TakeFromCameraAction(self.uploadImageView!)
+        }
+        
+        uploadImageView?.cancleCallback = {
+            print("Cancle Callback")
+        }
+        
+        
+//        self.scrollView.addSubview(uploadImageView)
+
         setupHamburger()
         
         if (CLLocationManager.locationServicesEnabled())
@@ -250,57 +250,42 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
             
 //            let nsurl = NSURL(fileURLWithPath: urlPath!)
 //            let img = NSData(contentsOfURL: nsurl)
+            
             AddMediaToScrollView(urlPath!, type: MediaType.Image())
         }
         
-        
+
     }
+//    0346-2817022 sohail,
+//    0336-2810411 jauhr.
     
     func AddMediaToScrollView(path: String, type: MediaType)  {
-        let count = self.scrollView.subviews.count-2;
-        print("count is : \(count) ")
-        
-        // Todo: There should be a custom view which have:
-        // a. cancle button to drop the media,
-        // b. play tab callback to display the Media
-        print("x is : \((self.scrollView.frame.width/2)*(CGFloat(count)))")
-        
-        
-        let iv = CustomMediaCell(frame: CGRect(x: (self.scrollView.frame.width/2)*(CGFloat(count)),y: 10,width: self.scrollView.frame.width/2 , height: self.scrollView.frame.height-10), url: path, mediaType: type, accessType: AccessType.Local())
 
-        iv.userInteractionEnabled = true
-        iv.tag = count
-        // Important callbacks.
-        iv.previewCallback = {
+
+        let hold = self.mediaPlaceHolder.AddImageToScrollView(path,mediaType: MediaType.Image(), accessType: AccessType.Local())
+        hold.previewCallback = {
             print("preview Called")
-            if case .Video() = iv.mediaType {
-                self.DisplayVideo(iv);
-                
-            }else if  case .Image() = iv.mediaType {
-                self.DisplayImage(iv);
+            
+            if case .Video() = hold.mediaType {
+                self.DisplayVideo(hold);
+            }else if  case .Image() = hold.mediaType {
+                self.DisplayImage(hold);
             }
 
-            
         }
-        
-        iv.cancleCallback = {
+        hold.cancleCallback = {
             print("cancled Called")
-            self.RemoveThisMediaCell(iv)
-            self.mediaObject.removeMediaContent(iv.url, type: iv.mediaType)
-            
+            self.mediaPlaceHolder.RemoveThisMediaCell(hold)
+            self.mediaObject.removeMediaContent(hold.url, type: hold.mediaType)
         }
-
-        iv.contentMode = .ScaleAspectFit
-        self.scrollView.addSubview(iv)//(iv, atIndex: endIndexx+1)
         
-        
-        self.scrollView.contentSize = CGSizeMake(iv.frame.width * (CGFloat(count+1)), self.scrollView.frame.height)
-        
-        
-        
+        hold.contentMode = .ScaleAspectFit
+    
         self.mediaObject.addMediaContent(path, type: type)
       
-    }    
+    }
+    
+    
 
     
     //FIXME: Unused method
@@ -345,31 +330,7 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
         }
     }
     
-    func RemoveThisMediaCell(image: CustomMediaCell)  {
-//        print("try to this \(image.tag)")
-        // Do indexing 
-        
-        //FIXME: Move back all the cells by recalculating their positions.
-        
-        var found = false;
-        var counter = 0
-        for subview in self.scrollView.subviews  {
-//            print("Removing this \(subview.tag)")
-            
-            if found {
-                subview.frame.origin.x = (subview.frame.origin.x-image.frame.width)
-                counter += 1
-            }
-            else if subview.tag == image.tag {
-                subview.removeFromSuperview()
-                found = true
-            }
-            
-        }
-        
-        
-        
-    }
+  
     
     
     func VideoClickListner(sender: AnyObject)  {
@@ -388,21 +349,7 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
     }
     
     
-    func AddImageToScrollView(image: UIImage) -> UIImageView{
-        let count = self.scrollView.subviews.count-2;
-//        endIndexx >= 0 ? self.scrollView.subviews[endIndexx].frame.width : 0
-        print("count is in add image scrollview: \(count) ")
-        let iv = UIImageView(frame: CGRect(x: (self.scrollView.frame.width/2)*(CGFloat(count)),y: 0,width: self.scrollView.frame.width/2 , height: self.scrollView.frame.height-10))
-        iv.image = 	image
-        iv.contentMode = .ScaleAspectFit
-        iv.userInteractionEnabled = true
-        
-//        iv.addGestureRecognizer(UITapGestureRecognizer(target:self, action:#selector(self.TakeFromCameraAction(_:))))
-        self.scrollView.addSubview(iv)//(iv, atIndex: endIndexx+1)
-        self.scrollView.contentSize = CGSizeMake(iv.frame.width * (CGFloat(count+1)), self.scrollView.frame.height)
 
-        return iv
-    }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
