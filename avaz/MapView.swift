@@ -67,7 +67,7 @@ class MapView: UITableViewCell {
         if         LoadedPostData == false
         {
             
-            let media  = self.customView?.AddImageToScrollView("social-media")
+            let media  = self.customView?.AddImageToScrollView("social-media", mediaType: MediaType.Image(), accessType: AccessType.Local())
             
             media!.previewCallback = {
                 print("preview Called")

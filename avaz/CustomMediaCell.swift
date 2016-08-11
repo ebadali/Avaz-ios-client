@@ -68,6 +68,8 @@ class CustomMediaCell:  UIView {
     }
     
     func initialize()  {
+        subtractingHorizontalFact = Int(self.frame.size.width/8)
+        subtractingVecticalFact = Int(self.frame.size.height/6)
         
         if self.url == ""{
             url = "notfound"
@@ -110,7 +112,7 @@ class CustomMediaCell:  UIView {
         print("layout Subviews Called")
         // Set the button's width and height to a square the size of the frame's height.
         let totalHeight = Int(self.frame.size.height) - subtractingVecticalFact
-        let totalWidth = Int(self.frame.size.width) - (subtractingHorizontalFact*3)
+        let totalWidth = Int(self.frame.size.width) - (subtractingHorizontalFact*4)
         
 
         // Offset each button's origin by the length of the button plus spacing.
@@ -130,6 +132,8 @@ class CustomMediaCell:  UIView {
         
         
     }
+    
+    
     
     override func intrinsicContentSize() -> CGSize {
         let buttonSize = Int(frame.size.height)
