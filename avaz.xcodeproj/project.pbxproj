@@ -23,6 +23,7 @@
 		080C5B0C1D09716700D03509 /* CommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 080C5B081D09716700D03509 /* CommentView.xib */; };
 		081D5DE51D58A98800E923E8 /* DataLoadingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081D5DE41D58A98800E923E8 /* DataLoadingDelegate.swift */; };
 		083CBA221D59E47800348D24 /* MyCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083CBA211D59E47800348D24 /* MyCustomView.swift */; };
+		084930681D5CC54700F157C7 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 084930671D5CC54700F157C7 /* iCarousel.m */; };
 		086F985A1D141C3600D40AA6 /* UploadPostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086F98591D141C3600D40AA6 /* UploadPostController.swift */; };
 		087708CE1D00862900EB983B /* VotesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 087708CD1D00862900EB983B /* VotesView.xib */; };
 		087708D01D00867900EB983B /* VotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087708CF1D00867900EB983B /* VotesView.swift */; };
@@ -70,6 +71,8 @@
 		080C5B081D09716700D03509 /* CommentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentView.xib; sourceTree = "<group>"; };
 		081D5DE41D58A98800E923E8 /* DataLoadingDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataLoadingDelegate.swift; sourceTree = "<group>"; };
 		083CBA211D59E47800348D24 /* MyCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCustomView.swift; sourceTree = "<group>"; };
+		084930661D5CC54700F157C7 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
+		084930671D5CC54700F157C7 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
 		086F98591D141C3600D40AA6 /* UploadPostController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadPostController.swift; sourceTree = "<group>"; };
 		087708CD1D00862900EB983B /* VotesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VotesView.xib; sourceTree = "<group>"; };
 		087708CF1D00867900EB983B /* VotesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VotesView.swift; sourceTree = "<group>"; };
@@ -238,6 +241,8 @@
 				08BFC49B1CFC4034007C4651 /* Assets.xcassets */,
 				0234F2CE1D2E53330020027D /* background.gif */,
 				08BFC4A01CFC4034007C4651 /* Info.plist */,
+				084930661D5CC54700F157C7 /* iCarousel.h */,
+				084930671D5CC54700F157C7 /* iCarousel.m */,
 				08BFC49D1CFC4034007C4651 /* LaunchScreen.storyboard */,
 				08BFC4981CFC4034007C4651 /* Main.storyboard */,
 				02A8D3821D16EE7C00F4E4CE /* MyPlayground.playground */,
@@ -428,6 +433,7 @@
 				08F49DE21D01C4EC005C0702 /* MapView.swift in Sources */,
 				02FCC2B31D1EA43C009EF1A7 /* SWRevealViewController.m in Sources */,
 				087708D01D00867900EB983B /* VotesView.swift in Sources */,
+				084930681D5CC54700F157C7 /* iCarousel.m in Sources */,
 				0890BD801D100AF500697E3F /* ApiManager.swift in Sources */,
 				0276B7991D1EB5B40007A4F2 /* File.swift in Sources */,
 				086F985A1D141C3600D40AA6 /* UploadPostController.swift in Sources */,

@@ -21,63 +21,35 @@ class MapView: UITableViewCell {
     @IBOutlet weak var loc_TextView: UILabel!
     @IBOutlet weak var postedBy: UILabel!
     
-    
-    @IBOutlet weak var mediaView: UIView!
     @IBOutlet weak var segmentControll: UISegmentedControl!
     
+    @IBOutlet weak var mediaView: MediaView!
     
     var currentPost: Post? = nil
-    var customView : MediaView?
     
     var previewCallback :PreviewDelegate?
+
     
-    func CustomInit()  {
-        if self.customView == nil{
-            print("CustomInit scrollview from nib in MapView")
-            self.customView  = MediaView(frame: CGRect(x: 0, y: 0, width: self.mediaView.bounds.size.width, height: self.mediaView.bounds.size.height), uploadable: false)
-            self.mediaView.addSubview(customView!)
-            toggleViews(true)
-            
-            
-            
-            
-            
-            //            for images in (self.currentPost?.media?.images)! {
-            //                print("media items are \(images)")
-            //            }
-            
-            
-        }
-        
-    }
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-        
-        print("awake from nib in MapView")
         
         
-        CustomInit()
-        
+        self.mediaView.hidden = true
     }
     
     var LoadedPostData = false
     func LoadPostMedia() {
         
-        if         LoadedPostData == false
+        if  LoadedPostData == false
         {
+            let imagePath = "background"
+            let urlPath = NSBundle.mainBundle().pathForResource(imagePath, ofType: "gif")
             
-            let media  = self.customView?.AddImageToScrollView("social-media", mediaType: MediaType.Image(), accessType: AccessType.Local())
+            let media  = self.mediaView?.AddImageToScrollView(urlPath!, mediaType: MediaType.Image(), accessType: AccessType.Local())
             
             media!.previewCallback = {
                 print("preview Called")
                 self.previewCallback?.PreviewImage(media!)
-                //            switch media?.mediaType {
-                //            case .Image():
-                //                self.previewCallback?.PreviewImage(media!)
-                //            case .Video():
-                //                self.previewCallback?.PreviewVideo(media!)
-                //            }
                 
             }
             
@@ -186,7 +158,7 @@ class MapView: UITableViewCell {
     }
     
     
-
+    
     
     func centerMapOnLocation(location: CLLocationCoordinate2D) {
         let regionRadius: CLLocationDistance = 1000

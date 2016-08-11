@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 
+
 enum MediaType{
     case Video();
     case Image();
@@ -46,15 +47,27 @@ class CustomMediaCell:  UIView {
     let filter = UIView()
     
     let padding = 40
+    lazy var fact = 10
+    
+    
     lazy var subtractingHorizontalFact: Int = {
-        return Int(self.frame.size.width/8)
+//        return Int(self.frame.size.width/8)
+        return Int(self.frame.size.width ) - 10
     }()
     lazy var subtractingVecticalFact: Int = {
-        return Int(self.frame.size.height/6)
+//        return Int(self.frame.size.height/6)
+        
+        return Int(self.frame.size.height) - 10
     }()
     
     
-    
+    lazy var xHorizontalFact: Int = {
+        
+        return Int(self.frame.origin.x ) + 10
+    }()
+    lazy var yVecticalFact: Int = {
+        return Int(self.frame.origin.y ) + 10
+    }()
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -68,12 +81,17 @@ class CustomMediaCell:  UIView {
     }
     
     func initialize()  {
-        subtractingHorizontalFact = Int(self.frame.size.width/8)
-        subtractingVecticalFact = Int(self.frame.size.height/6)
+//        subtractingHorizontalFact = Int(self.frame.size.width/8)
+//        subtractingVecticalFact = Int(self.frame.size.height/6)
+        var bounds = self.bounds
+        var centeer = self.center
+        var fm = self.frame
         
         if self.url == ""{
             url = "notfound"
         }else{
+            
+
             
             button.image = UIImage(named: "cancle")
             filter.backgroundColor = UIColor.blackColor()
@@ -94,7 +112,7 @@ class CustomMediaCell:  UIView {
             
 
             self.addSubview(filter)
-            self.addSubview(button)
+//            self.addSubview(button)
         }
         
     }
@@ -111,19 +129,28 @@ class CustomMediaCell:  UIView {
         
         print("layout Subviews Called")
         // Set the button's width and height to a square the size of the frame's height.
-        let totalHeight = Int(self.frame.size.height) - subtractingVecticalFact
-        let totalWidth = Int(self.frame.size.width) - (subtractingHorizontalFact*4)
+        let totalHeight = subtractingVecticalFact - yVecticalFact
+        let totalWidth = (subtractingHorizontalFact - xHorizontalFact)
         
 
         // Offset each button's origin by the length of the button plus spacing.
+        
+        
+        let bx =  self.center.x  - (self.bounds.width/2)
+        let by =  self.center.y  - (self.bounds.height/2)
+        let w = self.bounds.width
+        let h = self.bounds.height
+        
+        
+        
         let butnY = subtractingVecticalFact/2
         let butnX = totalWidth - totalWidth/12
         
-        button.frame = CGRect(x: butnX, y: butnY, width: totalWidth/8, height: totalWidth/8)
-        filter.frame = CGRect(x: subtractingHorizontalFact/2, y: subtractingVecticalFact/2, width: totalWidth, height: totalHeight/4)
+//        button.frame = CGRect(x: butnX, y: butnY, width: totalWidth/8, height: totalWidth/8)
+//        filter.frame = CGRect(x: subtractingHorizontalFact/2, y: subtractingVecticalFact/2, width: totalWidth, height: totalHeight/4)
         
         // Lets Create an Image View
-        imageView.frame = CGRect(x: subtractingHorizontalFact/2, y: subtractingVecticalFact/2, width: totalWidth, height: totalHeight)
+        imageView.frame = CGRect(x: bx, y: by, width: w, height: h)
         imageView.loadmedia(url, mediatype: self.mediaType, accessType: self.accessType)
         
 //        LoadImage(url)
@@ -142,34 +169,7 @@ class CustomMediaCell:  UIView {
     }
     
     
-    func getThumbnail()  {
-        do {
-            if case .Video() = self.mediaType {
-                print("compressing video frame")
-                let asset = AVURLAsset(URL: NSURL(fileURLWithPath: self.url), options: nil)
-                let imgGenerator = AVAssetImageGenerator(asset: asset)
-                imgGenerator.appliesPreferredTrackTransform = true
-                let cgImage = try imgGenerator.copyCGImageAtTime(CMTimeMake(0, 1), actualTime: nil)
-                
-                guard let loadedImage: UIImage = UIImage(CGImage: cgImage) else {
-                    return
-                    
-                }
-                // Set Compress Data
-                self.imageView.image = UIImage(data: UIImageJPEGRepresentation(loadedImage, 0.1)!)
-                print("done compressing")
-            }else if  case .Image() = self.mediaType {
-                print("compressing image")
-                // Set Compress Data
-                if let loadedImage = UIImage(named: self.url) {
-                    //FIXME: there was an undetected bug, when deleting and adding more images.
-                    self.imageView.image = UIImage(data: UIImageJPEGRepresentation(loadedImage, 0.1)!)
-                }
-            }
-        } catch let error as NSError {
-            print("Error generating thumbnail: \(error)")
-        }
-    }
+
     
     // MARK: Button Action
     

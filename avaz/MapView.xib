@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="499" height="403"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" verticalHuggingPriority="450" tableViewCell="5Un-Qh-SWN" id="hWh-yX-xbe">
-                <rect key="frame" x="0.0" y="0.0" width="499" height="402.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="499" height="402"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleAspectFill" verticalHuggingPriority="450" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="nst-tN-t9n">
@@ -32,14 +32,14 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="DID-tV-lD9">
                                         <rect key="frame" x="60" y="0.0" width="423" height="50"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="751" misplaced="YES" text="User Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2G0-sv-4Du">
-                                                <rect key="frame" x="0.0" y="0.0" width="423" height="27"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="751" text="User Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2G0-sv-4Du">
+                                                <rect key="frame" x="0.0" y="0.0" width="423" height="26"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="at Bahadurabad" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="khB-W9-2Yh">
-                                                <rect key="frame" x="0.0" y="36" width="423" height="15"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="at Bahadurabad" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="khB-W9-2Yh">
+                                                <rect key="frame" x="0.0" y="35" width="423" height="15"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -68,12 +68,15 @@
                                     <action selector="viewChanged:" destination="5Un-Qh-SWN" eventType="valueChanged" id="w22-RF-Zma"/>
                                 </connections>
                             </segmentedControl>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dQo-A6-lge">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dQo-A6-lge" customClass="MediaView" customModule="avaz" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="144" width="483" height="200"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="CFL-kI-dyf"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="canupload" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="xbU-Eb-wWE">
                                 <rect key="frame" x="0.0" y="354" width="483" height="200"/>
@@ -97,7 +100,7 @@
                 <outlet property="icon_imageView" destination="cZ7-Ar-VqN" id="ExL-05-JwY"/>
                 <outlet property="loc_TextView" destination="khB-W9-2Yh" id="sKe-cr-VRY"/>
                 <outlet property="map_MKView" destination="xbU-Eb-wWE" id="Zz3-Gt-Ooi"/>
-                <outlet property="mediaView" destination="dQo-A6-lge" id="Qv9-aN-K8N"/>
+                <outlet property="mediaView" destination="dQo-A6-lge" id="Ooh-vw-3jv"/>
                 <outlet property="postedBy" destination="2G0-sv-4Du" id="dfq-nf-Myh"/>
                 <outlet property="segmentControll" destination="F3B-Yx-CmK" id="QOg-Ox-i3n"/>
             </connections>
