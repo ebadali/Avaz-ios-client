@@ -23,12 +23,25 @@ class MapView: UITableViewCell {
     
     @IBOutlet weak var segmentControll: UISegmentedControl!
     
-    @IBOutlet weak var mediaView: MediaView!
+    
+    @IBOutlet weak var mediaView: MediaSource!
+//    mediaView
     
     var currentPost: Post? = nil
     
     var previewCallback :PreviewDelegate?
 
+    lazy var prevCall: (MediaSourceObject)->() =
+        { value in
+            print("prevCallback Called \(value.cscore)")
+            print("preview Called")
+            if case .Video() = value.mediaType {
+                self.previewCallback?.PreviewVideo(value)
+            }else if  case .Image() = value.mediaType {
+                self.previewCallback?.PreviewImage(value)
+            }
+    }
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -42,21 +55,26 @@ class MapView: UITableViewCell {
         
         if  LoadedPostData == false
         {
-            let imagePath = "background"
-            let urlPath = NSBundle.mainBundle().pathForResource(imagePath, ofType: "gif")
-            
-            let media  = self.mediaView?.AddImageToScrollView(urlPath!, mediaType: MediaType.Image(), accessType: AccessType.Local())
-            
-            media!.previewCallback = {
-                print("preview Called")
-                self.previewCallback?.PreviewImage(media!)
+            print(" **********  ")
+            for img in (currentPost?.media?.images)!
+            {
+                print(img)
+                self.mediaView?.AddMedia(img, mediaType: MediaType.Image(), accessType: AccessType.Remote(), prevCallback: prevCall)
                 
             }
             
-            media!.cancleCallback = {
-                print("cancled Called")
+            
+            for vid in (currentPost?.media?.videos)!
+            {
+                print(vid)
+                self.mediaView?.AddMedia(vid, mediaType: MediaType.Video(), accessType: AccessType.Remote(), prevCallback: prevCall)
                 
             }
+            
+            
+            self.mediaView?.AddMedia("social-media", mediaType: MediaType.Image(), accessType: AccessType.Local(), prevCallback: prevCall)
+            self.mediaView?.AddMedia("social-media", mediaType: MediaType.Image(), accessType: AccessType.Local(), prevCallback: prevCall)
+            
             
             LoadedPostData = true
             
@@ -125,40 +143,24 @@ class MapView: UITableViewCell {
                 //                dispatch_async(dispatch_get_main_queue(),{
                 //                    self.map_MKView.addAnnotation(artwork)
                 //                })
-                
-                
             }else{
-                
-                
                 dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_UTILITY.rawValue),0))
                 {
-                    
                     let initialLocation = CLLocationCoordinate2D(latitude: post.lat, longitude: post.lng)
                     
                     let artwork = Pointer(title: "Event Occure",
                                           locationName: post.loc,
                                           discipline: "Event",
                                           location: initialLocation)
-                    
-                    
                     //                self.centerMapOnLocation(initialLocation);
-                    
                     mapCache.setObject(artwork , forKey: lc)
                     //                dispatch_async(dispatch_get_main_queue(),{
                     //                     self.map_MKView.addAnnotation(artwork)
                     //                })
                 }
-                
-                
             }
-            
-            
         }
-        
     }
-    
-    
-    
     
     func centerMapOnLocation(location: CLLocationCoordinate2D) {
         let regionRadius: CLLocationDistance = 1000

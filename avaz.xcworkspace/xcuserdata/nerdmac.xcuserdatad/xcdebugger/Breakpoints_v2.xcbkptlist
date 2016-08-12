@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "avaz/ApiManager.swift"
-            timestampString = "492007495.791935"
+            timestampString = "492711474.23926"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "260"
-            endingLineNumber = "260">
+            startingLineNumber = "289"
+            endingLineNumber = "289">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -24,11 +24,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "avaz/ApiManager.swift"
-            timestampString = "492007408.263923"
+            timestampString = "492711003.974909"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
             landmarkName = "insertAPost(_:onCompletion:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -36,16 +36,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "avaz/MapView.swift"
-            timestampString = "492622484.733726"
+            filePath = "avaz/Media.swift"
+            timestampString = "492707715.680619"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
-            landmarkName = "setparams(_:callback:)"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "init(media:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

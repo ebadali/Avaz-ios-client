@@ -57,6 +57,7 @@ extension UIImageView{
             Animate()
         }
         else if let loadedImage = UIImage(named: urlString) {
+            
             self.image = UIImage(data: UIImageJPEGRepresentation(loadedImage, 0.1)!)
             imageCache.setObject(self.image!, forKey: urlString)
         }

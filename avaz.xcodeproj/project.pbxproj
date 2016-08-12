@@ -22,6 +22,9 @@
 		080C5B0B1D09716700D03509 /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080C5B071D09716700D03509 /* CommentView.swift */; };
 		080C5B0C1D09716700D03509 /* CommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 080C5B081D09716700D03509 /* CommentView.xib */; };
 		081D5DE51D58A98800E923E8 /* DataLoadingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081D5DE41D58A98800E923E8 /* DataLoadingDelegate.swift */; };
+		0825205C1D5DDBB700B04003 /* TestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0825205B1D5DDBB700B04003 /* TestController.swift */; };
+		0825205E1D5DDD6F00B04003 /* MediaSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0825205D1D5DDD6F00B04003 /* MediaSource.swift */; };
+		082520601D5DE8DC00B04003 /* MediaSourceObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0825205F1D5DE8DC00B04003 /* MediaSourceObject.swift */; };
 		083CBA221D59E47800348D24 /* MyCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083CBA211D59E47800348D24 /* MyCustomView.swift */; };
 		084930681D5CC54700F157C7 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 084930671D5CC54700F157C7 /* iCarousel.m */; };
 		086F985A1D141C3600D40AA6 /* UploadPostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086F98591D141C3600D40AA6 /* UploadPostController.swift */; };
@@ -70,6 +73,9 @@
 		080C5B071D09716700D03509 /* CommentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
 		080C5B081D09716700D03509 /* CommentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentView.xib; sourceTree = "<group>"; };
 		081D5DE41D58A98800E923E8 /* DataLoadingDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataLoadingDelegate.swift; sourceTree = "<group>"; };
+		0825205B1D5DDBB700B04003 /* TestController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestController.swift; sourceTree = "<group>"; };
+		0825205D1D5DDD6F00B04003 /* MediaSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaSource.swift; sourceTree = "<group>"; };
+		0825205F1D5DE8DC00B04003 /* MediaSourceObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaSourceObject.swift; sourceTree = "<group>"; };
 		083CBA211D59E47800348D24 /* MyCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCustomView.swift; sourceTree = "<group>"; };
 		084930661D5CC54700F157C7 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
 		084930671D5CC54700F157C7 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
@@ -141,6 +147,7 @@
 				08BFC4961CFC4034007C4651 /* ViewController.swift */,
 				02E5B8C71D53DD250000DFFB /* HomeViewController.swift */,
 				08C0FC071D54A5DC0052179C /* OptionMenuController.swift */,
+				0825205B1D5DDBB700B04003 /* TestController.swift */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -159,6 +166,8 @@
 				087708CF1D00867900EB983B /* VotesView.swift */,
 				087708CD1D00862900EB983B /* VotesView.xib */,
 				083CBA211D59E47800348D24 /* MyCustomView.swift */,
+				0825205D1D5DDD6F00B04003 /* MediaSource.swift */,
+				0825205F1D5DE8DC00B04003 /* MediaSourceObject.swift */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -426,6 +435,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0825205E1D5DDD6F00B04003 /* MediaSource.swift in Sources */,
 				02756E851D4FE340007A02E8 /* Media.swift in Sources */,
 				089EF9DB1D52082600B5F163 /* Comment.swift in Sources */,
 				022BF9E41D2F896B00126414 /* CustomMediaCell.swift in Sources */,
@@ -441,6 +451,7 @@
 				02E5B8C81D53DD250000DFFB /* HomeViewController.swift in Sources */,
 				08BFC4971CFC4034007C4651 /* ViewController.swift in Sources */,
 				08BFC4951CFC4034007C4651 /* AppDelegate.swift in Sources */,
+				0825205C1D5DDBB700B04003 /* TestController.swift in Sources */,
 				025BFB981D25D82600342E55 /* LoginView.swift in Sources */,
 				0234F2D11D2E6B020020027D /* Utils.swift in Sources */,
 				081D5DE51D58A98800E923E8 /* DataLoadingDelegate.swift in Sources */,
@@ -450,6 +461,7 @@
 				08F554F31D1AB7A4000BFD63 /* RegisterViewController.swift in Sources */,
 				080C5B0B1D09716700D03509 /* CommentView.swift in Sources */,
 				08BFC4B11CFC5872007C4651 /* Post.swift in Sources */,
+				082520601D5DE8DC00B04003 /* MediaSourceObject.swift in Sources */,
 				08C0FC081D54A5DC0052179C /* OptionMenuController.swift in Sources */,
 				029887691D184B7A00D8903F /* LoginViewController.swift in Sources */,
 				0879B2B81D4A30C80078C5EB /* UserData.swift in Sources */,

@@ -11,6 +11,7 @@ import CoreLocation
 import AVKit
 import AVFoundation
 import SwiftyJSON
+import SwiftLoader
 
 class UploadPostController: UIViewController, UIImagePickerControllerDelegate,
 UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
@@ -21,10 +22,7 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
     @IBOutlet weak var menuItem: UIBarButtonItem!
 
     
-    var uploadImageView: CustomMediaCell?
-
-    
-    @IBOutlet weak var mediaPlaceHolder: MediaView!
+    @IBOutlet weak var mediaSource: MediaSource!
     
     
     @IBAction func createThePost(sender: AnyObject) {
@@ -45,10 +43,10 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
             self.mediaObject.content = detailText
             let post = Post(postid:  "unknownid", media: self.mediaObject, title : title, up: 0, down: 0, loc : "", latitude : self.center!.latitude ,longitude : (self.center?.longitude)!)
            
-            
+            SwiftLoader.show(animated: true)
             ApiManager.sharedInstance.insertAPost(post, onCompletion:
             {(json : JSON) in
-                
+                SwiftLoader.hide()
                 if (json != nil )
                 {
                     // Got A post.
@@ -71,6 +69,22 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
     @IBOutlet weak var detailText: UITextView!
     
     
+    lazy var prevCall: (MediaSourceObject)->() =
+        { value in
+            print("prevCallback Called \(value.cscore)")
+            if case .Video() = value.mediaType {
+                self.DisplayVideo(value);
+            }else if  case .Image() = value.mediaType {
+                self.DisplayImage(value);
+            }
+    }
+    
+    
+    lazy var uploadCall: (MediaSourceObject)->() =
+        { value in
+            print("uploadCall Called \(value.cscore)")
+            self.TakeFromCameraAction()
+    }
     
 //    var mediaView : UIView!
     var locationManager: CLLocationManager!
@@ -81,22 +95,12 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
         
         print("--View Did Load Called In \(NSStringFromClass(self.classForCoder)) \n")
 
-        // Do any additional setup after loading the view.
+
         
-        // Adding ImageView Callbacks
-        
-        // Uploadable Image view is created and placed.
-        uploadImageView = self.mediaPlaceHolder.AddImageToScrollView("upload", mediaType: MediaType.Image(), accessType: AccessType.Local())
-        uploadImageView?.previewCallback = {
-            self.TakeFromCameraAction(self.uploadImageView!)
-        }
-        
-        uploadImageView?.cancleCallback = {
-            print("Cancle Callback")
-        }
+        self.AddMediaToScrollView("upload", type: MediaType.Image(), preferedFunc: uploadCall)
         
         
-//        self.scrollView.addSubview(uploadImageView)
+        
 
         setupHamburger()
         
@@ -132,7 +136,7 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
     }
     
 
-    func TakeFromCameraAction(sender: AnyObject) {
+    func TakeFromCameraAction() {
         
         // Display Pop-Over
         let alertController = UIAlertController(title: "Select Source", message: "Select Image From", preferredStyle: UIAlertControllerStyle.Alert)
@@ -221,7 +225,7 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
             let pathString = videoUrl.relativePath
             print("this is url \(pathString)")
             
-            self.AddMediaToScrollView(pathString!, type: MediaType.Video())
+            self.AddMediaToScrollView(pathString!, type: MediaType.Video(), preferedFunc: self.prevCall)
             
         }
         else if mediaType!.isEqualToString("public.image"){
@@ -230,7 +234,7 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
             if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
                 
                 let imageUrl = Utils.SaveImageToDirectory(pickedImage)
-                self.AddMediaToScrollView(imageUrl, type: MediaType.Image())
+                self.AddMediaToScrollView(imageUrl, type: MediaType.Image(), preferedFunc: self.prevCall)
 //                self.AddImageToScrollView(pickedImage)
             }
         }
@@ -248,38 +252,24 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
             let urlPath = NSBundle.mainBundle().pathForResource(imagePath, ofType: "gif")
             
             
-//            let nsurl = NSURL(fileURLWithPath: urlPath!)
+            let nsurl = NSURL(fileURLWithPath: urlPath!)
 //            let img = NSData(contentsOfURL: nsurl)
-            
-            AddMediaToScrollView(urlPath!, type: MediaType.Image())
+          
+
+            AddMediaToScrollView(urlPath!, type: MediaType.Image(), preferedFunc: self.prevCall)
         }
         
 
     }
-//    0346-2817022 sohail,
-//    0336-2810411 jauhr.
     
-    func AddMediaToScrollView(path: String, type: MediaType)  {
-
-
-        let hold = self.mediaPlaceHolder.AddImageToScrollView(path,mediaType: MediaType.Image(), accessType: AccessType.Local())
-        hold.previewCallback = {
-            print("preview Called")
-            
-            if case .Video() = hold.mediaType {
-                self.DisplayVideo(hold);
-            }else if  case .Image() = hold.mediaType {
-                self.DisplayImage(hold);
-            }
-
-        }
-        hold.cancleCallback = {
-            print("cancled Called")
-            self.mediaPlaceHolder.RemoveThisMediaCell(hold)
-            self.mediaObject.removeMediaContent(hold.url, type: hold.mediaType)
-        }
+    func AddMediaToScrollView(path: String, type: MediaType, preferedFunc : (MediaSourceObject)->())  {
         
-        hold.contentMode = .ScaleAspectFit
+        
+        
+        self.mediaSource.AddMedia(path, mediaType: MediaType.Image(), accessType: AccessType.Local(),
+                                  prevCallback:  preferedFunc
+        )
+        
     
         self.mediaObject.addMediaContent(path, type: type)
       
@@ -308,7 +298,7 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
         sender.view?.removeFromSuperview()
     }
     
-    func DisplayImage(image: CustomMediaCell)  {
+    func DisplayImage(image: MediaSourceObject)  {
         let newImageView = UIImageView(image: UIImage(contentsOfFile: image.url))
         newImageView.frame = self.view.frame
         newImageView.backgroundColor = .blackColor()
@@ -319,7 +309,7 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
         self.view.addSubview(newImageView)
     }
     
-    func DisplayVideo(image: CustomMediaCell)  {
+    func DisplayVideo(image: MediaSourceObject)  {
         
         let playerViewController = AVPlayerViewController()
         let playerView = AVPlayer(URL: NSURL(fileURLWithPath: image.url))

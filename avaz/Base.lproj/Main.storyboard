@@ -178,25 +178,12 @@
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VEv-Zr-uSS" customClass="MediaView" customModule="avaz" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZAS-1C-OLq" customClass="MediaSource" customModule="avaz" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="170" width="520" height="200"/>
-                                        <color key="backgroundColor" red="0.59822725254659348" green="0.77327829329604147" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.78234033189176755" green="1" blue="0.76864178141186179" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="200" id="mlt-w2-Y1N"/>
+                                            <constraint firstAttribute="height" constant="200" id="EV2-OV-Thi"/>
                                         </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isUploadAble" value="YES"/>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                <real key="value" value="14"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="62"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" red="1" green="0.221543210280158" blue="0.15197366177105309" alpha="1" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="canupload" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Axv-rX-lhc">
                                         <rect key="frame" x="0.0" y="390" width="520" height="30"/>
@@ -222,7 +209,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="detailText" destination="UeA-Dx-5V0" id="pgr-YD-3wE"/>
-                        <outlet property="mediaPlaceHolder" destination="VEv-Zr-uSS" id="0TP-Xu-fUB"/>
+                        <outlet property="mediaSource" destination="ZAS-1C-OLq" id="5V9-bn-2ov"/>
                         <outlet property="menuItem" destination="v7Y-AV-w1m" id="i2u-gI-5J4"/>
                         <outlet property="titleText" destination="f3w-Lp-QSD" id="2kF-bR-zFe"/>
                     </connections>
@@ -1132,6 +1119,54 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gXc-Z3-lbs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-997" y="1326"/>
+        </scene>
+        <!--Test Controller-->
+        <scene sceneID="KDT-IQ-LJG">
+            <objects>
+                <viewController id="sWf-9Z-fa4" customClass="TestController" customModule="avaz" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vdE-bM-Ae5"/>
+                        <viewControllerLayoutGuide type="bottom" id="mKE-4K-Lwc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="X7W-rT-GNN">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="5BD-iS-4hE">
+                                <rect key="frame" x="40" y="150" width="520" height="300"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="swA-21-4RB" customClass="MediaView" customModule="avaz" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="520" height="100"/>
+                                        <color key="backgroundColor" red="0.81571182301656031" green="1" blue="0.85743002771213472" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="O5i-Q3-NLW"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6s8-Fe-TUm" customClass="MediaSource" customModule="avaz" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="100" width="520" height="200"/>
+                                        <color key="backgroundColor" red="1" green="0.48929652090701325" blue="0.42060047713746884" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="YEd-GD-AWJ"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="6s8-Fe-TUm" firstAttribute="leading" secondItem="5BD-iS-4hE" secondAttribute="leading" id="UJm-Sg-Y52"/>
+                                    <constraint firstAttribute="trailing" secondItem="6s8-Fe-TUm" secondAttribute="trailing" id="sld-rs-RPa"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="5BD-iS-4hE" secondAttribute="trailing" constant="20" id="Ok7-sJ-8at"/>
+                            <constraint firstItem="5BD-iS-4hE" firstAttribute="centerY" secondItem="X7W-rT-GNN" secondAttribute="centerY" id="TNZ-Wb-gO0"/>
+                            <constraint firstItem="5BD-iS-4hE" firstAttribute="leading" secondItem="X7W-rT-GNN" secondAttribute="leadingMargin" constant="20" id="mnQ-eG-P9V"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kgn-cC-DbX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1687" y="-2746"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

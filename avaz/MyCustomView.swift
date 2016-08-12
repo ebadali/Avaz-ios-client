@@ -9,7 +9,7 @@
 import Foundation
 
 
-class MediaView: UIView, iCarouselDataSource {
+class MediaView: UIView, iCarouselDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource  {
 
     
     @IBInspectable var canupload: Bool = false {
@@ -108,7 +108,23 @@ class MediaView: UIView, iCarouselDataSource {
         return imgOne
     }
     
+    
+    var collectionView: UICollectionView!
+    
     func addCustomView() {
+        
+        self.userInteractionEnabled = true
+        
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        layout.itemSize = CGSize(width: 20, height: 20)
+        
+        self.collectionView = UICollectionView(frame: self.frame, collectionViewLayout: layout)
+        self.collectionView.dataSource = self
+        self.collectionView.delegate = self
+        self.collectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+        self.collectionView.backgroundColor = UIColor.whiteColor()
+        self.addSubview(collectionView)
         
         
         
@@ -118,13 +134,13 @@ class MediaView: UIView, iCarouselDataSource {
 //      Add Layout Margins.
 //      Add Layout Spacing.
         
-        self.carousel.centerItemWhenSelected = true
-        self.carousel.dataSource = self
-        self.addSubview(self.carousel)
+//        self.carousel.centerItemWhenSelected = true
+//        self.carousel.dataSource = self
+//        self.addSubview(self.carousel)
         
         
 
-        self.AddImageToScrollView("social-media", mediaType: MediaType.Image(), accessType:  AccessType.Local())
+//        self.AddImageToScrollView("social-media", mediaType: MediaType.Image(), accessType:  AccessType.Local())
     }
     
     
@@ -132,6 +148,15 @@ class MediaView: UIView, iCarouselDataSource {
 //        
 //    }
     
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath)
+        cell.backgroundColor = UIColor.orangeColor()
+        return cell
+    }
     
     func RemoveThisMediaCell(image: CustomMediaCell)  {
         //        print("try to this \(image.tag)")

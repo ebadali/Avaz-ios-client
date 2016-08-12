@@ -10,6 +10,8 @@ import UIKit
 import SwiftyJSON
 import AVKit
 import AVFoundation
+import SwiftLoader
+
 class UpdateDetailViewController: UIViewController, UITableViewDataSource , PreviewDelegate{
 
 //    lazy var refreshControl: UIRefreshControl = {
@@ -92,9 +94,11 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource , Prev
     func LoadRemoteData()  {
         
         
-        
+                SwiftLoader.show(animated: true)
         ApiManager.sharedInstance.getAllComments(data.postID,
             onCompletion: {(json : JSON) in
+                
+                  SwiftLoader.hide()
 //                print("All Commments are - \(json)")
                 
                 guard let mediaobj = json["media"].array,
@@ -263,9 +267,11 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource , Prev
     
     
     func sendThisComment(cmnt: Comment)  {
+                        SwiftLoader.show(animated: true)
         ApiManager.sharedInstance.insertAComment(data.postID, comment: cmnt,
                                             
             onCompletion: {(json : JSON) in
+                                SwiftLoader.hide()
                 print("All Commments are - \(json)")
         })
     }
@@ -297,7 +303,7 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource , Prev
     }
     
     
-    func PreviewImage(mediaObject : CustomMediaCell){
+    func PreviewImage(mediaObject : MediaSourceObject){
         print("Lets Display someVideo")
         
         let newImageView = UIImageView(image: mediaObject.imageView.image)
@@ -309,8 +315,8 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource , Prev
         newImageView.addGestureRecognizer(tap)
         self.view.addSubview(newImageView)
     }
-    func PreviewVideo(mediaObject : CustomMediaCell){
-        print("Lets Display someImage")
+    func PreviewVideo(mediaObject : MediaSourceObject){
+        print("Lets Display someVideo")
         
         let playerViewController = AVPlayerViewController()
         let playerView = AVPlayer(URL: NSURL(fileURLWithPath: mediaObject.url))

@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyJSON
+import SwiftLoader
 
 class LoginViewController: UIViewController,  SignUpDelegate, FBSDKLoginButtonDelegate{
     
@@ -44,7 +45,7 @@ class LoginViewController: UIViewController,  SignUpDelegate, FBSDKLoginButtonDe
         print (" \(username)")
         print (" \(password)")
 //                self.dismissViewControllerAnimated(true, completion: nil)
-        
+                        SwiftLoader.show(animated: true)
         ApiManager.sharedInstance.LogInApi(username, password: password,
                                            onCompletion:
             {(json : JSON) in
@@ -59,7 +60,7 @@ class LoginViewController: UIViewController,  SignUpDelegate, FBSDKLoginButtonDe
                     
                     
                     ApiManager.sharedInstance.getAllPost { (json : JSON) in
-                        
+                        SwiftLoader.hide()
                         if (json != nil )
                         {
                             
@@ -72,8 +73,9 @@ class LoginViewController: UIViewController,  SignUpDelegate, FBSDKLoginButtonDe
                         }
                         
                     }
+                }else{
+                    SwiftLoader.hide()
                 }
-                
             }
         )
     }

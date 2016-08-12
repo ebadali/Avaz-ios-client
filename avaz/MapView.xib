@@ -68,7 +68,7 @@
                                     <action selector="viewChanged:" destination="5Un-Qh-SWN" eventType="valueChanged" id="w22-RF-Zma"/>
                                 </connections>
                             </segmentedControl>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dQo-A6-lge" customClass="MediaView" customModule="avaz" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dQo-A6-lge" customClass="MediaSource" customModule="avaz" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="144" width="483" height="200"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -100,7 +100,7 @@
                 <outlet property="icon_imageView" destination="cZ7-Ar-VqN" id="ExL-05-JwY"/>
                 <outlet property="loc_TextView" destination="khB-W9-2Yh" id="sKe-cr-VRY"/>
                 <outlet property="map_MKView" destination="xbU-Eb-wWE" id="Zz3-Gt-Ooi"/>
-                <outlet property="mediaView" destination="dQo-A6-lge" id="Ooh-vw-3jv"/>
+                <outlet property="mediaView" destination="dQo-A6-lge" id="gD4-RI-LjZ"/>
                 <outlet property="postedBy" destination="2G0-sv-4Du" id="dfq-nf-Myh"/>
                 <outlet property="segmentControll" destination="F3B-Yx-CmK" id="QOg-Ox-i3n"/>
             </connections>

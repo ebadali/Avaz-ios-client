@@ -135,22 +135,22 @@ class CustomMediaCell:  UIView {
 
         // Offset each button's origin by the length of the button plus spacing.
         
-        
-        let bx =  self.center.x  - (self.bounds.width/2)
-        let by =  self.center.y  - (self.bounds.height/2)
-        let w = self.bounds.width
-        let h = self.bounds.height
-        
-        
-        
-        let butnY = subtractingVecticalFact/2
-        let butnX = totalWidth - totalWidth/12
-        
-//        button.frame = CGRect(x: butnX, y: butnY, width: totalWidth/8, height: totalWidth/8)
-//        filter.frame = CGRect(x: subtractingHorizontalFact/2, y: subtractingVecticalFact/2, width: totalWidth, height: totalHeight/4)
-        
-        // Lets Create an Image View
-        imageView.frame = CGRect(x: bx, y: by, width: w, height: h)
+//        
+//        let bx =  self.center.x  - (self.bounds.width/2)
+//        let by =  self.center.y  - (self.bounds.height/2)
+//        let w = self.bounds.width
+//        let h = self.bounds.height
+//        
+//        
+//        
+//        let butnY = subtractingVecticalFact/2
+//        let butnX = totalWidth - totalWidth/12
+//        
+////        button.frame = CGRect(x: butnX, y: butnY, width: totalWidth/8, height: totalWidth/8)
+////        filter.frame = CGRect(x: subtractingHorizontalFact/2, y: subtractingVecticalFact/2, width: totalWidth, height: totalHeight/4)
+//        
+//        // Lets Create an Image View
+//        imageView.frame = CGRect(x: bx, y: by, width: w, height: h)
         imageView.loadmedia(url, mediatype: self.mediaType, accessType: self.accessType)
         
 //        LoadImage(url)

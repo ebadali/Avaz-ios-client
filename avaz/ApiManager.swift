@@ -9,7 +9,7 @@
 import Foundation
 import SwiftHTTP
 import SwiftyJSON
-
+import SwiftLoader
 
 
 typealias ServiceResponse = (JSON, String?) -> Void
@@ -23,8 +23,11 @@ class ApiManager: NSObject {
     
 
     func getRandomPost(onCompletion: (JSON) -> Void) {
+        
+        
         let route = baseURL
         makeHTTPGetRequest(route, params:[:], onCompletion: { json, err in
+            
             onCompletion(json as JSON)
         })
     }
@@ -33,19 +36,24 @@ class ApiManager: NSObject {
     
     func LogInApi(userName: String, password: String, onCompletion: (JSON) ->Void) {
         
+
         let someTuble = [ "username":userName, "password":password];
         makeHTTPPostRequest(baseURL+"user/login",params: someTuble, onCompletion: { json, err in
-            onCompletion(json as JSON)
+
+            
+                       onCompletion(json as JSON)
         })
     }
     func RegsiterApi(userName: String,email: String, password: String, pic: String?,  onCompletion: (JSON) ->Void) {
         
 //        let fileUrl = NSURL(fileURLWithPath: "/Users/nerdmac/Documents/ios/avaz/avaz/Assets.xcassets/upload.imageset/Upload-50.png")
-        
+   
+
         
         let picData =  ( pic != "") ?  Upload(fileUrl: NSURL(fileURLWithPath: pic!)) : ""
         let parameters = [ "username":userName, "password":password, "email":email, "file": picData];
         makeHTTPPostRequest(baseURL+"user/register", params: parameters, onCompletion: { json, err in
+           
             onCompletion(json as JSON )
         })
     }
@@ -66,9 +74,9 @@ class ApiManager: NSObject {
         guard let postToFetch = postid else{
             return
         }
-        
         let parameters = [ "sessionid": UserData.sharedInstance.sessionId as! AnyObject, "postid":postToFetch];
         makeHTTPGetRequest(baseURL+"post/getallcomments", params:parameters, onCompletion: { json, err in
+          
             onCompletion(json as JSON)
         })
         
@@ -82,9 +90,9 @@ class ApiManager: NSObject {
         guard let postToFetch = postid else{
             return
         }
-        
         let parameters = [ "sessionid": UserData.sharedInstance.sessionId as! AnyObject, "postid":postToFetch , "comment": comment.media.content! ];
         makeHTTPPostRequest(baseURL+"post/docomment", params:parameters, onCompletion: { json, err in
+           
             onCompletion(json as JSON)
         })
         
@@ -106,8 +114,8 @@ class ApiManager: NSObject {
             dict[pair.0] = pair.1
             return dict
         }
-        
         makeHTTPPostRequest(baseURL+"post/dopost", params: parameters, onCompletion: { json, err in
+        
             onCompletion(json as JSON)
         })
         
@@ -120,6 +128,7 @@ class ApiManager: NSObject {
         
         
         makeHTTPGetRequest(baseURL+"user/logout", params: parameters, onCompletion: { json, err in
+            
             onCompletion(json as JSON)
         })
         
@@ -135,9 +144,11 @@ class ApiManager: NSObject {
         
         //Todo: Could add sessionid object in params may be concat two array.
         do {
+//            SwiftLoader.show(animated: true)
             let opt = try HTTP.POST(baseurl, parameters: params)
             opt.start { response in
-
+//                SwiftLoader.hide()
+                
 //                print("text is :  \(response.text) " )
 //                print("responce is :  \(response) " )
 //                
@@ -182,8 +193,10 @@ class ApiManager: NSObject {
     func makeHTTPGetRequest(path: String,params: [String: AnyObject]?, onCompletion: ServiceResponse) {
     
         do {
+//            SwiftLoader.show(animated: true)
             let opt = try HTTP.GET(path, parameters: params)
             opt.start { response in
+//                SwiftLoader.hide()
                 var json: NSDictionary?
                 do {
                     json = try NSJSONSerialization.JSONObjectWithData(response.data, options: NSJSONReadingOptions()) as? NSDictionary
@@ -216,20 +229,23 @@ class ApiManager: NSObject {
 //            print("got an error creating the request: \(error)")
             onCompletion(nil, "\(error)")
         }
-//        let request = NSMutableURLRequest(URL: NSURL(string: path)!)
-//        
-//        let session = NSURLSession.sharedSession()
-//        
-//        let task = session.dataTaskWithRequest(request, completionHandler:
-//            {(data, response, error) -> Void in
-//                if let jsonData = data {
-//                    let json:JSON = JSON(data: jsonData)
-//                    onCompletion(json, "\(error)")
-//                } else {
-//                    onCompletion(nil, "\(error)")
-//                }
-//            })
-//        task.resume()
+
+    }
+    
+    
+    private override init() {
+        super.init()
+        
+        var config : SwiftLoader.Config = SwiftLoader.Config()
+        config.size = 150
+        config.spinnerColor = .redColor()
+        config.foregroundColor = .blackColor()
+        config.backgroundColor = .clearColor()
+        config.foregroundAlpha = 0.5
+        
+        
+         SwiftLoader.setConfig(config)
+        
     }
     
 }

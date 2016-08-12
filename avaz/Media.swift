@@ -31,23 +31,59 @@ class Media {
 //        self.content = "sdsd"
         
         
-        guard let allVides = media["videourl"].array,
-                allImages = media["imgurl"].array else
-        {
-            return
-        }
-        
-        
-        for video in allVides {
-            addMediaContent(video[video.dictionaryValue.keys.first!].stringValue, type: .Video())
-        }
-        
-        
-        for img in allImages {
+        var vid = media["videourl"]
+        var img = media["imgurl"]
 
-            addMediaContent(img[img.dictionaryValue.keys.first!].stringValue, type: .Image())
-            
+        print(img)
+        print("---Images")
+        
+        if let img = media["imgurl"].dictionary {
+            for somevar in img
+            {
+                addMediaContent(somevar.1.stringValue, type: .Image())
+                print(somevar.1)
+            }
         }
+        print("---Videos")
+        if let vid = media["videourl"].dictionary {
+            for somevar in vid
+            {
+                addMediaContent(somevar.1.stringValue, type: .Video())
+//                print(somevar.0)
+                print(somevar.1)
+                
+            }
+        }
+        
+        
+//        print(img)
+//        print(vid)
+        
+//        for somevar in img.dictionary!
+//        {
+//            print(somevar.0)
+//            print(somevar.1)
+//            
+//        }
+//        
+//        
+//        guard let allVides = media["videourl"].array,
+//                allImages = media["imgurl"].array else
+//        {
+//            return
+//        }
+//        
+        
+//        for video in allVides {
+//            addMediaContent(video[video.dictionaryValue.keys.first!].stringValue, type: .Video())
+//        }
+//        
+//        
+//        for img in allImages {
+//
+//            addMediaContent(img[img.dictionaryValue.keys.first!].stringValue, type: .Image())
+//            
+//        }
         
     }
     
