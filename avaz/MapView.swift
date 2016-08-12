@@ -21,70 +21,60 @@ class MapView: UITableViewCell {
     @IBOutlet weak var loc_TextView: UILabel!
     @IBOutlet weak var postedBy: UILabel!
     
-    
-    @IBOutlet weak var mediaView: UIView!
     @IBOutlet weak var segmentControll: UISegmentedControl!
     
     
+    @IBOutlet weak var mediaView: MediaSource!
+//    mediaView
+    
     var currentPost: Post? = nil
-    var customView : MediaView?
     
     var previewCallback :PreviewDelegate?
-    
-    func CustomInit()  {
-        if self.customView == nil{
-            print("CustomInit scrollview from nib in MapView")
-            self.customView  = MediaView(frame: CGRect(x: 0, y: 0, width: self.mediaView.bounds.size.width, height: self.mediaView.bounds.size.height), uploadable: false)
-            self.mediaView.addSubview(customView!)
-            toggleViews(true)
-            
-            
-            
-            
-            
-            //            for images in (self.currentPost?.media?.images)! {
-            //                print("media items are \(images)")
-            //            }
-            
-            
-        }
-        
+
+    lazy var prevCall: (MediaSourceObject)->() =
+        { value in
+            print("prevCallback Called \(value.cscore)")
+            print("preview Called")
+            if case .Video() = value.mediaType {
+                self.previewCallback?.PreviewVideo(value)
+            }else if  case .Image() = value.mediaType {
+                self.previewCallback?.PreviewImage(value)
+            }
     }
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-        
-        print("awake from nib in MapView")
         
         
-        CustomInit()
-        
+        self.mediaView.hidden = true
     }
     
     var LoadedPostData = false
     func LoadPostMedia() {
         
-        if         LoadedPostData == false
+        if  LoadedPostData == false
         {
-            
-            let media  = self.customView?.AddImageToScrollView("social-media", mediaType: MediaType.Image(), accessType: AccessType.Local())
-            
-            media!.previewCallback = {
-                print("preview Called")
-                self.previewCallback?.PreviewImage(media!)
-                //            switch media?.mediaType {
-                //            case .Image():
-                //                self.previewCallback?.PreviewImage(media!)
-                //            case .Video():
-                //                self.previewCallback?.PreviewVideo(media!)
-                //            }
+            print(" **********  ")
+            for img in (currentPost?.media?.images)!
+            {
+                print(img)
+                self.mediaView?.AddMedia(img, mediaType: MediaType.Image(), accessType: AccessType.Remote(), prevCallback: prevCall)
                 
             }
             
-            media!.cancleCallback = {
-                print("cancled Called")
+            
+            for vid in (currentPost?.media?.videos)!
+            {
+                print(vid)
+                self.mediaView?.AddMedia(vid, mediaType: MediaType.Video(), accessType: AccessType.Remote(), prevCallback: prevCall)
                 
             }
+            
+            
+            self.mediaView?.AddMedia("social-media", mediaType: MediaType.Image(), accessType: AccessType.Local(), prevCallback: prevCall)
+            self.mediaView?.AddMedia("social-media", mediaType: MediaType.Image(), accessType: AccessType.Local(), prevCallback: prevCall)
+            
             
             LoadedPostData = true
             
@@ -153,40 +143,24 @@ class MapView: UITableViewCell {
                 //                dispatch_async(dispatch_get_main_queue(),{
                 //                    self.map_MKView.addAnnotation(artwork)
                 //                })
-                
-                
             }else{
-                
-                
                 dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_UTILITY.rawValue),0))
                 {
-                    
                     let initialLocation = CLLocationCoordinate2D(latitude: post.lat, longitude: post.lng)
                     
                     let artwork = Pointer(title: "Event Occure",
                                           locationName: post.loc,
                                           discipline: "Event",
                                           location: initialLocation)
-                    
-                    
                     //                self.centerMapOnLocation(initialLocation);
-                    
                     mapCache.setObject(artwork , forKey: lc)
                     //                dispatch_async(dispatch_get_main_queue(),{
                     //                     self.map_MKView.addAnnotation(artwork)
                     //                })
                 }
-                
-                
             }
-            
-            
         }
-        
     }
-    
-    
-
     
     func centerMapOnLocation(location: CLLocationCoordinate2D) {
         let regionRadius: CLLocationDistance = 1000
