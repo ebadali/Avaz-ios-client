@@ -71,12 +71,29 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
     
     lazy var prevCall: (MediaSourceObject)->() =
         { value in
-            print("prevCallback Called \(value.cscore)")
-            if case .Video() = value.mediaType {
-                self.DisplayVideo(value);
-            }else if  case .Image() = value.mediaType {
-                self.DisplayImage(value);
-            }
+            
+            var refreshAlert = UIAlertController(title: "Action", message: "Select Action", preferredStyle: UIAlertControllerStyle.Alert)
+            refreshAlert.addAction(UIAlertAction(title: "Preview", style: .Default, handler: { (action: UIAlertAction!) in
+                print("prevCallback Called \(value.cscore)")
+                if case .Video() = value.mediaType {
+                    self.DisplayVideo(value);
+                }else if  case .Image() = value.mediaType {
+                    self.DisplayImage(value);
+                }
+            }))
+            
+            refreshAlert.addAction(UIAlertAction(title: "Remove", style: .Default, handler: { (action: UIAlertAction!) in
+                self.mediaSource.Remove(value.url)
+                
+            }))
+            
+            refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action: UIAlertAction!) in
+                print("Handle Cancel Logic here")
+            }))
+            
+            self.presentViewController(refreshAlert, animated: true, completion: nil)
+            
+            
     }
     
     
@@ -139,7 +156,7 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
     func TakeFromCameraAction() {
         
         // Display Pop-Over
-        let alertController = UIAlertController(title: "Select Source", message: "Select Image From", preferredStyle: UIAlertControllerStyle.Alert)
+        let alertController = UIAlertController(title: "Upload Media", message: "Select Image From", preferredStyle: UIAlertControllerStyle.Alert)
         
         let gallery = UIAlertAction(title: "Gallery", style: UIAlertActionStyle.Default, handler: {(alert :UIAlertAction!) in
             print("Gallery button tapped")
@@ -149,22 +166,25 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
         
         let camera = UIAlertAction(title: "Camera", style: UIAlertActionStyle.Default, handler: {(alert :UIAlertAction!) in
             print("Camera button tapped")
-            
-            if(!alertController.isBeingDismissed())
-            {
-                self.TakeFromCamera()
-            }
+            self.TakeFromCamera()
 
         })
+        
+       
         
         
         alertController.addAction(gallery)
         alertController.addAction(camera)
         
-        self.presentViewController(alertController, animated: true, completion:{
-            alertController.view.superview?.userInteractionEnabled = true
-            alertController.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.alertControllerBackgroundTapped)))
-        })
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action: UIAlertAction!) in
+            print("Handle Cancel Logic here")
+        }))
+        self.presentViewController(alertController, animated: true, completion:nil)
+        
+//        self.presentViewController(alertController, animated: true, completion:{
+//            alertController.view.superview?.userInteractionEnabled = true
+//            alertController.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.alertControllerBackgroundTapped)))
+//        })
     }
     
     func TakeFromCamera()  {
@@ -208,7 +228,7 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
     
     func alertControllerBackgroundTapped()
     {
-        self.dismissViewControllerAnimated(true, completion: nil)
+//        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {

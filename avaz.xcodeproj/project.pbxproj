@@ -10,6 +10,7 @@
 		022BF9E41D2F896B00126414 /* CustomMediaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022BF9E31D2F896A00126414 /* CustomMediaCell.swift */; };
 		0234F2CF1D2E53330020027D /* background.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0234F2CE1D2E53330020027D /* background.gif */; };
 		0234F2D11D2E6B020020027D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0234F2D01D2E6B020020027D /* Utils.swift */; };
+		023AB4FB1D60765D007F51E1 /* MediaSource.xib in Resources */ = {isa = PBXBuildFile; fileRef = 023AB4FA1D60765D007F51E1 /* MediaSource.xib */; };
 		025BFB961D25D7ED00342E55 /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 025BFB951D25D7ED00342E55 /* LoginView.xib */; };
 		025BFB981D25D82600342E55 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025BFB971D25D82600342E55 /* LoginView.swift */; };
 		02756E851D4FE340007A02E8 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02756E841D4FE340007A02E8 /* Media.swift */; };
@@ -58,6 +59,7 @@
 		022BF9E31D2F896A00126414 /* CustomMediaCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomMediaCell.swift; sourceTree = "<group>"; };
 		0234F2CE1D2E53330020027D /* background.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = background.gif; sourceTree = "<group>"; };
 		0234F2D01D2E6B020020027D /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		023AB4FA1D60765D007F51E1 /* MediaSource.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MediaSource.xib; sourceTree = "<group>"; };
 		025BFB951D25D7ED00342E55 /* LoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
 		025BFB971D25D82600342E55 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		02756E841D4FE340007A02E8 /* Media.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
@@ -166,8 +168,9 @@
 				087708CF1D00867900EB983B /* VotesView.swift */,
 				087708CD1D00862900EB983B /* VotesView.xib */,
 				083CBA211D59E47800348D24 /* MyCustomView.swift */,
-				0825205D1D5DDD6F00B04003 /* MediaSource.swift */,
 				0825205F1D5DE8DC00B04003 /* MediaSourceObject.swift */,
+				0825205D1D5DDD6F00B04003 /* MediaSource.swift */,
+				023AB4FA1D60765D007F51E1 /* MediaSource.xib */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				08BFC49F1CFC4034007C4651 /* LaunchScreen.storyboard in Resources */,
 				08BFC49C1CFC4034007C4651 /* Assets.xcassets in Resources */,
 				0234F2CF1D2E53330020027D /* background.gif in Resources */,
+				023AB4FB1D60765D007F51E1 /* MediaSource.xib in Resources */,
 				087708CE1D00862900EB983B /* VotesView.xib in Resources */,
 				025BFB961D25D7ED00342E55 /* LoginView.xib in Resources */,
 				080C5B0C1D09716700D03509 /* CommentView.xib in Resources */,

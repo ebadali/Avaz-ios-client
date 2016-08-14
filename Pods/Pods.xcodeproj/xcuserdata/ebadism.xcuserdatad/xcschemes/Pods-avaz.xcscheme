@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D69B43EC06CA2AC13EBDE64597D24DA6"
+               BlueprintIdentifier = "29FEE0B25EA0963DAFB0539168E95FDC"
                BuildableName = "Pods_avaz.framework"
                BlueprintName = "Pods-avaz"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D69B43EC06CA2AC13EBDE64597D24DA6"
+            BlueprintIdentifier = "29FEE0B25EA0963DAFB0539168E95FDC"
             BuildableName = "Pods_avaz.framework"
             BlueprintName = "Pods-avaz"
             ReferencedContainer = "container:Pods.xcodeproj">
@@ -63,7 +63,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D69B43EC06CA2AC13EBDE64597D24DA6"
+            BlueprintIdentifier = "29FEE0B25EA0963DAFB0539168E95FDC"
             BuildableName = "Pods_avaz.framework"
             BlueprintName = "Pods-avaz"
             ReferencedContainer = "container:Pods.xcodeproj">

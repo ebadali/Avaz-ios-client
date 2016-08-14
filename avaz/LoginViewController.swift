@@ -44,40 +44,40 @@ class LoginViewController: UIViewController,  SignUpDelegate, FBSDKLoginButtonDe
     func DoLogin(username: String, password: String)  {
         print (" \(username)")
         print (" \(password)")
-//                self.dismissViewControllerAnimated(true, completion: nil)
-                        SwiftLoader.show(animated: true)
-        ApiManager.sharedInstance.LogInApi(username, password: password,
-                                           onCompletion:
-            {(json : JSON) in
-                
-                if (json != nil )
-                {
-                    UserData.sharedInstance.SetSessionID(String(json["sessionid"]))
-                    UserData.sharedInstance.SetCurrentUser(json["user"])
-                    
-                    //Todo: Redirect To SomeWhere
-                    print("Login \n\(json)")
-                    
-                    
-                    ApiManager.sharedInstance.getAllPost { (json : JSON) in
-                        SwiftLoader.hide()
-                        if (json != nil )
-                        {
-                            
-                            
-                            //Todo: Redirect To SomeWhere
-                            
-                            print("getAllPost \n\(json)")
-                            self.signInCompletedDelegate?.DoneSigningIn(json)
-                            self.dismissViewControllerAnimated(true, completion: nil)
-                        }
-                        
-                    }
-                }else{
-                    SwiftLoader.hide()
-                }
-            }
-        )
+                self.dismissViewControllerAnimated(true, completion: nil)
+//                        SwiftLoader.show(animated: true)
+//        ApiManager.sharedInstance.LogInApi(username, password: password,
+//                                           onCompletion:
+//            {(json : JSON) in
+//                
+//                if (json != nil )
+//                {
+//                    UserData.sharedInstance.SetSessionID(String(json["sessionid"]))
+//                    UserData.sharedInstance.SetCurrentUser(json["user"])
+//                    
+//                    //Todo: Redirect To SomeWhere
+//                    print("Login \n\(json)")
+//                    
+//                    
+//                    ApiManager.sharedInstance.getAllPost { (json : JSON) in
+//                        SwiftLoader.hide()
+//                        if (json != nil )
+//                        {
+//                            
+//                            
+//                            //Todo: Redirect To SomeWhere
+//                            
+//                            print("getAllPost \n\(json)")
+//                            self.signInCompletedDelegate?.DoneSigningIn(json)
+//                            self.dismissViewControllerAnimated(true, completion: nil)
+//                        }
+//                        
+//                    }
+//                }else{
+//                    SwiftLoader.hide()
+//                }
+//            }
+//        )
     }
     
     func DoneSigningUp(userName: String,password: String ) {

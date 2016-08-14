@@ -8,7 +8,7 @@
 
 import Foundation
 
-class MediaSource: UIView, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource  {
+class MediaSource: UIView, UICollectionViewDelegate, UICollectionViewDataSource  {
 
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -26,6 +26,7 @@ class MediaSource: UIView, UICollectionViewDelegateFlowLayout, UICollectionViewD
     
     
     
+    @IBOutlet weak var collectionView: UICollectionView!
     
     var mediaSource: [MediaValues] = []
     
@@ -34,30 +35,39 @@ class MediaSource: UIView, UICollectionViewDelegateFlowLayout, UICollectionViewD
         
         super.init(frame: frame)
         
-        CustomInit()
+        xibSetup()
     }
     
     required init?(coder aDecoder: NSCoder) {
             super.init(coder: aDecoder)
         
-        CustomInit()
+        xibSetup()
     }
-    var collectionView: UICollectionView!
+    var view: UIView!
+    func xibSetup() {
+        view = loadViewFromNib()
+        
+        // use bounds not frame or it'll be offset
+        view.frame = bounds
+        
+        // Make the view stretch with containing view
+        view.autoresizingMask = UIViewAutoresizing.FlexibleWidth.union(UIViewAutoresizing.FlexibleHeight)
+//        view.autoresizingMask = [UIViewAutoresizing.FlexibleWidth, UIViewAutoresizing.FlexibleHeight]
+        // Adding custom subview on top of our view (over any custom drawing > see note below)
+        addSubview(view)
+    }
     
-    func CustomInit()  {
-    
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        layout.itemSize = CGSize(width: self.bounds.width/2, height: self.bounds.height)
-        layout.scrollDirection = .Horizontal
-        self.collectionView = UICollectionView(frame: self.bounds, collectionViewLayout: layout)
+    func loadViewFromNib() -> UIView {
+        
+        let bundle = NSBundle(forClass: self.dynamicType)
+        let nib = UINib(nibName: "MediaSource", bundle: bundle)
+        let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+        self.collectionView.registerClass(MediaSourceObject.self, forCellWithReuseIdentifier: "Cell")
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
-        self.collectionView.registerClass(MediaSourceObject.self, forCellWithReuseIdentifier: "Cell")
-        self.collectionView.backgroundColor = UIColor.whiteColor()
-        self.addSubview(collectionView)
+        return view
     }
-    
+
     
     
     
@@ -74,6 +84,15 @@ class MediaSource: UIView, UICollectionViewDelegateFlowLayout, UICollectionViewD
         self.mediaSource.append(imgOne)
         self.collectionView.reloadData()
       
+    }
+    
+    
+    
+    
+    func Remove(url: String) {
+        self.mediaSource = self.mediaSource.filter(){$0.url != url}
+        
+        self.collectionView.reloadData()
     }
 }
 
