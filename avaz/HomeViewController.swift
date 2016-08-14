@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyJSON
+import SwiftLoader
 
 class HomeViewController: UITableViewController, SignInDelegate,  HamburgerProtocol{
     
@@ -107,9 +108,10 @@ class HomeViewController: UITableViewController, SignInDelegate,  HamburgerProto
     
     func LoadFromRemote() {
         
-        
+        SwiftLoader.show(animated: true)
         ApiManager.sharedInstance.getAllPost(
             {(json : JSON) in
+                SwiftLoader.hide()
                 //            print(json)
                 guard let posts = json["posts"].array,
                     locs = json["locations"].array,

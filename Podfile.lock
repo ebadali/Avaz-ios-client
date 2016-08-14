@@ -1,9 +1,11 @@
 PODS:
   - SwiftHTTP (1.0.5)
+  - SwiftLoader (0.2.5)
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
   - SwiftHTTP (~> 1.0.4)
+  - SwiftLoader
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
 
 EXTERNAL SOURCES:
@@ -17,6 +19,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   SwiftHTTP: edb45e72f27d1d95d328d2b2c16a61aa94f1e9f7
+  SwiftLoader: 12d7a6f661f5e9a2c9a72003e7dd6162f4ff0cc4
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
 COCOAPODS: 0.39.0

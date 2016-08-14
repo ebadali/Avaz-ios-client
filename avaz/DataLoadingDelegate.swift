@@ -24,6 +24,6 @@ protocol SignUpDelegate
 
 protocol PreviewDelegate
 {
-    func PreviewVideo(mediaObject : CustomMediaCell)
-    func PreviewImage(mediaObject : CustomMediaCell)
+    func PreviewVideo(mediaObject : MediaSourceObject)
+    func PreviewImage(mediaObject : MediaSourceObject)
 }

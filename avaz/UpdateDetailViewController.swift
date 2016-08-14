@@ -10,6 +10,8 @@ import UIKit
 import SwiftyJSON
 import AVKit
 import AVFoundation
+import SwiftLoader
+
 class UpdateDetailViewController: UIViewController, UITableViewDataSource , PreviewDelegate{
 
 //    lazy var refreshControl: UIRefreshControl = {
@@ -72,7 +74,8 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource , Prev
         
         mapViewHeight = NSBundle.mainBundle().loadNibNamed("MapView", owner: self, options: nil)[0].bounds.size.height
 
-
+        self.tableViewRoot.tableHeaderView  = nil
+        self.tableViewRoot.tableFooterView = nil
     
         
 //        LoadData()
@@ -91,9 +94,11 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource , Prev
     func LoadRemoteData()  {
         
         
-        
+                SwiftLoader.show(animated: true)
         ApiManager.sharedInstance.getAllComments(data.postID,
             onCompletion: {(json : JSON) in
+                
+                  SwiftLoader.hide()
 //                print("All Commments are - \(json)")
                 
                 guard let mediaobj = json["media"].array,
@@ -159,19 +164,19 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource , Prev
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
         
-        if indexPath.section == DetailViewTypes.Map.rawValue{
+        if indexPath.section == DetailViewTypes.Map.rawValue {
             
             // THis is Map view Along with
-           let cell = tableView.dequeueReusableCellWithIdentifier("mapviewcell", forIndexPath: indexPath) as! MapView
-            cell.setparams(self.data, callback: self)
-            return cell
+            if let cell: MapView = self.tableViewRoot.dequeueReusableCellWithIdentifier("mapviewcell", forIndexPath: indexPath) as? MapView {
+                cell.setparams(self.data, callback: self)
+                return cell
+            }
+            return UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "mapviewcell")
         }
         else{
             // This will be a Comment View
-            let  cell = tableView.dequeueReusableCellWithIdentifier("commentviewcell", forIndexPath: indexPath) as! CommentView
-//            cell.commenterText.text = comments[indexPath.row]
-//            cell.commenterImage.image = LoadImage(comments[])
-//            print("index is \(indexPath.row)")
+            let  cell = self.tableViewRoot.dequeueReusableCellWithIdentifier("commentviewcell", forIndexPath: indexPath) as! CommentView
+
             cell.setData(comments[indexPath.row].media.content, posterImageUrl: comments[indexPath.row].user.PicId as String)
             return cell
         }
@@ -262,9 +267,11 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource , Prev
     
     
     func sendThisComment(cmnt: Comment)  {
+                        SwiftLoader.show(animated: true)
         ApiManager.sharedInstance.insertAComment(data.postID, comment: cmnt,
                                             
             onCompletion: {(json : JSON) in
+                                SwiftLoader.hide()
                 print("All Commments are - \(json)")
         })
     }
@@ -296,7 +303,7 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource , Prev
     }
     
     
-    func PreviewImage(mediaObject : CustomMediaCell){
+    func PreviewImage(mediaObject : MediaSourceObject){
         print("Lets Display someVideo")
         
         let newImageView = UIImageView(image: mediaObject.imageView.image)
@@ -308,8 +315,8 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource , Prev
         newImageView.addGestureRecognizer(tap)
         self.view.addSubview(newImageView)
     }
-    func PreviewVideo(mediaObject : CustomMediaCell){
-        print("Lets Display someImage")
+    func PreviewVideo(mediaObject : MediaSourceObject){
+        print("Lets Display someVideo")
         
         let playerViewController = AVPlayerViewController()
         let playerView = AVPlayer(URL: NSURL(fileURLWithPath: mediaObject.url))

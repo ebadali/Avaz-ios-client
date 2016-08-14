@@ -5,3 +5,4 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import "SWRevealViewController.h"
+#import "iCarousel.h"

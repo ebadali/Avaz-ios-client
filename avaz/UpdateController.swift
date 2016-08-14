@@ -9,6 +9,7 @@
 
 import UIKit
 import SwiftyJSON
+import SwiftLoader
 
 class UpdateController: UITableViewController, HamburgerProtocol {
     
@@ -109,9 +110,11 @@ class UpdateController: UITableViewController, HamburgerProtocol {
     
     func LoadFromRemote() {
         
-        
+        SwiftLoader.show(animated: true)
         ApiManager.sharedInstance.getAllPost(
         {(json : JSON) in
+            
+            SwiftLoader.hide()
 //            print(json)
             guard let posts = json["posts"].array,
                       locs = json["locations"].array,
