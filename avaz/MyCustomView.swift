@@ -8,7 +8,7 @@
 
 import Foundation
 
-class MediaView: UIView {
+class MediaView: UIView , UICollectionViewDataSource, UICollectionViewDelegate{
 
     
     @IBInspectable var canupload: Bool = false {
@@ -24,31 +24,11 @@ class MediaView: UIView {
     }
     
     
-    var scrollView : UIScrollView = UIScrollView()
-//        = {
-//        var temp = UIScrollView()
-//        temp.frame = CGRectMake(0, 0, self.frame.width, self.frame.height)
-//        
-////        let leadingContraints = NSLayoutConstraint(item: temp, attribute:
-////            .LeadingMargin, relatedBy: .Equal, toItem: self,
-////                            attribute: .LeadingMargin, multiplier: 1.0,
-////                            constant: 0)
-////        
-////        
-////        let trailingContraints = NSLayoutConstraint(item: temp, attribute:
-////            .TrailingMargin, relatedBy: .Equal, toItem: self,
-////                             attribute: .TrailingMargin, multiplier: 1.0,
-////                             constant: 0)
-////        temp.translatesAutoresizingMaskIntoConstraints = false
-////        //        self.setTranslatesAutoresizingMaskIntoConstraints(false)
-////        //IOS 8
-////        //activate the constrains.
-////        //we pass an array of all the contraints
-////        NSLayoutConstraint.activateConstraints([leadingContraints, trailingContraints])
-//        
-//        return temp
-//    }()
+//    var scrollView : UIScrollView = UIScrollView()
+
 //    
+    var scrollView: UICollectionView!
+    
     
     lazy var scrollViewWidth:CGFloat = {
         return self.frame.width
@@ -65,7 +45,21 @@ class MediaView: UIView {
     
     override init(frame: CGRect) {
                 print("init without bool")
-//        self.scrollView.frame = CGRectMake(0, 0, frame.width, frame.height)
+        
+        
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        
+        layout.sectionInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        layout.itemSize = CGSize(width: frame.width-20 , height: frame.height-20)
+        layout.scrollDirection = .Horizontal
+        scrollView = UICollectionView(frame: frame, collectionViewLayout: layout)
+        
+       
+        scrollView.registerClass(CollectionViewCell.self, forCellWithReuseIdentifier: "CollectionViewCell")
+        scrollView.backgroundColor = UIColor.whiteColor()
+        
+
+        
         super.init(frame: frame)
 
         
@@ -74,6 +68,17 @@ class MediaView: UIView {
     
     init(frame: CGRect, uploadable: Bool) {
         
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        
+        layout.sectionInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        layout.itemSize = CGSize(width: frame.width-20 , height: frame.height-20)
+        layout.scrollDirection = .Horizontal
+        scrollView = UICollectionView(frame: frame, collectionViewLayout: layout)
+        
+        
+        scrollView.registerClass(CollectionViewCell.self, forCellWithReuseIdentifier: "CollectionViewCell")
+        scrollView.backgroundColor = UIColor.whiteColor()
+
 //        self.scrollView.frame = CGRectMake(0, 0, frame.width, frame.height)
         print("init with bool")
         
@@ -87,6 +92,15 @@ class MediaView: UIView {
         
     }
     required init(coder aDecoder: NSCoder) {
+        
+      
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSizeMake(100, 100)
+        scrollView = UICollectionView(frame: CGRectZero, collectionViewLayout: layout)
+        
+        
+        scrollView.registerClass(CollectionViewCell.self, forCellWithReuseIdentifier: "CollectionViewCell")
+        scrollView.backgroundColor = UIColor.whiteColor()
 
         
         super.init(coder: aDecoder)!
@@ -123,26 +137,24 @@ class MediaView: UIView {
     }
     
     func addCustomView() {
-        
-        self.scrollView.frame = CGRectMake(0, 0, frame.width, frame.height)
-        self.scrollViewWidth = self.scrollView.frame.width
-            
-        self.scrollViewHeight = self.scrollView.frame.height
+
+        scrollView.dataSource = self
+        scrollView.delegate = self
         
         self.addSubview(self.scrollView)
-        
-//        self.AddImageToScrollView("social-media")
-//        self.AddImageToScrollView("social-media")
-
-        
-        //
-//        let horizontalConstraint = self.centerXAnchor.constraintEqualToAnchor(self.centerXAnchor)
-//        let verticalConstraint = self.centerYAnchor.constraintEqualToAnchor(self.centerYAnchor)
-//        let widthConstraint = self.widthAnchor.constraintEqualToAnchor(nil, constant: 0)
-//        let heightConstraint = self.heightAnchor.constraintEqualToAnchor(nil, constant: 0)
-//        NSLayoutConstraint.activateConstraints([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
     }
     
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 12
+    }
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionViewCell", forIndexPath: indexPath) as! CollectionViewCell
+        cell.backgroundColor = UIColor.blackColor()
+        cell.textLabel?.text = "\(indexPath.section):\(indexPath.row)"
+        cell.imageView?.image = UIImage(named: "circle")
+        return cell
+    }
     
 //    func AddRemoteMedia(url: String, type: MediaType) -> CustomMediaCell {
 //        
