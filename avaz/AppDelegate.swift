@@ -21,13 +21,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("session is \(UserData.sharedInstance.currentUser) and\nsession id is \(UserData.sharedInstance.sessionId) \n")
 
         
+        let notificationTypes : UIUserNotificationType = [.Alert, .Badge, .Sound]
+        let notificationSettings : UIUserNotificationSettings = UIUserNotificationSettings(forTypes: notificationTypes, categories: nil)
+        UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
+
+        
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
     
     func application(application: UIApplication,
                      openURL url: NSURL,
                              sourceApplication: String?,
-                             annotation: AnyObject?) -> Bool {
+                             annotation: AnyObject) -> Bool {
         return FBSDKApplicationDelegate.sharedInstance().application(
             application,
             openURL: url,
@@ -36,7 +41,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
-  
+    
+    func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings)
+    {
+        UIApplication.sharedApplication().registerForRemoteNotifications()
+    }
+    
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        
+        print("device Token \(deviceToken)")
+    }
+    
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        print(error.localizedDescription)
+    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        
+    }
 
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.

@@ -22,6 +22,11 @@ protocol SignUpDelegate
 }
 
 
+protocol ForgetPasswordDelegate
+{
+    func DoneSettingPassword(username : String, password: String)
+}
+
 protocol PreviewDelegate
 {
     func PreviewVideo(mediaObject : MediaSourceObject)

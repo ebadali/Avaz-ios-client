@@ -40,12 +40,18 @@ class OptionMenuController: UITableViewController {
         
         print("In Lgout")
         
-
+        DoLogout()
+        
+        
+    }
+    
+    
+    func DoLogout()  {
         ApiManager.sharedInstance.logOut({(json : JSON) in
             
             if (json != nil )
             {
-
+                
                 UserData.sharedInstance.ClearAll()
                 //Todo: Redirect To SomeWhere
                 print("Logout cleared data \n\(json)")
@@ -53,9 +59,7 @@ class OptionMenuController: UITableViewController {
             }
             
         })
-        
     }
-    
     
     var count =  0
     
@@ -78,6 +82,10 @@ class OptionMenuController: UITableViewController {
     override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
         
         print(identifier)
+        
+        if identifier == "logout"{
+            DoLogout()
+        }
         count = count + 1
         return UserData.sharedInstance.GetControllerType().rawValue != identifier
     }

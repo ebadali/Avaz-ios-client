@@ -10,13 +10,12 @@ import UIKit
 import SwiftyJSON
 import SwiftLoader
 
-class LoginViewController: UIViewController,  SignUpDelegate, FBSDKLoginButtonDelegate{
+class LoginViewController: UIViewController,  SignUpDelegate, ForgetPasswordDelegate, FBSDKLoginButtonDelegate{
     
     
     
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
-    @IBOutlet weak var forgetPassword: UILabel!
     @IBOutlet weak var fbButn: FBSDKLoginButton!
     
     
@@ -44,46 +43,54 @@ class LoginViewController: UIViewController,  SignUpDelegate, FBSDKLoginButtonDe
     func DoLogin(username: String, password: String)  {
         print (" \(username)")
         print (" \(password)")
-                self.dismissViewControllerAnimated(true, completion: nil)
-//                        SwiftLoader.show(animated: true)
-//        ApiManager.sharedInstance.LogInApi(username, password: password,
-//                                           onCompletion:
-//            {(json : JSON) in
-//                
-//                if (json != nil )
-//                {
-//                    UserData.sharedInstance.SetSessionID(String(json["sessionid"]))
-//                    UserData.sharedInstance.SetCurrentUser(json["user"])
-//                    
-//                    //Todo: Redirect To SomeWhere
-//                    print("Login \n\(json)")
-//                    
-//                    
-//                    ApiManager.sharedInstance.getAllPost { (json : JSON) in
-//                        SwiftLoader.hide()
-//                        if (json != nil )
-//                        {
-//                            
-//                            
-//                            //Todo: Redirect To SomeWhere
-//                            
-//                            print("getAllPost \n\(json)")
-//                            self.signInCompletedDelegate?.DoneSigningIn(json)
-//                            self.dismissViewControllerAnimated(true, completion: nil)
-//                        }
-//                        
-//                    }
-//                }else{
-//                    SwiftLoader.hide()
-//                }
-//            }
-//        )
+//                self.dismissViewControllerAnimated(true, completion: nil)
+                        SwiftLoader.show(animated: true)
+        ApiManager.sharedInstance.LogInApi(username, password: password,
+                                           onCompletion:
+            {(json : JSON) in
+                
+                if (json != nil )
+                {
+                    UserData.sharedInstance.SetSessionID(String(json["sessionid"]))
+                    UserData.sharedInstance.SetCurrentUser(json["user"])
+                    
+                    //Todo: Redirect To SomeWhere
+                    print("Login \n\(json)")
+                    
+                    
+                    ApiManager.sharedInstance.getAllPost { (json : JSON) in
+                        SwiftLoader.hide()
+                        if (json != nil )
+                        {
+                            
+                            
+                            //Todo: Redirect To SomeWhere
+                            
+                            print("getAllPost \n\(json)")
+                            self.signInCompletedDelegate?.DoneSigningIn(json)
+                            self.dismissViewControllerAnimated(true, completion: nil)
+                        }
+                        
+                    }
+                }else{
+                    SwiftLoader.hide()
+                }
+            }
+        )
     }
     
     func DoneSigningUp(userName: String,password: String ) {
         print("Done SignUp with \(userName) and \(password)")
         
         guard let email:String = userName , password:String = password else {
+            return
+        }
+        
+        DoLogin(email, password: password)
+    }
+    
+    func DoneSettingPassword(username : String, password: String){
+        guard let email:String = username , password:String = password else {
             return
         }
         
@@ -193,6 +200,10 @@ class LoginViewController: UIViewController,  SignUpDelegate, FBSDKLoginButtonDe
             if let register = segue.destinationViewController as? RegisterViewController{
                 register.signUpCompletedDelegate = self
             }
+        }else if segue.identifier == "forgot" {
+            if let forget = segue.destinationViewController as? ForgetPasswordController{
+                forget.forgetPasswordDelegate = self
+            }
         }
     }
     // Face book delegate methods
@@ -261,8 +272,8 @@ class LoginViewController: UIViewController,  SignUpDelegate, FBSDKLoginButtonDe
         gestureRecognizer.addTarget(self, action: #selector(LoginViewController.ShowForgetPassword))
         
         //Add this gesture to your view, and "turn on" user interaction
-        forgetPassword.addGestureRecognizer(gestureRecognizer)
-        forgetPassword.userInteractionEnabled = true
+//        forgetPassword.addGestureRecognizer(gestureRecognizer)
+//        forgetPassword.userInteractionEnabled = true
     }
     
     

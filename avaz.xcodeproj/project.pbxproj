@@ -20,6 +20,7 @@
 		02F2BA021D1DE664007CEDCB /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02F2BA001D1DE664007CEDCB /* FBSDKCoreKit.framework */; };
 		02F2BA031D1DE664007CEDCB /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02F2BA011D1DE664007CEDCB /* FBSDKLoginKit.framework */; };
 		02FCC2B31D1EA43C009EF1A7 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02FCC2B21D1EA43C009EF1A7 /* SWRevealViewController.m */; };
+		08080EC61D621ADE00A28F93 /* ForgetPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08080EC51D621ADD00A28F93 /* ForgetPasswordController.swift */; };
 		080C5B0B1D09716700D03509 /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080C5B071D09716700D03509 /* CommentView.swift */; };
 		080C5B0C1D09716700D03509 /* CommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 080C5B081D09716700D03509 /* CommentView.xib */; };
 		081D5DE51D58A98800E923E8 /* DataLoadingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081D5DE41D58A98800E923E8 /* DataLoadingDelegate.swift */; };
@@ -72,6 +73,7 @@
 		02F2BA041D1DE697007CEDCB /* avaz-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "avaz-Bridging-Header.h"; sourceTree = "<group>"; };
 		02FCC2B11D1EA43C009EF1A7 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		02FCC2B21D1EA43C009EF1A7 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		08080EC51D621ADD00A28F93 /* ForgetPasswordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetPasswordController.swift; sourceTree = "<group>"; };
 		080C5B071D09716700D03509 /* CommentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
 		080C5B081D09716700D03509 /* CommentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentView.xib; sourceTree = "<group>"; };
 		081D5DE41D58A98800E923E8 /* DataLoadingDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataLoadingDelegate.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				02E5B8C71D53DD250000DFFB /* HomeViewController.swift */,
 				08C0FC071D54A5DC0052179C /* OptionMenuController.swift */,
 				0825205B1D5DDBB700B04003 /* TestController.swift */,
+				08080EC51D621ADD00A28F93 /* ForgetPasswordController.swift */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -467,6 +470,7 @@
 				08BFC4B11CFC5872007C4651 /* Post.swift in Sources */,
 				082520601D5DE8DC00B04003 /* MediaSourceObject.swift in Sources */,
 				08C0FC081D54A5DC0052179C /* OptionMenuController.swift in Sources */,
+				08080EC61D621ADE00A28F93 /* ForgetPasswordController.swift in Sources */,
 				029887691D184B7A00D8903F /* LoginViewController.swift in Sources */,
 				0879B2B81D4A30C80078C5EB /* UserData.swift in Sources */,
 				08C4456C1D1160C400CB48CB /* Pointer.swift in Sources */,
@@ -514,7 +518,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development IOS Push Services: com.nerdiacs.avaz";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development IOS Push Services: com.nerdiacs.avaz";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -536,6 +541,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "95fbc2d7-daa3-44a9-bc02-392593d52784";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -560,7 +566,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development IOS Push Services: com.nerdiacs.avaz";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development IOS Push Services: com.nerdiacs.avaz";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -575,6 +582,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "95fbc2d7-daa3-44a9-bc02-392593d52784";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -596,6 +604,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nerdiacs.avaz;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "95fbc2d7-daa3-44a9-bc02-392593d52784";
 				SWIFT_OBJC_BRIDGING_HEADER = "avaz/avaz-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -608,6 +617,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development IOS Push Services: com.nerdiacs.avaz";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -616,6 +626,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nerdiacs.avaz;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "95fbc2d7-daa3-44a9-bc02-392593d52784";
 				SWIFT_OBJC_BRIDGING_HEADER = "avaz/avaz-Bridging-Header.h";
 			};
 			name = Release;

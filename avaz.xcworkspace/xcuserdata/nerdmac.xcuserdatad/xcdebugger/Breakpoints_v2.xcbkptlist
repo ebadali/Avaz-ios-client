@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "avaz/ApiManager.swift"
-            timestampString = "492711474.23926"
+            timestampString = "492971971.631988"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "289"
-            endingLineNumber = "289">
+            startingLineNumber = "303"
+            endingLineNumber = "303">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -24,28 +24,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "avaz/ApiManager.swift"
-            timestampString = "492711003.974909"
+            timestampString = "492971971.631988"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
             landmarkName = "insertAPost(_:onCompletion:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "avaz/Media.swift"
-            timestampString = "492707715.680619"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
-            landmarkName = "init(media:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

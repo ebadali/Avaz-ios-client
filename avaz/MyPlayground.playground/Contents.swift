@@ -152,8 +152,9 @@ print(actualIndexAndNum)
 //
 //let res = [a, b].reduce([],combine:+)
 //print(res)
-
-
+var path = "asdasd/ asd sdfdsf"
+let encodedPath = path.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
+print(encodedPath)
 
 
 

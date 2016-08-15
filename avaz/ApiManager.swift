@@ -58,6 +58,17 @@ class ApiManager: NSObject {
         })
     }
     
+    func ForgetPassApi(email: String, password: String, confirmpassword: String,  onCompletion: (JSON) ->Void) {
+        
+        
+        let parameters = [ "email":email, "password":password];
+        makeHTTPPostRequest(baseURL+"user/forgot", params: parameters, onCompletion: { json, err in
+            onCompletion(json as JSON )
+        })
+    }
+    
+   
+    
     func getAllPost(onCompletion: (JSON) ->Void) {
         
         let parameters = [ "sessionid": UserData.sharedInstance.sessionId as! AnyObject];
@@ -66,6 +77,9 @@ class ApiManager: NSObject {
         })
 
     }
+    
+    
+    
     
     
     //// get all Comments
