@@ -13,6 +13,7 @@ import SwiftLoader
 class LoginViewController: UIViewController,  SignUpDelegate, ForgetPasswordDelegate, FBSDKLoginButtonDelegate{
     
     
+    @IBOutlet weak var background: UIImageView!
     
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
@@ -100,8 +101,10 @@ class LoginViewController: UIViewController,  SignUpDelegate, ForgetPasswordDele
     override func viewDidLoad() {
         super.viewDidLoad()
         let imagePAth = "background"
-        AddGif(imagePAth);
+//        AddGif(imagePAth);
         
+        
+
         
         print("--View Did Load Called In \(NSStringFromClass(self.classForCoder)) \n")
         
@@ -131,6 +134,9 @@ class LoginViewController: UIViewController,  SignUpDelegate, ForgetPasswordDele
         //        LoadSomeTask()
         
         
+//        addParallaxToView(self.background)
+
+        
         
     }
     
@@ -141,17 +147,22 @@ class LoginViewController: UIViewController,  SignUpDelegate, ForgetPasswordDele
     
     func AddGif(path: String)  {
         // Creating Backgorund View
-        let iv = UIWebView(frame: self.view.frame)
-        
-        let urlPath = NSBundle.mainBundle().pathForResource(path, ofType: "gif")
-        
-        
-        let nsurl = NSURL(fileURLWithPath: urlPath!)
-        let img = NSData(contentsOfURL: nsurl)
-        iv.loadData(img!, MIMEType: "image/gif", textEncodingName: String(), baseURL: NSURL())
-        iv.userInteractionEnabled = false;
-        iv.scalesPageToFit = true;
-        //        iv.contentMode = .ScaleToFill;
+//        let iv = UIWebView(frame: self.view.frame)
+//        
+//        let urlPath = NSBundle.mainBundle().pathForResource(path, ofType: "gif")
+//        
+//        
+//        let nsurl = NSURL(fileURLWithPath: urlPath!)
+//        let img = NSData(contentsOfURL: nsurl)
+//        
+        let iv = UIImageView(frame: self.view.frame)
+        iv.image = UIImage(named: "bg")
+//        iv.loadData(img!, MIMEType: "image/gif", textEncodingName: String(), baseURL: NSURL())
+//        iv.userInteractionEnabled = false;
+//        iv.scalesPageToFit = true;
+
+        iv.clipsToBounds = true
+//        iv.contentMode = .ScaleToFill;
         self.view.insertSubview(iv, atIndex: 0)
         
         // Creating Filter
@@ -168,8 +179,55 @@ class LoginViewController: UIViewController,  SignUpDelegate, ForgetPasswordDele
         
         //        iv.addConstraint(NSLayoutConstraint(item: iv, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0))
         //        iv.addConstraint(NSLayoutConstraint(item: iv, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 0))
+//        self.addParallaxToView(iv)
+        
+    }
+    
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+         self.background.center = self.view.center
+        
+    }
+    
+    func addParallaxToView(vw: UIView) {
         
         
+//        let options = UIViewAnimationOptions.Autoreverse.union(UIViewAnimationOptions.Repeat.union(UIViewAnimationOptions.CurveEaseInOut))
+//        UIView.animateWithDuration(10.0, delay: 0.0, options: options, animations: {
+//            
+//            // any changes entered in this block will be animated
+//            self.background.backgroundColor = UIColor.redColor()
+//            self.background.frame = CGRect(x: -50, y: 120, width: self.view.frame.width, height: 50)
+//            
+//            }, completion: nil)
+//        
+    
+        
+        let cx = self.background.center.x + 10
+
+        let cy = self.background.center.y + 10
+        
+        
+        
+        UIView.animateWithDuration(5, delay: 1, options: [.Repeat, .Autoreverse], animations: {
+            self.background.center.x = cx
+            self.background.center.y = cy
+            }, completion: {_ in
+                print("finished animation")
+//                self.background.alpha = 0.2
+        })
+        
+
+    }
+    
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+     
+        
+        addParallaxToView(self.background)
     }
     
     func LoadSomeTask()  {

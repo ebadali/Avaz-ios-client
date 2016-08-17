@@ -328,6 +328,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="cjJ-4R-OJ9">
+                                <rect key="frame" x="-100" y="-100" width="800" height="800"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="800" id="G5D-0t-5eY"/>
+                                    <constraint firstAttribute="width" constant="800" id="xya-vl-brT"/>
+                                </constraints>
+                            </imageView>
                             <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="FGc-ox-fva">
                                 <rect key="frame" x="40" y="30" width="520" height="560"/>
                                 <subviews>
@@ -548,18 +555,15 @@
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="FGc-ox-fva" secondAttribute="trailing" constant="20" id="47G-g0-F0d"/>
                             <constraint firstItem="FGc-ox-fva" firstAttribute="centerX" secondItem="HFN-xB-6l3" secondAttribute="centerX" id="BOC-qW-EmE"/>
+                            <constraint firstItem="cjJ-4R-OJ9" firstAttribute="centerY" secondItem="HFN-xB-6l3" secondAttribute="centerY" id="E3o-9N-GpQ"/>
                             <constraint firstItem="sck-uE-xU5" firstAttribute="top" secondItem="FGc-ox-fva" secondAttribute="bottom" constant="10" id="LxW-Cw-I4X"/>
                             <constraint firstItem="FGc-ox-fva" firstAttribute="leading" secondItem="HFN-xB-6l3" secondAttribute="leadingMargin" constant="20" id="dPl-NH-AVv"/>
                             <constraint firstItem="FGc-ox-fva" firstAttribute="top" secondItem="tPK-Bq-7zX" secondAttribute="bottom" constant="10" id="fZ7-UF-RKd"/>
-                            <constraint firstItem="FGc-ox-fva" firstAttribute="centerY" secondItem="HFN-xB-6l3" secondAttribute="centerY" id="hJt-Ew-SrG"/>
+                            <constraint firstItem="cjJ-4R-OJ9" firstAttribute="centerX" secondItem="HFN-xB-6l3" secondAttribute="centerX" id="lz8-sN-sB1"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="hJt-Ew-SrG"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
+                        <outlet property="background" destination="cjJ-4R-OJ9" id="KA1-OW-j01"/>
                         <outlet property="email" destination="m1E-2a-1Dd" id="i5G-3C-Fdh"/>
                         <outlet property="fbButn" destination="gse-S7-fm2" id="ORo-Jo-Eq3"/>
                         <outlet property="password" destination="g4a-aI-xsd" id="f7T-mk-rX0"/>
@@ -607,7 +611,7 @@
                                             <action selector="Save:" destination="5Og-9I-xkN" eventType="touchUpInside" id="GwV-cq-7mI"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MpC-sa-aTN">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MpC-sa-aTN">
                                         <rect key="frame" x="0.0" y="286" width="440" height="28"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <state key="normal" title="Cancle"/>
@@ -1237,6 +1241,9 @@
             <point key="canvasLocation" x="-1687" y="-2746"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="bg" width="333" height="333"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="guW-z9-eBH"/>
         <segue reference="GI6-zz-tSf"/>

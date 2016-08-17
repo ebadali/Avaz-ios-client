@@ -153,17 +153,18 @@ UINavigationControllerDelegate {
         
         alertController.addAction(gallery)
         alertController.addAction(camera)
+        self.presentViewController(alertController, animated: true, completion: nil)
         
-        self.presentViewController(alertController, animated: true, completion:{
-            alertController.view.superview?.userInteractionEnabled = true
-            alertController.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.alertControllerBackgroundTapped)))
-        })
+//        self.presentViewController(alertController, animated: true, completion:{
+//            alertController.view.superview?.userInteractionEnabled = true
+//            alertController.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.alertControllerBackgroundTapped)))
+//        })
     }
     // Cancles the image picekr
-    func alertControllerBackgroundTapped()
-    {
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
+//    func alertControllerBackgroundTapped()
+//    {
+//        self.dismissViewControllerAnimated(true, completion: nil)
+//    }
     func TakeFromCamera()  {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
             let imagePicker = UIImagePickerController()

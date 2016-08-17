@@ -80,7 +80,7 @@ extension UIImageView{
         }
         
         let encodedPath = urlString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
-        let finalurl = "http://localhost:8001/media/getmedia?url=\(encodedPath)"
+        let finalurl = "http://dev.nerdiacs.com:8001/media/getmedia?url=\(encodedPath)"
         //otherwise fire off a new download
         let url = NSURL(string: finalurl)
         NSURLSession.sharedSession().dataTaskWithURL(url!, completionHandler: { (data, response, error) in

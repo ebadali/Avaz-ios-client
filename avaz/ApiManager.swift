@@ -19,8 +19,9 @@ class ApiManager: NSObject {
     
 //    let baseURL = "http://api.randomuser.me/"
 //    let baseURL = "http://beta.json-generator.com/api/json/get/4JnRwJKE-"
-    let baseURL = "http://localhost:8001/"
-    
+//    let baseURL = "http://localhost:8001/"
+
+    let baseURL = "http://dev.nerdiacs.com:8001/"
 
     func getRandomPost(onCompletion: (JSON) -> Void) {
         

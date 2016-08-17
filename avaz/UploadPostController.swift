@@ -130,7 +130,7 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
             locationManager.startUpdatingLocation()
         }
         
-        addMoreImages()
+//        addMoreImages()
     }
     override func viewWillDisappear(animated: Bool) {
         print("--viewWillDisappear Called In \(NSStringFromClass(self.classForCoder)) \n")
