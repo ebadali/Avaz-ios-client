@@ -10,7 +10,8 @@ import UIKit
 import SwiftyJSON
 import AVKit
 import AVFoundation
-import SwiftLoader
+
+import EZLoadingActivity
 
 class UpdateDetailViewController: UIViewController, UITableViewDataSource , PreviewDelegate{
 
@@ -93,29 +94,31 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource , Prev
     
     func LoadRemoteData()  {
         
-        
-                SwiftLoader.show(animated: true)
+        EZLoadingActivity.show("Loading...", disableUI: true)
+
         ApiManager.sharedInstance.getAllComments(data.postID,
             onCompletion: {(json : JSON) in
                 
-                  SwiftLoader.hide()
-//                print("All Commments are - \(json)")
                 
-                guard let mediaobj = json["media"].array,
-                          commenters = json["users"].array
-                    else
+                
+                EZLoadingActivity.hide(success: true, animated: true)
+                
+                
+                
+                guard let dataArray = json.array else
                 {
-                    // Not Found.
                     return
                 }
-                
-                let counter = min(mediaobj.count,commenters.count)
-                for i in 0..<counter
+                for data in dataArray
                 {
-                    self.comments.append( Comment(mediaJson: mediaobj[i], userJson: commenters[i]) )
+                    
+                    if let media:JSON = data["media"],
+                        user:JSON = data["user"]
+                    {
+                        self.comments.append( Comment(mediaJson: media, userJson: user) )
+
+                    }
                 }
-                
-                
                 
                 dispatch_async(dispatch_get_main_queue(),{
                     self.tableViewRoot.reloadData()
@@ -267,11 +270,14 @@ class UpdateDetailViewController: UIViewController, UITableViewDataSource , Prev
     
     
     func sendThisComment(cmnt: Comment)  {
-                        SwiftLoader.show(animated: true)
+        EZLoadingActivity.show("Loading...", disableUI: true)
+
         ApiManager.sharedInstance.insertAComment(data.postID, comment: cmnt,
                                             
             onCompletion: {(json : JSON) in
-                                SwiftLoader.hide()
+                //
+                EZLoadingActivity.hide(success: true, animated: true)
+                
                 print("All Commments are - \(json)")
         })
     }

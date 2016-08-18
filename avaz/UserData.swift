@@ -104,8 +104,24 @@ class UserData{
     }
     
     func ClearAll()  {
+        
+        
+        defaults.removeObjectForKey(Keys.SESSION_ID.rawValue)
+        defaults.removeObjectForKey(Keys.USER_OBJECT.rawValue)
+        
+        currentUser = nil
+        sessionId = ""
+        
+        
         SetSessionID("")
+        self.currentUser = nil
         SetCurrentUser(nil)
+        
+        
+        let appDomain = NSBundle.mainBundle().bundleIdentifier!
+        
+        NSUserDefaults.standardUserDefaults().removePersistentDomainForName(appDomain)
+        
     }
     
     

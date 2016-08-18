@@ -8,7 +8,7 @@
 
 import UIKit
 import SwiftyJSON
-import SwiftLoader
+import EZLoadingActivity
 
 class LoginViewController: UIViewController,  SignUpDelegate, ForgetPasswordDelegate, FBSDKLoginButtonDelegate{
     
@@ -45,36 +45,44 @@ class LoginViewController: UIViewController,  SignUpDelegate, ForgetPasswordDele
         print (" \(username)")
         print (" \(password)")
 //                self.dismissViewControllerAnimated(true, completion: nil)
-                        SwiftLoader.show(animated: true)
+
+//        LoadingIndicatorView.show()
+        EZLoadingActivity.show("Loading...", disableUI: true)
         ApiManager.sharedInstance.LogInApi(username, password: password,
                                            onCompletion:
             {(json : JSON) in
+                EZLoadingActivity.hide(success: true, animated: true)
                 
                 if (json != nil )
                 {
                     UserData.sharedInstance.SetSessionID(String(json["sessionid"]))
                     UserData.sharedInstance.SetCurrentUser(json["user"])
-                    
+
                     //Todo: Redirect To SomeWhere
                     print("Login \n\(json)")
                     
                     
                     ApiManager.sharedInstance.getAllPost { (json : JSON) in
-                        SwiftLoader.hide()
-                        if (json != nil )
+                        
+
+                        if (json == nil )
                         {
+                            DialogHandler.sharedInstance.ShowInfo("Unable To Get Post")
                             
-                            
-                            //Todo: Redirect To SomeWhere
-                            
-                            print("getAllPost \n\(json)")
-                            self.signInCompletedDelegate?.DoneSigningIn(json)
-                            self.dismissViewControllerAnimated(true, completion: nil)
                         }
+                            //Todo: Redirect To SomeWhere
+                        
+                        
+                        
+                        print("getAllPost \n\(json)")
+                        self.signInCompletedDelegate?.DoneSigningIn(json)
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                        
                         
                     }
                 }else{
-                    SwiftLoader.hide()
+//                    self.ShowError("asd")
+                    DialogHandler.sharedInstance.ShowError("User Not Found")
                 }
             }
         )
@@ -211,12 +219,11 @@ class LoginViewController: UIViewController,  SignUpDelegate, ForgetPasswordDele
         
         
         
-        UIView.animateWithDuration(5, delay: 1, options: [.Repeat, .Autoreverse], animations: {
+        UIView.animateWithDuration(5, delay: 0.5, options: [.Repeat, .Autoreverse], animations: {
             self.background.center.x = cx
             self.background.center.y = cy
             }, completion: {_ in
                 print("finished animation")
-//                self.background.alpha = 0.2
         })
         
 
@@ -232,10 +239,10 @@ class LoginViewController: UIViewController,  SignUpDelegate, ForgetPasswordDele
     
     func LoadSomeTask()  {
         
-        activityIndicator.startAnimating()
+//        activityIndicator.startAnimating()
         let triggerTime = (Int64(NSEC_PER_SEC) * 5)
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, triggerTime), dispatch_get_main_queue(), { () -> Void in
-            self.activityIndicator.stopAnimating()
+//            self.activityIndicator.stopAnimating()
         })
         
         

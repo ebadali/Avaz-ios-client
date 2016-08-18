@@ -9,6 +9,9 @@ import UIKit
 import AVFoundation
 
 let imageCache = NSCache()
+//let base = "http://dev.nerdiacs.com:8001/media/getmedia?url="
+//let base = "http://localhost:8001/media/getmedia?url="
+var base:String  = "\(ApiManager.sharedInstance.baseURL)media/getmedia?url="
 
 extension UIImageView{
     
@@ -68,6 +71,8 @@ extension UIImageView{
     func loadImageRemotely(urlString: String)  {
         self.image = nil
         
+
+        
         //check cache for image first
         if let cachedImage = imageCache.objectForKey(urlString) as? UIImage {
             
@@ -80,7 +85,7 @@ extension UIImageView{
         }
         
         let encodedPath = urlString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
-        let finalurl = "http://dev.nerdiacs.com:8001/media/getmedia?url=\(encodedPath)"
+        let finalurl = "\(base)\(encodedPath)"
         //otherwise fire off a new download
         let url = NSURL(string: finalurl)
         NSURLSession.sharedSession().dataTaskWithURL(url!, completionHandler: { (data, response, error) in
@@ -102,10 +107,7 @@ extension UIImageView{
                     imageCache.setObject(self.image!, forKey: urlString)
                     
                     
-                    self.alpha = 0
-                    UIView.animateWithDuration(0.98, animations: { () -> Void in
-                        self.alpha = 1
-                    })
+                    self.Animate()
                 }
             })
             

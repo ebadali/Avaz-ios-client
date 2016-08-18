@@ -10,6 +10,8 @@ import UIKit
 import SwiftyJSON
 import SwiftLoader
 
+import EZLoadingActivity
+
 class HomeViewController: UITableViewController, SignInDelegate,  HamburgerProtocol{
     
     
@@ -20,20 +22,20 @@ class HomeViewController: UITableViewController, SignInDelegate,  HamburgerProto
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-          self.refreshControl?.addTarget(self, action: #selector(self.handleReferesh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        
+        self.refreshControl?.addTarget(self, action: #selector(self.handleReferesh(_:)), forControlEvents: UIControlEvents.ValueChanged)
         
         self.title = "HomeViewController"
         // Do any additional setup after loading the view, typically from a nib.
         print("HomeViewController did load")
-//        self.revealViewController().delegate = self;
+        //        self.revealViewController().delegate = self;
         setupHamburger()
         print("--View Did Load Called In \(NSStringFromClass(self.classForCoder)) \n")
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 160.0
         
-
-
+        
+        
         if (UserData.sharedInstance.IsLoggedIn() ) {
             print("Lets Fetch Data")
             LoadFromRemote()
@@ -42,7 +44,7 @@ class HomeViewController: UITableViewController, SignInDelegate,  HamburgerProto
             self.performSegueWithIdentifier("goto_login", sender: self)
         }
     }
-
+    
     func DoneSigningIn(posts: JSON) {
         print("Got Value \(posts)")
         LoadFromLocal(posts)
@@ -58,7 +60,7 @@ class HomeViewController: UITableViewController, SignInDelegate,  HamburgerProto
         UserData.sharedInstance.SetControllerType(self.controllerType)
     }
     
-
+    
     
     
     func LoadData(){
@@ -107,27 +109,54 @@ class HomeViewController: UITableViewController, SignInDelegate,  HamburgerProto
     
     
     func LoadFromRemote() {
+        EZLoadingActivity.show("Loading...", disableUI: true)
+
         
-        SwiftLoader.show(animated: true)
         ApiManager.sharedInstance.getAllPost(
             {(json : JSON) in
-                SwiftLoader.hide()
-                //            print(json)
-                guard let posts = json["posts"].array,
-                    locs = json["locations"].array,
-                    users = json["users"].array,
-                    medias = json["media"].array else
-                {
-                    // Not Found.
+                
+                
+                EZLoadingActivity.hide(success: true, animated: true)
+                
+                if (json == nil){
                     return
                 }
-                // being overly consious
-                let Mmin = min(posts.count, min(locs.count, min(users.count, medias.count)))
-                for i in 0..<Mmin {
-                    //                print("\(post) - \(media) - \(loc)")
+                
+                guard let dataArray = json.array else
+                {
                     
-                    self.postDataSource.append(Post(post: posts[i], media: medias[i], location: locs[i], user: users[i]))
+                    
+                    return
                 }
+                for data in dataArray
+                {
+                    
+                    if let post:JSON = data["post"],
+                        loc:JSON = data["location"],
+                        user:JSON = data["user"],
+                        media:JSON = data["media"]
+                    {
+                        self.postDataSource.append(Post(post: post, media: media, location: loc, user: user))
+                    }
+                }
+                
+                
+                //            print(json)
+                //                guard let posts:JSON = json["post"],
+                //                    locs:JSON = json["location"],
+                //                    users:JSON = json["user"],
+                //                    medias:JSON = json["media"] else
+                //                {
+                //                    // Not Found.
+                //                    return
+                //                }
+                //                // being overly consious
+                //                let Mmin = min(posts.count, min(locs.count, min(users.count, medias.count)))
+                //                for i in 0..<Mmin {
+                //                    //                print("\(post) - \(media) - \(loc)")
+                //
+                //                    self.postDataSource.append(Post(post: posts[i], media: medias[i], location: locs[i], user: users[i]))
+                //                }
                 
                 dispatch_async(dispatch_get_main_queue(),{
                     self.tableView.reloadData()
@@ -138,26 +167,32 @@ class HomeViewController: UITableViewController, SignInDelegate,  HamburgerProto
     }
     
     func LoadFromLocal(json: JSON) {
-      
-                guard let posts = json["posts"].array,
-                    locs = json["locations"].array,
-                    users = json["users"].array,
-                    medias = json["media"].array else
-                {
-                    // Not Found.
-                    return
-                }
-                // being overly consious
-                let Mmin = min(posts.count, min(locs.count, min(users.count, medias.count)))
-                for i in 0..<Mmin {
-                    //                print("\(post) - \(media) - \(loc)")
-                    
-                    self.postDataSource.append(Post(post: posts[i], media: medias[i], location: locs[i], user: users[i]))
-                }
-                
-                dispatch_async(dispatch_get_main_queue(),{
-                    self.tableView.reloadData()
-                })
+        
+        if (json == nil){
+            return
+        }
+        
+        guard let dataArray = json.array else
+        {
+            
+            
+            return
+        }
+        for data in dataArray
+        {
+            
+            if let post:JSON = data["post"],
+                loc:JSON = data["location"],
+                user:JSON = data["user"],
+                media:JSON = data["media"]
+            {
+                self.postDataSource.append(Post(post: post, media: media, location: loc, user: user))
+            }
+        }
+        
+        dispatch_async(dispatch_get_main_queue(),{
+            self.tableView.reloadData()
+        })
     }
     
     
@@ -171,7 +206,7 @@ class HomeViewController: UITableViewController, SignInDelegate,  HamburgerProto
         self.tableView.reloadData()
         refreshControl.endRefreshing()
     }
-
+    
     
     
     

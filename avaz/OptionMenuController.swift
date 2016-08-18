@@ -47,18 +47,20 @@ class OptionMenuController: UITableViewController {
     
     
     func DoLogout()  {
-        ApiManager.sharedInstance.logOut({(json : JSON) in
-            
-            if (json != nil )
-            {
-                
-                UserData.sharedInstance.ClearAll()
-                //Todo: Redirect To SomeWhere
-                print("Logout cleared data \n\(json)")
-                
-            }
-            
-        })
+        
+        UserData.sharedInstance.ClearAll()
+//        ApiManager.sharedInstance.logOut({(json : JSON) in
+//            
+//            if (json != nil )
+//            {
+//                
+//                UserData.sharedInstance.ClearAll()
+//                //Todo: Redirect To SomeWhere
+//                print("Logout cleared data \n\(json)")
+//                
+//            }
+//            
+//        })
     }
     
     var count =  0

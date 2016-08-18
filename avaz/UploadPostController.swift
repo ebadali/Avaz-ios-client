@@ -11,7 +11,8 @@ import CoreLocation
 import AVKit
 import AVFoundation
 import SwiftyJSON
-import SwiftLoader
+
+import EZLoadingActivity
 
 class UploadPostController: UIViewController, UIImagePickerControllerDelegate,
 UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
@@ -20,7 +21,7 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
     var controllerType = ControllerType.POST
     
     @IBOutlet weak var menuItem: UIBarButtonItem!
-
+    
     
     @IBOutlet weak var mediaSource: MediaSource!
     
@@ -31,30 +32,43 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
         
         
         guard let title = self.titleText.text,
-                detailText = self.detailText.text
-        else
+            detailText = self.detailText.text
+            else
         {
             // Cant Create the post
             return
         }
         
+        
+        print("lat: \(self.center?.latitude) , lng: \(self.center?.longitude) \n")
+        
         // Lets Create a post Object.
         if self.center?.longitude != nil && self.center?.latitude != nil {
             self.mediaObject.content = detailText
             let post = Post(postid:  "unknownid", media: self.mediaObject, title : title, up: 0, down: 0, loc : "", latitude : self.center!.latitude ,longitude : (self.center?.longitude)!)
-           
-            SwiftLoader.show(animated: true)
+            
+            EZLoadingActivity.show("Posting...", disableUI: true)
+            
             ApiManager.sharedInstance.insertAPost(post, onCompletion:
-            {(json : JSON) in
-                SwiftLoader.hide()
-                if (json != nil )
-                {
-                    // Got A post.
-                    //Todo: Redirect To SomeWhere
-                    print("After Posting \n\(json)")
+                {(json : JSON) in
                     
-                }
-                
+                    EZLoadingActivity.hide(success: true, animated: true)
+        
+                    if (json != nil )
+                    {
+                        // Got A post.
+                        //Todo: Redirect To SomeWhere
+                        print("After Posting \n\(json)")
+                        
+                        DialogHandler.sharedInstance.ShowInfo("Posting Success")
+                        
+                    }
+                    else
+                    {
+
+                        DialogHandler.sharedInstance.ShowInfo("Posting Failed")
+                    }
+                    
             })
             
         }
@@ -103,7 +117,7 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
             self.TakeFromCameraAction()
     }
     
-//    var mediaView : UIView!
+    //    var mediaView : UIView!
     var locationManager: CLLocationManager!
     
     override func viewDidLoad() {
@@ -111,31 +125,40 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
         
         
         print("--View Did Load Called In \(NSStringFromClass(self.classForCoder)) \n")
-
-
-        
-        self.AddMediaToScrollView("upload", type: MediaType.Image(), preferedFunc: uploadCall)
         
         
         
-
+        self.AddMediaToScrollView("upload", type: MediaType.Image(), preferedFunc: uploadCall, storeable: false)
+        
+        
+        
+        
         setupHamburger()
         
-        if (CLLocationManager.locationServicesEnabled())
-        {
-            locationManager = CLLocationManager()
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.requestWhenInUseAuthorization()
-            locationManager.startUpdatingLocation()
-        }
         
-//        addMoreImages()
+        
+        //        addMoreImages()
     }
     override func viewWillDisappear(animated: Bool) {
         print("--viewWillDisappear Called In \(NSStringFromClass(self.classForCoder)) \n")
     }
-
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        //        if (CLLocationManager.locationServicesEnabled())
+        //        {
+        //        }
+        self.locationManager = CLLocationManager()
+        self.locationManager.delegate = self
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        self.locationManager.requestWhenInUseAuthorization()
+        self.locationManager.startUpdatingLocation()
+        
+        //        self.locationManager.requestAlwaysAuthorization()
+        
+        
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -152,7 +175,7 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
         
     }
     
-
+    
     func TakeFromCameraAction() {
         
         // Display Pop-Over
@@ -167,10 +190,10 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
         let camera = UIAlertAction(title: "Camera", style: UIAlertActionStyle.Default, handler: {(alert :UIAlertAction!) in
             print("Camera button tapped")
             self.TakeFromCamera()
-
+            
         })
         
-       
+        
         
         
         alertController.addAction(gallery)
@@ -181,10 +204,10 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
         }))
         self.presentViewController(alertController, animated: true, completion:nil)
         
-//        self.presentViewController(alertController, animated: true, completion:{
-//            alertController.view.superview?.userInteractionEnabled = true
-//            alertController.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.alertControllerBackgroundTapped)))
-//        })
+        //        self.presentViewController(alertController, animated: true, completion:{
+        //            alertController.view.superview?.userInteractionEnabled = true
+        //            alertController.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.alertControllerBackgroundTapped)))
+        //        })
     }
     
     func TakeFromCamera()  {
@@ -193,7 +216,7 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
             imagePicker.delegate = self
             imagePicker.sourceType = UIImagePickerControllerSourceType.Camera;
             imagePicker.mediaTypes =  ["public.image", "public.movie"]
-
+            
             //            imagePicker.allowsEditing = false
             
             self.presentViewController(imagePicker, animated: true, completion: nil)
@@ -215,7 +238,7 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
             let imagePicker = UIImagePickerController()
             
-//            imagePicker.delegate = self
+            //            imagePicker.delegate = self
             imagePicker.sourceType = UIImagePickerControllerSourceType.Camera;
             imagePicker.mediaTypes =  ["public.image", "public.movie"]
             //            imagePicker.allowsEditing = false
@@ -228,7 +251,7 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
     
     func alertControllerBackgroundTapped()
     {
-//        self.dismissViewControllerAnimated(true, completion: nil)
+        //        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
@@ -255,34 +278,34 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
                 
                 let imageUrl = Utils.SaveImageToDirectory(pickedImage)
                 self.AddMediaToScrollView(imageUrl, type: MediaType.Image(), preferedFunc: self.prevCall)
-//                self.AddImageToScrollView(pickedImage)
+                //                self.AddImageToScrollView(pickedImage)
             }
         }
         
-
+        
     }
-   
+    
     
     
     func addMoreImages()  {
         for _ in 1...5 {
-//            let tempImage = UIImage(named: "upload")
-//            AddImageToScrollView(tempImage!)
+            //            let tempImage = UIImage(named: "upload")
+            //            AddImageToScrollView(tempImage!)
             let imagePath = "background"
             let urlPath = NSBundle.mainBundle().pathForResource(imagePath, ofType: "gif")
             
             
             let nsurl = NSURL(fileURLWithPath: urlPath!)
-//            let img = NSData(contentsOfURL: nsurl)
-          
-
+            //            let img = NSData(contentsOfURL: nsurl)
+            
+            
             AddMediaToScrollView(urlPath!, type: MediaType.Image(), preferedFunc: self.prevCall)
         }
         
-
+        
     }
     
-    func AddMediaToScrollView(path: String, type: MediaType, preferedFunc : (MediaSourceObject)->())  {
+    func AddMediaToScrollView(path: String, type: MediaType, preferedFunc : (MediaSourceObject)->(), storeable: Bool = true )  {
         
         
         
@@ -290,13 +313,13 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
                                   prevCallback:  preferedFunc
         )
         
-    
-        self.mediaObject.addMediaContent(path, type: type)
-      
+        if (storeable ) {
+            self.mediaObject.addMediaContent(path, type: type)
+        }
     }
     
     
-
+    
     
     //FIXME: Unused method
     func TabbedOnTile(sender: AnyObject)  {
@@ -340,18 +363,18 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
         }
     }
     
-  
+    
     
     
     func VideoClickListner(sender: AnyObject)  {
         print("Video Listner")
-//        let playerViewController = AVPlayerViewController()
-//        let playerView = AVPlayer("")
-//        playerViewController.player = playerView
-//        
-//        self.presentViewController(playerViewController, animated: true){
-//            playerViewController.player?.play()
-//        }
+        //        let playerViewController = AVPlayerViewController()
+        //        let playerView = AVPlayer("")
+        //        playerViewController.player = playerView
+        //
+        //        self.presentViewController(playerViewController, animated: true){
+        //            playerViewController.player?.play()
+        //        }
         
     }
     func ImageClickListner(sender: AnyObject)  {
@@ -359,30 +382,33 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
     }
     
     
-
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print("error = \(error)")
+    }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
-        
+        print("locations = \(locations)")
         
         let location = locations.last! as CLLocation
-        
-        CLGeocoder().reverseGeocodeLocation(location, completionHandler:
-            { (placemark, error) ->
-                Void in
-                
-                self.locationManager.stopUpdatingLocation()
-                if error != nil {
-                    return
-                    
-                }
-                if placemark?.count > 0 {
-                    let somePlaceMarker = placemark![0] 
-                    self.DisplayLocation(somePlaceMarker)
-                
-                }
-            })
-        
+        self.center = location.coordinate
+        self.locationManager.stopUpdatingLocation()
+        //        CLGeocoder().reverseGeocodeLocation(location, completionHandler:
+        //            { (placemark, error) ->
+        //                Void in
+        //
+        //                self.locationManager.stopUpdatingLocation()
+        //                if error != nil {
+        //                    return
+        //
+        //                }
+        //                if placemark?.count > 0 {
+        //                    let somePlaceMarker = placemark![0]
+        //                    self.DisplayLocation(somePlaceMarker)
+        //
+        //                }
+        //            })
     }
     
     
@@ -394,12 +420,12 @@ UINavigationControllerDelegate, CLLocationManagerDelegate, HamburgerProtocol{
         print(placemarker.region )
         print(placemarker.country )
         
-        center = CLLocationCoordinate2D(latitude: placemarker.location!.coordinate.latitude, longitude: placemarker.location!.coordinate.longitude)
-
+        self.center = CLLocationCoordinate2D(latitude: placemarker.location!.coordinate.latitude, longitude: placemarker.location!.coordinate.longitude)
+        
         print("lat: \(center!.latitude) , lng: \(center!.longitude) \n")
         
         
         
     }
-
+    
 }

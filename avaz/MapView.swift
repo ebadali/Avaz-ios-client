@@ -139,10 +139,10 @@ class MapView: UITableViewCell {
             
             if let artwork = mapCache.objectForKey(lc) as? Pointer {
                 
-                //                self.centerMapOnLocation(artwork.coordinate);
-                //                dispatch_async(dispatch_get_main_queue(),{
-                //                    self.map_MKView.addAnnotation(artwork)
-                //                })
+                                self.centerMapOnLocation(artwork.coordinate);
+                                dispatch_async(dispatch_get_main_queue(),{
+                                    self.map_MKView.addAnnotation(artwork)
+                                })
             }else{
                 dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_UTILITY.rawValue),0))
                 {
@@ -152,11 +152,11 @@ class MapView: UITableViewCell {
                                           locationName: post.loc,
                                           discipline: "Event",
                                           location: initialLocation)
-                    //                self.centerMapOnLocation(initialLocation);
+                                    self.centerMapOnLocation(initialLocation);
                     mapCache.setObject(artwork , forKey: lc)
-                    //                dispatch_async(dispatch_get_main_queue(),{
-                    //                     self.map_MKView.addAnnotation(artwork)
-                    //                })
+                                    dispatch_async(dispatch_get_main_queue(),{
+                                         self.map_MKView.addAnnotation(artwork)
+                                    })
                 }
             }
         }

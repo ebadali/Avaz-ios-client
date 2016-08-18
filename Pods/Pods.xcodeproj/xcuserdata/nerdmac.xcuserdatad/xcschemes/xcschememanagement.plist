@@ -4,17 +4,17 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>EZLoadingActivity.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-avaz.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>SwiftHTTP.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>SwiftLoader.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -27,22 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>29FEE0B25EA0963DAFB0539168E95FDC</key>
+		<key>5AA15057240DDF99894BDFA875FCB8F7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2E59A39E4598032F88E67270CA9AB75C</key>
+		<key>6CADE307401F579008990DC70D49E1B3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6BEE06957B2990786AE8B88F01DCDB56</key>
+		<key>6CD8AD26A01D9C2DED89AAF9131F3659</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B709EBF8046B93F6E194E28AD876E7CE</key>
+		<key>903A108934E1A089B76F443DC34C8E54</key>
 		<dict>
 			<key>primary</key>
 			<true/>

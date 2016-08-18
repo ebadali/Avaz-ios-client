@@ -29,7 +29,7 @@ class ApiManager: NSObject {
         let route = baseURL
         makeHTTPGetRequest(route, params:[:], onCompletion: { json, err in
             
-            onCompletion(json as JSON)
+            onCompletion(json as JSON )
         })
     }
     
@@ -41,13 +41,17 @@ class ApiManager: NSObject {
         let someTuble = [ "username":userName, "password":password];
         makeHTTPPostRequest(baseURL+"user/login",params: someTuble, onCompletion: { json, err in
 
+//            LoadingIndicatorView.hide()
+            if err != nil{
+//                 onCompletion(err! as String)
+            }
+            
             
                        onCompletion(json as JSON)
         })
     }
     func RegsiterApi(userName: String,email: String, password: String, pic: String?,  onCompletion: (JSON) ->Void) {
         
-//        let fileUrl = NSURL(fileURLWithPath: "/Users/nerdmac/Documents/ios/avaz/avaz/Assets.xcassets/upload.imageset/Upload-50.png")
    
 
         
@@ -80,6 +84,15 @@ class ApiManager: NSObject {
     }
     
     
+    func getAllPostByUser(onCompletion: (JSON) ->Void) {
+        
+        let parameters = [ "sessionid": UserData.sharedInstance.sessionId as! AnyObject];
+        makeHTTPGetRequest(baseURL+"post/getallpostbyuser", params:parameters, onCompletion: { json, err in
+            onCompletion(json as JSON)
+        })
+        
+    }
+
     
     
     

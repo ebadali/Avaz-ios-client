@@ -9,7 +9,7 @@
 import UIKit
 import SwiftyJSON
 
-import SwiftLoader
+import EZLoadingActivity
 
 class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
 UINavigationControllerDelegate {
@@ -50,12 +50,14 @@ UINavigationControllerDelegate {
         //3. Send the Url to the Api Manager.
         
         print(" \(username) , \(email) ,  \(password) , \(imageUrl)")
-                        SwiftLoader.show(animated: true)
+        EZLoadingActivity.show("Loading...", disableUI: true)
         
         ApiManager.sharedInstance.RegsiterApi(username, email: email, password: password, pic: imageUrl,
                                            onCompletion:
             {(json : JSON) in
-                                SwiftLoader.hide()
+                EZLoadingActivity.hide(success: true, animated: true)
+                
+
                 print("Responce1 \(json) \n")
                 
                 

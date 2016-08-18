@@ -33,6 +33,10 @@
 		087708CE1D00862900EB983B /* VotesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 087708CD1D00862900EB983B /* VotesView.xib */; };
 		087708D01D00867900EB983B /* VotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087708CF1D00867900EB983B /* VotesView.swift */; };
 		087708D21D008F7400EB983B /* UpdateDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087708D11D008F7400EB983B /* UpdateDetailViewController.swift */; };
+		0877D0D61D65BE9B00EDDF4F /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0877D0D51D65BE9B00EDDF4F /* NavigationController.swift */; };
+		0877D0D91D6604D500EDDF4F /* DialogHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0877D0D81D6604D500EDDF4F /* DialogHandler.swift */; };
+		0877D0DB1D66082E00EDDF4F /* DialogExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0877D0DA1D66082E00EDDF4F /* DialogExtension.swift */; };
+		0877D0DD1D660FD000EDDF4F /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0877D0DC1D660FD000EDDF4F /* LoadingIndicator.swift */; };
 		0879B2B81D4A30C80078C5EB /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0879B2B71D4A30C70078C5EB /* UserData.swift */; };
 		0879B2BA1D4A319A0078C5EB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0879B2B91D4A319A0078C5EB /* User.swift */; };
 		0890BD801D100AF500697E3F /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0890BD7F1D100AF500697E3F /* ApiManager.swift */; };
@@ -87,6 +91,10 @@
 		087708CD1D00862900EB983B /* VotesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VotesView.xib; sourceTree = "<group>"; };
 		087708CF1D00867900EB983B /* VotesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VotesView.swift; sourceTree = "<group>"; };
 		087708D11D008F7400EB983B /* UpdateDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateDetailViewController.swift; sourceTree = "<group>"; };
+		0877D0D51D65BE9B00EDDF4F /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		0877D0D81D6604D500EDDF4F /* DialogHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogHandler.swift; sourceTree = "<group>"; };
+		0877D0DA1D66082E00EDDF4F /* DialogExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogExtension.swift; sourceTree = "<group>"; };
+		0877D0DC1D660FD000EDDF4F /* LoadingIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
 		0879B2B71D4A30C70078C5EB /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		0879B2B91D4A319A0078C5EB /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0890BD7F1D100AF500697E3F /* ApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
@@ -211,6 +219,15 @@
 			name = protocoles;
 			sourceTree = "<group>";
 		};
+		0877D0D71D6604BD00EDDF4F /* dialogs */ = {
+			isa = PBXGroup;
+			children = (
+				0877D0D81D6604D500EDDF4F /* DialogHandler.swift */,
+				0877D0DC1D660FD000EDDF4F /* LoadingIndicator.swift */,
+			);
+			name = dialogs;
+			sourceTree = "<group>";
+		};
 		0879B2B61D4A30A50078C5EB /* data */ = {
 			isa = PBXGroup;
 			children = (
@@ -243,6 +260,7 @@
 		08BFC4931CFC4034007C4651 /* avaz */ = {
 			isa = PBXGroup;
 			children = (
+				0877D0D71D6604BD00EDDF4F /* dialogs */,
 				081D5DE31D58A93600E923E8 /* protocoles */,
 				08C0FC041D549B470052179C /* extensions */,
 				0879B2B61D4A30A50078C5EB /* data */,
@@ -270,6 +288,8 @@
 			isa = PBXGroup;
 			children = (
 				08C0FC051D549B6D0052179C /* ImageViewExtension.swift */,
+				0877D0D51D65BE9B00EDDF4F /* NavigationController.swift */,
+				0877D0DA1D66082E00EDDF4F /* DialogExtension.swift */,
 			);
 			name = extensions;
 			sourceTree = "<group>";
@@ -447,9 +467,11 @@
 				089EF9DB1D52082600B5F163 /* Comment.swift in Sources */,
 				022BF9E41D2F896B00126414 /* CustomMediaCell.swift in Sources */,
 				087708D21D008F7400EB983B /* UpdateDetailViewController.swift in Sources */,
+				0877D0D61D65BE9B00EDDF4F /* NavigationController.swift in Sources */,
 				08F49DE21D01C4EC005C0702 /* MapView.swift in Sources */,
 				02FCC2B31D1EA43C009EF1A7 /* SWRevealViewController.m in Sources */,
 				087708D01D00867900EB983B /* VotesView.swift in Sources */,
+				0877D0DB1D66082E00EDDF4F /* DialogExtension.swift in Sources */,
 				084930681D5CC54700F157C7 /* iCarousel.m in Sources */,
 				0890BD801D100AF500697E3F /* ApiManager.swift in Sources */,
 				0276B7991D1EB5B40007A4F2 /* File.swift in Sources */,
@@ -459,6 +481,7 @@
 				08BFC4971CFC4034007C4651 /* ViewController.swift in Sources */,
 				08BFC4951CFC4034007C4651 /* AppDelegate.swift in Sources */,
 				0825205C1D5DDBB700B04003 /* TestController.swift in Sources */,
+				0877D0DD1D660FD000EDDF4F /* LoadingIndicator.swift in Sources */,
 				025BFB981D25D82600342E55 /* LoginView.swift in Sources */,
 				0234F2D11D2E6B020020027D /* Utils.swift in Sources */,
 				081D5DE51D58A98800E923E8 /* DataLoadingDelegate.swift in Sources */,
@@ -471,6 +494,7 @@
 				082520601D5DE8DC00B04003 /* MediaSourceObject.swift in Sources */,
 				08C0FC081D54A5DC0052179C /* OptionMenuController.swift in Sources */,
 				08080EC61D621ADE00A28F93 /* ForgetPasswordController.swift in Sources */,
+				0877D0D91D6604D500EDDF4F /* DialogHandler.swift in Sources */,
 				029887691D184B7A00D8903F /* LoginViewController.swift in Sources */,
 				0879B2B81D4A30C80078C5EB /* UserData.swift in Sources */,
 				08C4456C1D1160C400CB48CB /* Pointer.swift in Sources */,

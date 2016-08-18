@@ -11,6 +11,8 @@ import UIKit
 import SwiftyJSON
 import SwiftLoader
 
+import EZLoadingActivity
+
 class UpdateController: UITableViewController, HamburgerProtocol {
     
      var controllerType = ControllerType.HISTORY
@@ -110,26 +112,27 @@ class UpdateController: UITableViewController, HamburgerProtocol {
     
     func LoadFromRemote() {
         
-        SwiftLoader.show(animated: true)
-        ApiManager.sharedInstance.getAllPost(
+        EZLoadingActivity.show("Loading...", disableUI: true)
+        
+        ApiManager.sharedInstance.getAllPostByUser(
         {(json : JSON) in
             
-            SwiftLoader.hide()
-//            print(json)
-            guard let posts = json["posts"].array,
-                      locs = json["locations"].array,
-                      users = json["users"].array,
-                      medias = json["media"].array else
+            EZLoadingActivity.hide(success: true, animated: true)
+            
+            guard let dataArray = json.array else
             {
-                // Not Found.
                 return
             }
-            // being overly consious
-            let Mmin = min(posts.count, min(locs.count, min(users.count, medias.count)))
-            for i in 0..<Mmin {
-//                print("\(post) - \(media) - \(loc)")
+            for data in dataArray
+            {
                 
-                self.someDataSource.append(Post(post: posts[i], media: medias[i], location: locs[i], user: users[i]))
+                if let post:JSON = data["post"],
+                    loc:JSON = data["location"],
+                    user:JSON = data["user"],
+                    media:JSON = data["media"]
+                {
+                    self.someDataSource.append(Post(post: post, media: media, location: loc, user: user))
+                }
             }
             
             dispatch_async(dispatch_get_main_queue(),{

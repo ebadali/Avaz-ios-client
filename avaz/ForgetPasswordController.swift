@@ -7,8 +7,10 @@
 //
 
 import UIKit
-import SwiftLoader
+
 import SwiftyJSON
+
+import EZLoadingActivity
 
 class ForgetPasswordController: UIViewController {
 
@@ -43,13 +45,14 @@ class ForgetPasswordController: UIViewController {
         
         print(" \(email) ,  \(pass) , \(cpass)")
         
-        
-        SwiftLoader.show(animated: true)
+        EZLoadingActivity.show("Loading...", disableUI: true)
+
         
         ApiManager.sharedInstance.ForgetPassApi(email, password: pass, confirmpassword: cpass,
                                               onCompletion:
             {(json : JSON) in
-                SwiftLoader.hide()
+                
+                EZLoadingActivity.hide(success: true, animated: true)
                 
                 
                 if (json != nil )

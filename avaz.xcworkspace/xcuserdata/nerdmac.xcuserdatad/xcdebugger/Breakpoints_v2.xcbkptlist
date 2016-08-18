@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "avaz/ApiManager.swift"
-            timestampString = "493138788.209978"
+            timestampString = "493228098.709005"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "304"
-            endingLineNumber = "304">
+            startingLineNumber = "314"
+            endingLineNumber = "314">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -24,11 +24,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "avaz/ApiManager.swift"
-            timestampString = "493138788.209978"
+            timestampString = "493228098.709005"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
             landmarkName = "insertAPost(_:onCompletion:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -39,13 +39,77 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "avaz/UploadPostController.swift"
-            timestampString = "493146863.231804"
+            filePath = "avaz/ImageViewExtension.swift"
+            timestampString = "493221462.781455"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "createThePost(_:)"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "loadImageRemotely(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "avaz/ApiManager.swift"
+            timestampString = "493228098.709005"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "142"
+            endingLineNumber = "142"
+            landmarkName = "insertAPost(_:onCompletion:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "avaz.ApiManager.insertAPost (avaz.Post, onCompletion : (SwiftyJSON.JSON) -&gt; ()) -&gt; ()"
+                  moduleName = "avaz"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nerdmac/Documents/iOS/avaz/avaz/ApiManager.swift"
+                  timestampString = "493219004.092851"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "132"
+                  endingLineNumber = "132"
+                  offsetFromSymbolStart = "1908">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "avaz.ApiManager.(insertAPost (avaz.Post, onCompletion : (SwiftyJSON.JSON) -&gt; ()) -&gt; ()).(closure #2)"
+                  moduleName = "avaz"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nerdmac/Documents/iOS/avaz/avaz/ApiManager.swift"
+                  timestampString = "493219004.09295"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "134"
+                  endingLineNumber = "134"
+                  offsetFromSymbolStart = "174">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "avaz/model/Post.swift"
+            timestampString = "493219264.950756"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
+            landmarkName = "init(post:media:location:user:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
